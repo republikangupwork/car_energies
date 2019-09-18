@@ -15,5 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'Sample_1'], function() {
+	Route::get('/', ['as'=>'sample_1.home', 'uses'=>'SampleOneController@index']);
+	Route::get('/About', ['as'=>'sample_1.about', 'uses'=>'SampleOneController@about']);
+	Route::get('/Benefits', ['as'=>'sample_1.benefits', 'uses'=>'SampleOneController@benefits']);
+	Route::get('/Services', ['as'=>'sample_1.services', 'uses'=>'SampleOneController@services']);
+	Route::get('/Submit', ['as'=>'sample_1.submit', 'uses'=>'SampleOneController@submit']);
+});
 
-Route::get('/test', ['as'=>'testpage', 'uses'=>'TestController@index']);
+
+// Route::get('/Sample_2', ['as'=>'sample_2', 'uses'=>'SampleTwoController@index']);

@@ -81,19 +81,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Car Energies Samples
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/test') }}">Go Test Page?</a>
-                    {{-- <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a> --}}
+                    <a href="{{ url('/Sample_1') }}">Sample 1</a>
+                    <a href="{{ url('/Sample_2') }}">Sample 2</a>
                 </div>
             </div>
         </div>
