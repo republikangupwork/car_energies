@@ -8,8 +8,8 @@
 
     <meta name="description" content="CE - Free Car Consultancy">
     <meta name="author" content="Freddie">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self'https://www.upworkrepublic.ml 'unsafe-inline' 'unsafe-eval'; " />
-    
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://www.upworkrepublic.ml 'unsafe-inline' 'unsafe-eval'; " />
+
     <!-- Fontawseom Icon CSS -->
     <link rel="stylesheet" href="{{ asset('css/sample_1/all.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/carousel.css') }}">
