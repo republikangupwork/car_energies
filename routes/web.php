@@ -23,5 +23,9 @@ Route::group(['prefix' => 'Sample_1'], function() {
 	Route::get('/Submit', ['as'=>'sample_1.submit', 'uses'=>'SampleOneController@submit']);
 });
 
+Route::group(['prefix' => 'Admin-Page'], function() {
+	Route::get('/Dashboard', ['as'=>'admin.dashboard', 'uses'=>'AdminController@dashboard']);
+	Route::get('/Profile', ['as'=>'admin.profile', 'uses'=>'AdminController@profile']);
+});
 
 // Route::get('/Sample_2', ['as'=>'sample_2', 'uses'=>'SampleTwoController@index']);
