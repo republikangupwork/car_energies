@@ -8,7 +8,7 @@
 
     <meta name="description" content="CE - Free Car Consultancy">
     <meta name="author" content="Freddie">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;**script-src 'self' https://www.upworkrepublic.ml 'unsafe-inline' 'unsafe-eval';** ">
+    
     <!-- Fontawseom Icon CSS -->
     <link rel="stylesheet" href="{{ asset('css/sample_1/all.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/carousel.css') }}">
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/sample_1/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/responsive.css') }}">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     
 
     <title>CE- Car Energies</title>

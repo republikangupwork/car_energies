@@ -156,7 +156,7 @@
 
     <!-- Theme JS -->
     <script src="{{ asset('js/sample_1/theme.js') }}"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 </body>
 
