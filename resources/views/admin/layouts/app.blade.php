@@ -13,9 +13,11 @@
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="{{ asset('admin/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sample_1/all.css') }}">
 
     <!-- CSS Files -->
     <link href="{{ asset('admin/assets/css/material-dashboard.css?v=2.1.1') }}" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
 
 </head>
 
