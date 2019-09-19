@@ -55,16 +55,16 @@
 
                 <div class="col-lg-6 ">
                     <div class="about-content">
-                        <h2 class="display-5">
+                        <h2 class="display-5 section-title">
                             What Do You Expect From Us
                         </h2>
-                        <p>For a limited time only, Julia will check the energy of the car you are considering to buy free of charge!.</p>
-                        <p>Fill out a simple table with your name email address, your City, State and Country.
+                        <p class="section-description">For a limited time only, Julia will check the energy of the car you are considering to buy free of charge!.</p>
+                        <p class="section-description">Fill out a simple table with your name email address, your City, State and Country.
  and upload 4 recent photos of the car in the locations shown in here ( one from front of the car (hood up), one from behind the car and one from each side of the car, doors open) See the examples shown here.The website will generate a case number for each car you upload photos.</p>
- <p>Julia will check the cars energy and will list existing potential problems that you may encounter if you decide to purchase the car. And will send the report to you in an email.In most cases, it will take maximum 24 hours, possibly much sooner.</p>
- <p>Please note that this is for your personal use, and there are no guarantees that the car she approves, will be completely trouble free. But she has a proven track record of being %95 accurate in her evaluation.</p>
- <p>Have Julia’s repot in your hand when you are going to the auction to buy that SUV, truck or automobile.</p>
- <p>Imagine going to the seller knowing not only the condition of all parts of the vehicle, but also some trouble spots that even the seller may honestly not know. Even if you do not purchase it, the seller now can know the invaluable information on the coming future problems on the vehicle.</p>
+ <p class="section-description">Julia will check the cars energy and will list existing potential problems that you may encounter if you decide to purchase the car. And will send the report to you in an email.In most cases, it will take maximum 24 hours, possibly much sooner.</p>
+ <p class="section-description">Please note that this is for your personal use, and there are no guarantees that the car she approves, will be completely trouble free. But she has a proven track record of being %95 accurate in her evaluation.</p>
+ <p class="section-description">Have Julia’s repot in your hand when you are going to the auction to buy that SUV, truck or automobile.</p>
+ <p class="section-description">Imagine going to the seller knowing not only the condition of all parts of the vehicle, but also some trouble spots that even the seller may honestly not know. Even if you do not purchase it, the seller now can know the invaluable information on the coming future problems on the vehicle.</p>
 
 
 

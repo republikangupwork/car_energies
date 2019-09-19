@@ -1,0 +1,79 @@
+<style>
+    .box{
+    padding:60px 0px;
+}
+
+.box-part{
+    background:#FFF;
+    border-radius:0;
+    padding:60px 10px;
+    margin:30px 0px;
+}
+.text{
+    margin:20px 0px;
+}
+
+.fa{
+     color:#4183D7;
+
+}
+.mybox:hover{
+    -webkit-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    -moz-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    transition: all 500ms ease;
+}
+.shadowbox{
+    -webkit-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    -moz-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    transition: all 500ms ease;
+}
+.pt-50{
+    padding-top: 50px;
+}
+.pb-30{
+    padding-bottom: 30px;
+}
+.slider {
+  height: 100vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.carousel-caption h2{
+    font-size: 100px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: white;
+    text-shadow: 2px 2px gray;
+}
+.carousel-caption p{
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 100px;
+    color: white;
+    text-shadow: 2px 2px gray;
+}
+.section-title{
+    font-size: 50px; text-transform: uppercase;font-weight: bold; text-decoration: underline;
+}
+.section-description{
+    font-size: 25px;font-weight: bold;color: black;
+}
+.color-black{
+    color: black;
+}
+@media only screen and (max-width: 720px) {
+    .carousel-caption h2{
+        display: none;
+    }
+    .carousel-caption p{
+        margin-bottom: 200px
+    }
+}
