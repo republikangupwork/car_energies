@@ -21,7 +21,7 @@
         <section class="section section-top section-full" style="max-height: 50vh;">
 
         <!-- Cover -->
-        <div class="bg-cover" style="background-image: url({{ asset('images/sample_1/car2.png') }});"></div>
+        <div class="bg-cover" style="background-image: url({{ asset('images/sample_1/email.jpg') }});"></div>
 
         <!-- Overlay -->
         <div class="bg-overlay"></div>
@@ -52,13 +52,9 @@
         <section class="section " id="#">
         <div class="container-fluid">
             <div class="row ">
-                <div class="col-lg-6">
-                    <div class="about-img">
-                        <img src="{{ asset('images/sample_1/sidecar.png') }}" alt="" class="img-fluid">
-                    </div>
-                </div>
+            
 
-                <div class="col-lg-6 ">
+                <div class="col-lg-12 ">
                     <div class="about-content">
                                                      <!-- Contact
                             ================================================== -->

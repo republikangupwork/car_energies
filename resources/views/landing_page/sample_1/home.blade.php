@@ -1,74 +1,5 @@
 @include('landing_page.sample_1.header')
-<style>
-    .box{
-    padding:60px 0px;
-}
 
-.box-part{
-    background:#FFF;
-    border-radius:0;
-    padding:60px 10px;
-    margin:30px 0px;
-}
-.text{
-    margin:20px 0px;
-}
-
-.fa{
-     color:#4183D7;
-
-}
-       .mybox:hover{
-            -webkit-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            -moz-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            transition: all 500ms ease;
-        }
-        .shadowbox{
-            -webkit-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            -moz-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            transition: all 500ms ease;
-        }
-    .pt-50{
-        padding-top: 50px;
-    }
-    .pb-30{
-        padding-bottom: 30px;
-    }
-    .carousel-item {
-  height: 100vh;
-  min-height: 350px;
-  background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-.carousel-caption h2{
-    font-size: 100px;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-bottom: 50px;
-    color: white;
-    text-shadow: 2px 2px gray;
-}
-.carousel-caption p{
-    font-size: 50px;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-bottom: 100px;
-    color: white;
-    text-shadow: 2px 2px gray;
-}
-@media only screen and (max-width: 720px) {
-    .carousel-caption h2{
-        display: none;
-    }
-    .carousel-caption p{
-        margin-bottom: 200px
-    }
-}
     </style>
     <!-- HERO
     ================================================== -->
@@ -82,7 +13,7 @@
                     </ol>
                     <div class="carousel-inner" role="listbox">
                       <!-- Slide One - Set the background image for this slide in the line below -->
-                      <div  class="carousel-item active" style="background-image: url({{ asset('images/sample_1/slider/1.jpg') }})">
+                      <div  class="carousel-item slider active" style="background-image: url({{ asset('images/sample_1/slider/1.jpg') }})">
                         <div class="carousel-caption row">
                             <div class="col-md-5"></div>
                             <div class="col-md-7 align-items-end">
@@ -93,17 +24,17 @@
                         </div>
                       </div>
                       <!-- Slide Two - Set the background image for this slide in the line below -->
-                      <div  class="carousel-item" style="background-image: url({{ asset('images/sample_1/slider/2.jpg') }})">
+                      <div  class="carousel-item slider" style="background-image: url({{ asset('images/sample_1/slider/2.jpg') }})">
                         <div class="carousel-caption d-md-block">
-                          <h2 class="display-4">Second Slide</h2>
-                          <p class="lead">This is a description for the second slide.</p>
+                          <h2 class="display-1">3 Free Consultancy</h2>
+                          <p class="lead">Check for possible problems before you buy that used car</p>
                         </div>
                       </div>
                       <!-- Slide Three - Set the background image for this slide in the line below -->
-                      <div  class="carousel-item" style="background-image: url({{ asset('images/sample_1/slider/4.jpg') }})">
+                      <div  class="carousel-item slider" style="background-image: url({{ asset('images/sample_1/slider/4.jpg') }})">
                         <div class="carousel-caption  d-md-block">
-                          <h2 class="display-4">Third Slide</h2>
-                          <p class="lead">This is a description for the third slide.</p>
+                          <h2 class="display-4">Save money and time</h2>
+                          <p class="lead">A new best way to check used car mechanically from deep within</p>
                         </div>
                       </div>
                     </div>
@@ -120,14 +51,6 @@
     </section>
 
 
-    <!-- SECTIONS
-    ================================================== -->
-    <!-- PAGES
-    ================================================== -->
-
-    <!-- FEATURES
-    ================================================== -->
-
         <!-- About Car Energies
     ================================================== -->
 
@@ -142,21 +65,21 @@
 
                 <div class="col-lg-6 ">
                     <div class="about-content">
-                        <h2 class="display-5">
+                        <h2 class="display-5 section-title">
                             About Car Energies
                         </h2>
-                        <p>At CarEnergies.com, we specialize in analyzing the energies of cars, motorcycles, SUV, and trucks. Julia is very sensitive to the energies of objects and senses the defective or broken parts of vehicles. She has helped people to choose best used vehicle and stay away from buying lemons. She can help you too.</p>
+                        <p class="section-description">At CarEnergies.com, we specialize in analyzing the energies of cars, motorcycles, SUV, and trucks. Julia is very sensitive to the energies of objects and senses the defective or broken parts of vehicles. She has helped people to choose best used vehicle and stay away from buying lemons. She can help you too.</p>
 
 
                         <ul class="list-unstyled skill-list ">
-                            <li>3 FREE Consultancy</li>
-                            <li>Easy Process</li>
-                            <li>Tried and Tested</li>
-                            <li>100% FREE</li>
+                            <li class="section-description">3 FREE Consultancy</li>
+                            <li class="section-description">Easy Process</li>
+                            <li class="section-description">Tried and Tested</li>
+                            <li class="section-description">100% FREE</li>
                         </ul>
 
                         
-                        <a href="#" class="btn btn-primary">TRY NOW FOR FREE</a>
+                        <a href="#" class="btn"><img src="{{ asset('images/sample_1/trial.png') }}" alt="" height="50" width="300"></a>
                     </div>
                 </div>
             </div>
@@ -169,12 +92,12 @@
                 <div class="col-md-8 col-lg-7 text-center">
 
                     <!-- Heading -->
-                    <h2 class="lg-title mb-2">
+                    <h2 class="lg-title mb-2 section-title">
                         Why Choose Us
                     </h2>
 
                     <!-- Subheading -->
-                    <p class="mb-5">
+                    <p class="mb-5 section-description">
                         No other person in the world <small>(that we know)</small> can do this, let alone do it online by just seeing a few photos online!
                     </p>
 
@@ -185,47 +108,49 @@
 
                 <div class="col-lg-6">
                      <div class="row" style="margin-top: 100px; margin-left: 50px;">
-                         <div class="col-md-6">
+                         <div class="col-md-6 mb-5">
                               <div class="service-block d-flex">
                                     <div class="service-icon ">
-                                        <i class="fas fa-users-cog"></i>
+                                        {{-- <i class="fas fa-users-cog"></i> --}}
+                                        <img src="{{ asset('images/sample_1/icons/bulb.png') }}" alt="" height="100" width="100">
                                     </div>
                                     <div class="service-content ">
-                                        <h4><span>EXPERT</span> ENGINEER</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. asperiores rem voluptas nobis.</p>
+                                        <h4 class="section-description"><span>EXPERT</span> Professional</h4>
+                                        <p style="color: black">In this section a description for and expert professional</p>
+                                    </div>
+                                </div>
+                         </div>
+                         <div class="col-md-6 mb-5">
+                              <div class="service-block d-flex">
+                                    <div class="service-icon ">
+                                        {{-- <i class="fas fa-money-bill-wave"></i> --}}
+                                        <img src="{{ asset('images/sample_1/icons/free.png') }}" alt="" height="100" width="100">
+                                    </div>
+                                    <div class="service-content ">
+                                        <h4 class="section-description"><span>100%</span> Free Trial</h4>
+                                        <p style="color: black">Sign up now to get free 3 consultation, A one time offer</p>
                                     </div>
                                 </div>
                          </div>
                          <div class="col-md-6">
                               <div class="service-block d-flex">
                                     <div class="service-icon ">
-                                        <i class="fas fa-money-bill-wave"></i>
+                                        <img src="{{ asset('images/sample_1/icons/stars.png') }}" alt="" height="100" width="100">
                                     </div>
                                     <div class="service-content ">
-                                        <h4><span>100%</span> Free Trial</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. asperiores rem voluptas nobis.</p>
+                                        <h4 class="section-description"><span>Trusted</span> by Clients</h4>
+                                        <p style="color: black">In this section a description for Trusted by Clients</p>
                                     </div>
                                 </div>
                          </div>
                          <div class="col-md-6">
                               <div class="service-block d-flex">
                                     <div class="service-icon ">
-                                        <i class="fa fa-star"></i>
+                                        <img src="{{ asset('images/sample_1/icons/quick.png') }}" alt="" height="130" width="130">
                                     </div>
                                     <div class="service-content ">
-                                        <h4><span>Trusted</span> by Clients</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. asperiores rem voluptas nobis.</p>
-                                    </div>
-                                </div>
-                         </div>
-                         <div class="col-md-6">
-                              <div class="service-block d-flex">
-                                    <div class="service-icon ">
-                                        <i class="fas fa-business-time"></i>
-                                    </div>
-                                    <div class="service-content ">
-                                        <h4><span>EASY</span> Process</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. asperiores rem voluptas nobis.</p>
+                                        <h4 class="section-description"><span>EASY</span> Process</h4>
+                                        <p style="color: black">This will only take up to 24 hours maximum, and can do 100 daily consultation</p>
                                     </div>
                                 </div>
                          </div>
@@ -246,43 +171,43 @@
                     <div class="row justify-content-center mb-4">
                         <div class="col-md-8 col-lg-6 text-center">
                             <!-- Heading -->
-                            <h2 class="lg-title mb-2">
+                            <h2 class="lg-title mb-2 section-title">
                                 Our Work Process
                             </h2>
                             <!-- Subheading -->
-                            <p class="mb-5 ">
-                                No other person in the world (that we know) can do this, let alone do it online by just seeing a few photos online!
+                            <p class="mb-5 section-description">
+                                place a brief description here that tackles about our business process 
                             </p>
                         </div>
                     </div>
             <!-- / .row -->
             <div class="row">
-                <div class=" row col-lg-4 d-flex flex-column align-items-end">
-                    <div class="col-md-6">
-                          <div class="service-block d-flex">
+                <div class=" row col-lg-4 d-flex ">
+                    <div class="row col-md-12">
+                          <div class="">
+                                <div class="row justify-content-end">
+                                    <img src="{{ asset('images/sample_1/process/picture.png') }}" width="75" height="75">
+                                </div>
+                                <div class="service-content row justify-content-end">
+                                    <h4 class="section-description"><span>TAKE CAR'S</span> PICTURE</h4>
+                                    <p class="color-black">Upload 4 recent clear photos of the used car in(front,read,left side,rightside)</p>
+                                </div>
                                 
-                                <div class="service-content ">
-                                    <h4><span>TAKE CAR'S</span> PICTURE</h4>
-                                    <p>Upload 4 recent photos of the car in(front,read,left side,rightside)</p>
-                                </div>
-                                <div class="">
-                                    <img src="{{ asset('images/sample_1/process/picture.png') }}" width="110" height="110">
-                                </div>
                             </div>
                     </div>
-                     <div class="col-md-6">
-                          <div class="service-block d-flex">
+                     <div class="row col-md-12">
+                          <div class="">
+                                <div class="row justify-content-end">
+                                    <img src="{{ asset('images/sample_1/process/email.png') }}" width="75" height="75">
+                                </div>
+                                <div class="service-content row justify-content-end">
+                                    <h4 class="section-description"><span>SUBMIT DETAILS</span> THRU EMAIL</h4>
+                                    <p class="color-black">Send us the pictures with your name, email address, state, city and country</p>
+                                </div>
                                 
-                                <div class="service-content ">
-                                    <h4><span>SUBMIT DETAILS</span> THRU EMAIL</h4>
-                                    <p>Send us the pictures with your name, email address, state, city and country</p>
-                                </div>
-                                <div class="">
-                                    <img src="{{ asset('images/sample_1/process/email.png') }}" width="130" height="130">
-                                </div>
                             </div>
                     </div>
-                     
+      
                 </div>
                 <div class="col-lg-4"> 
                     <div data-aos="zoom-in" data-aos-delay="50" data-aos-duration="2000">
@@ -290,32 +215,29 @@
                     </div>
                         
                 </div>
-                     <div class=" row col-lg-4 d-flex flex-column align-items-start">
-                    <div class="col-md-6">
-                          <div class="service-block d-flex">
-                                 <div class="">
-                                    <img src="{{ asset('images/sample_1/process/diagnose.png') }}" width="200" height="200">
+                     <div class=" row col-lg-4 d-flex">
+                        <div class="row col-md-12">
+                          <div class="">
+                                <div class="row justify-content-start">
+                                    <img src="{{ asset('images/sample_1/process/diagnose.png') }}" width="75" height="75">
                                 </div>
-                                <div class="service-content ">
-                                    <h4><span>CAR</span> DIAGNOSTIC</h4>
-                                    <p>We are going to check the car's energy thru the sent photos from you and list existing potential problems if theres any</p>
-                                </div>
-                               
+                                <div class="service-content row justify-content-start">
+                                    <h4 class="section-description"><span>CAR</span> DIAGNOSTIC</h4>
+                                    <p class="color-black">We are going to check the car's energy thru the sent photos from you and list existing potential problems if theres any</p>
+                                </div>                               
                             </div>
-                    </div>
-                     <div class="col-md-6">
-                          <div class="service-block d-flex">
-                                 <div class="" style="margin-right: 10px">
-                                   <img src="{{ asset('images/sample_1/process/report.jpg') }}" width="140" height="140">
+                        </div>
+                         <div class="row col-md-12">
+                          <div class="">
+                                <div class="row justify-content-start">
+                                    <img src="{{ asset('images/sample_1/process/report.jpg') }}" width="75" height="75">
                                 </div>
-                                <div class="service-content ">
-                                    <h4><span>RESOLUTION &</span> RECOMMENDATION</h4>
-                                    <p>An email will be sent back to you consisting with diagnostic report up to 12-24 hours</p>
-                                </div>
-                               
+                                <div class="service-content row justify-content-start">
+                                    <h4 class="section-description"><span>RESOLUTION &</span> RECOMMENDATION</h4>
+                                    <p class="color-black">An email will be sent back to you consisting with diagnostic report up to 12-24 hours</p>
+                                </div>                               
                             </div>
-                    </div>
-                     
+                        </div>      
                 </div>
             </div>
         </div> <!-- / .container -->
@@ -325,7 +247,7 @@
            <div class="row justify-content-center mb-5">
                 <div class="col-md-8 col-lg-6 text-center">
                     <!-- Heading -->
-                    <h2 class="lg-title mb-2" style="color: white;">
+                    <h2 class="lg-title mb-2 section-title" style="color: white;">
                         What Our Customers Are Saying
                     </h2>
                     <!-- Subheading -->
@@ -338,11 +260,11 @@
               <!--Controls-->
 
           <!-- Indicators -->
-         <ol class="carousel-indicators">
-    <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-    <li data-target="#multi-item-example" data-slide-to="1"></li>
-    <li data-target="#multi-item-example" data-slide-to="2"></li>
-  </ol>
+        <ol class="carousel-indicators">
+            <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+            <li data-target="#multi-item-example" data-slide-to="1"></li>
+            <li data-target="#multi-item-example" data-slide-to="2"></li>
+        </ol>
 
           <!-- The slideshow -->
           <div class="carousel-inner">
@@ -515,7 +437,7 @@
                                 <!-- <i class="fab fa-facebook-f fa-3x"></i> -->
                                 <img src="{{ asset('images/sample_1/socmed/insta.png') }}" width="100" height="100">
                                 <div class="title">
-                                    <h4>Instagram</h4>
+                                    <h4 style="font-size:30px ">Instagram</h4>
                                 </div>
                                 
                                 <div class="text">
@@ -534,7 +456,7 @@
                                 <!-- <i class="fas fa-twitter fa-3x" aria-hidden="true"></i> -->
                                  <img src="{{ asset('images/sample_1/socmed/twiter.png') }}" width="100" height="100">
                                 <div class="title">
-                                    <h4>Twitter</h4>
+                                    <h4 style="font-size:30px ">Twitter</h4>
                                 </div>
                                 
                                 <div class="text">
@@ -554,7 +476,7 @@
                                <img src="{{ asset('images/sample_1/socmed/facebook.png') }}" width="100" height="100">
                                 
                                 <div class="title">
-                                    <h4>Facebook</h4>
+                                    <h4 style="font-size:30px ">Facebook</h4>
                                 </div>
                                 
                                 <div class="text">

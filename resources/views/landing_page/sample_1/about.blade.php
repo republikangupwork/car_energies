@@ -3,7 +3,7 @@
         <section class="section section-top section-full" style="max-height: 50vh;">
 
         <!-- Cover -->
-        <div class="bg-cover" style="background-image: url({{ asset('images/sample_1/car2.png') }});"></div>
+        <div class="bg-cover" style="background-image: url({{ asset('images/sample_1/about-us.jpg') }});"></div>
 
         <!-- Overlay -->
         <div class="bg-overlay"></div>
@@ -54,22 +54,21 @@
 
                 <div class="col-lg-6 ">
                     <div class="about-content">
-                        <h2 class="display-5">
+                        <h2 class="display-5 section-title">
                             About Car Energies and Julia
                         </h2>
-                        <p>At CarEnergies.com, we specialize in analyzing the energies of cars, motorcycles, SUV, and trucks. Julia is very sensitive to the energies of objects and senses the defective or broken parts of vehicles. She has helped people to choose best used vehicle and stay away from buying lemons. She can help you too.</p>
-                        <p>Julia B. is very sensitive to subtle energies of objects, animals and people. She consumes energy doing this evaluation. She can evaluate a maximum of 100 automobiles a day. And for now, she will check up to 3 cars per person free of charge (and no more).
+                        <p class="section-description">Julia B. is very sensitive to subtle energies of objects, animals and people. She consumes energy doing this evaluation. She can evaluate a maximum of 100 automobiles a day. And for now, she will check up to 3 cars per person free of charge (and no more).
 Please note that this is for your personal use, and there are no guarantees that the car she approves, will be completely trouble free. But she has a proven track record of being %95 accurate in her evaluation..</p>
-<p>Julia’s  service can save you a lot of time taking the car you are considering buying to a mechanic, if at all possible. What better way to check the car from deep within when you are visiting a used car dealer, a private seller or a pre-auction car lot.</p>
+<p class="section-description">Julia’s  service can save you a lot of time taking the car you are considering buying to a mechanic, if at all possible. What better way to check the car from deep within when you are visiting a used car dealer, a private seller or a pre-auction car lot.</p>
 
 
-                       <p><strong>Save money and time</strong></p>
+                       <p class="section-description"><strong>Save money and time</strong></p>
 
-<p><strong>Don't buy another lemon</strong></p>
-<p>purchasing the right used car can be challenging, time consuming and quite a headache. And still there is no guarantee that you haven't picked a lemon</p>
-<p>Where else can someone look at the photos of a car and see the failed arts, hidden problems, covered up headaches?</p>
-<p>Julia can spot the troubles, accidents, damaged auto parts on cars, automobiles, trucks, motorcycles even bicycles. Even the best mechanics with the latest technologies who can check  a used car and give you a report of list of possible repairs can not detect the parts that are working at the moment of examination, but are done, used up and ready and about to break at any moment.
-</p>
+<p class="section-description"><strong>Don't buy another lemon</strong></p>
+<p class="section-description">purchasing the right used car can be challenging, time consuming and quite a headache. And still there is no guarantee that you haven't picked a lemon</p>
+<p class="section-description">Where else can someone look at the photos of a car and see the failed arts, hidden problems, covered up headaches?</p>
+<p class="section-description">Julia can spot the troubles, accidents, damaged auto parts on cars, automobiles, trucks, motorcycles even bicycles. Even the best mechanics with the latest technologies who can check  a used car and give you a report of list of possible repairs can not detect the parts that are working at the moment of examination, but are done, used up and ready and about to break at any moment.
+</p >
 
                         
                         <a href="#" class="btn btn-primary">TRY NOW FOR FREE</a>
