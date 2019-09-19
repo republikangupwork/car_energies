@@ -18,25 +18,25 @@
      color:#4183D7;
 
 }
-       .mybox:hover{
-            -webkit-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            -moz-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            transition: all 500ms ease;
-        }
-        .shadowbox{
-            -webkit-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            -moz-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
-            transition: all 500ms ease;
-        }
-    .pt-50{
-        padding-top: 50px;
-    }
-    .pb-30{
-        padding-bottom: 30px;
-    }
-    .carousel-item {
+.mybox:hover{
+    -webkit-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    -moz-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    transition: all 500ms ease;
+}
+.shadowbox{
+    -webkit-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    -moz-box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    box-shadow: 6px 7px 25px -10px rgba(0,0,0,0.48);
+    transition: all 500ms ease;
+}
+.pt-50{
+    padding-top: 50px;
+}
+.pb-30{
+    padding-bottom: 30px;
+}
+.carousel-item {
   height: 100vh;
   min-height: 350px;
   background: no-repeat center center scroll;
@@ -142,7 +142,7 @@
 
                 <div class="col-lg-6 ">
                     <div class="about-content">
-                        <h2 class="display-5">
+                        <h2 class="display-5" style="font-size: 50px; text-transform: uppercase;font-weight: bold;">
                             About Car Energies
                         </h2>
                         <p>At CarEnergies.com, we specialize in analyzing the energies of cars, motorcycles, SUV, and trucks. Julia is very sensitive to the energies of objects and senses the defective or broken parts of vehicles. She has helped people to choose best used vehicle and stay away from buying lemons. She can help you too.</p>
@@ -417,7 +417,7 @@
             </div>
 
     <!--/.Second slide-->
-    <div class="carousel-item">
+    <div class="carousel-item myitem">
                 <div class="container">
                      <div class="row">
                         <div class="col-md-4">
