@@ -1,4 +1,4 @@
-@include('landing_page.sample_1.header');
+@include('landing_page.sample_1.header')
 
         <section class="section section-top section-full" style="max-height: 50vh;">
 

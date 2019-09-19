@@ -1,4 +1,4 @@
-@include('landing_page.sample_1.header');
+@include('landing_page.sample_1.header')
 
 <style>
     .file-upload input[type='file'] {
