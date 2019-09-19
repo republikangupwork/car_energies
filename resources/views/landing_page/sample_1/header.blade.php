@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,6 +8,11 @@
 
     <meta name="description" content="CE - Free Car Consultancy">
     <meta name="author" content="Freddie">
+    <meta http-equiv="Content-Security-Policy" content="
+        script-src: https://tagmanager.google.com https://www.google-analytics.com https://ssl.google-analytics.com https://s.ytimg.com https://www.youtube.com https://*.googleapis.com https://*.gstatic.com https://*.gravatar.com https://*.w.org
+        style-src: https://tagmanager.google.com https://fonts.googleapis.com https://www.google-analytics.com
+        img-src: https://ssl.gstatic.com https://www.gstatic.com https://www.google-analytics.com
+        font-src: https://fonts.gstatic.com data:">
 
     <!-- Fontawseom Icon CSS -->
     <link rel="stylesheet" href="{{ asset('css/sample_1/all.css') }}">
@@ -17,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('css/sample_1/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/responsive.css') }}">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     
 
     <title>CE- Car Energies</title>

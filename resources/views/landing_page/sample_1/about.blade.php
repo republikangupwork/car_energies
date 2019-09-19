@@ -1,4 +1,4 @@
-@include('landing_page.sample_1.header');
+@include('landing_page.sample_1.header')
 
         <section class="section section-top section-full" style="max-height: 50vh;">
 
@@ -157,7 +157,7 @@ Please note that this is for your personal use, and there are no guarantees that
 
     <!-- Theme JS -->
     <script src="{{ asset('js/sample_1/theme.js') }}"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 </body>
 
