@@ -15,7 +15,7 @@
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="fa fa-envelope"></i>
+                    <i class="fas fa-envelope"></i>
                   </div>
                   <p class="card-category">Submitted</p>
                   <h3 class="card-title">+1,029</h3>
