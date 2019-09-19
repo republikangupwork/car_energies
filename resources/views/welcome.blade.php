@@ -85,8 +85,9 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/Sample_1') }}">Sample 1</a>
-                    <a href="{{ url('/Sample_2') }}">Sample 2</a>
+                    <a href="{{ url('/Sample_1') }}">Landing Page</a>
+                    <a href="{{ url('/Admin-Page/Dashboard') }}">Admin Page</a>
+                    {{-- <a href="{{ url('/Sample_2') }}">Sample 2</a> --}}
                 </div>
             </div>
         </div>

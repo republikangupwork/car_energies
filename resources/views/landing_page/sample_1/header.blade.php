@@ -5,14 +5,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="CE - Free Car Consultancy">
     <meta name="author" content="Freddie">
-    <meta http-equiv="Content-Security-Policy" content="
-        script-src: https://tagmanager.google.com https://www.google-analytics.com https://ssl.google-analytics.com https://s.ytimg.com https://www.youtube.com https://*.googleapis.com https://*.gstatic.com https://*.gravatar.com https://*.w.org
-        style-src: https://tagmanager.google.com https://fonts.googleapis.com https://www.google-analytics.com
-        img-src: https://ssl.gstatic.com https://www.gstatic.com https://www.google-analytics.com
-        font-src: https://fonts.gstatic.com data:">
 
     <!-- Fontawseom Icon CSS -->
     <link rel="stylesheet" href="{{ asset('css/sample_1/all.css') }}">
