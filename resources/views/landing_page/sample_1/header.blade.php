@@ -8,7 +8,12 @@
 
     <meta name="description" content="CE - Free Car Consultancy">
     <meta name="author" content="Freddie">
-    
+    <meta http-equiv="Content-Security-Policy" content="
+        script-src: https://tagmanager.google.com https://www.google-analytics.com https://ssl.google-analytics.com https://s.ytimg.com https://www.youtube.com https://*.googleapis.com https://*.gstatic.com https://*.gravatar.com https://*.w.org
+        style-src: https://tagmanager.google.com https://fonts.googleapis.com https://www.google-analytics.com
+        img-src: https://ssl.gstatic.com https://www.gstatic.com https://www.google-analytics.com
+        font-src: https://fonts.gstatic.com data:">
+
     <!-- Fontawseom Icon CSS -->
     <link rel="stylesheet" href="{{ asset('css/sample_1/all.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/carousel.css') }}">
