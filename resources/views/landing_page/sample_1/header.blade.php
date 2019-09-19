@@ -33,7 +33,7 @@
         <div class="container">
 
             <!-- Brand -->
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <a class="navbar-brand js-scroll-trigger" href="{{ url('Sample_1') }}">
                 <h2>Car Energies</h2>
 
             </a>
