@@ -34,50 +34,89 @@
         padding-top: 50px;
     }
     .pb-30{
-        padding-bottom: 30px
+        padding-bottom: 30px;
     }
+    .carousel-item {
+  height: 100vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.carousel-caption h2{
+    font-size: 100px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: white;
+    text-shadow: 2px 2px gray;
+}
+.carousel-caption p{
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 100px;
+    color: white;
+    text-shadow: 2px 2px gray;
+}
+@media only screen and (max-width: 720px) {
+    .carousel-caption h2{
+        display: none;
+    }
+    .carousel-caption p{
+        margin-bottom: 200px
+    }
+}
     </style>
     <!-- HERO
     ================================================== -->
-    <section class="section section-top section-full">
-
-        <!-- Cover -->
-        <div class="bg-cover" style="background-image: url({{ asset('images/sample_1/hero1.jpg') }});"></div>
-
-        <!-- Overlay -->
-        <div class="bg-overlay"></div>
-        <!-- Content -->
-        <div class="container">
-            <div class="row justify-content-start align-items-center">
-                <div class="col-md-12">
-                    <div class="banner-content">
-                        <!-- Preheading -->
-                       <!--  <p class="text-white text-uppercase text-center text-xs">
-                            Meet <span>Julia</span>
-                        </p> -->
-
-                        <!-- Heading -->
-                        <h1 class="text-white text-center mb-4 display-4 font-weight-bold">
-                            YOUR BEST BET TO STAY AWAY FROM <br>BUYING ANOTHER LEMON.
-                        </h1>
-
-                        <!-- Subheading -->
-                        <p class="lead text-white text-center mb-5">
-                            For a limited time only, Julia will check the energy of the car you are considering to buy free of charge!.
-                        </p>
-
-                        <!-- Button -->
-                        <p class="text-center mb-0" >
-                            <a href="#" target="_blank" class="btn btn-primary ">
-                                TRY NOW FOR FREE!
-                            </a>
-                        </p>
+    <section class="">
+        <header>
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                      <!-- Slide One - Set the background image for this slide in the line below -->
+                      <div  class="carousel-item active" style="background-image: url({{ asset('images/sample_1/slider/1.jpg') }})">
+                        <div class="carousel-caption row">
+                            <div class="col-md-5"></div>
+                            <div class="col-md-7 align-items-end">
+                                <h2 class="display-1">Stay away from Lemon</h2>
+                                <p class="lead">your best bet to stay away form buying another lemon</p>
+                            </div>
+                 
+                        </div>
+                      </div>
+                      <!-- Slide Two - Set the background image for this slide in the line below -->
+                      <div  class="carousel-item" style="background-image: url({{ asset('images/sample_1/slider/2.jpg') }})">
+                        <div class="carousel-caption d-md-block">
+                          <h2 class="display-4">Second Slide</h2>
+                          <p class="lead">This is a description for the second slide.</p>
+                        </div>
+                      </div>
+                      <!-- Slide Three - Set the background image for this slide in the line below -->
+                      <div  class="carousel-item" style="background-image: url({{ asset('images/sample_1/slider/4.jpg') }})">
+                        <div class="carousel-caption  d-md-block">
+                          <h2 class="display-4">Third Slide</h2>
+                          <p class="lead">This is a description for the third slide.</p>
+                        </div>
+                      </div>
                     </div>
-                </div>
-            </div>
-            <!-- / .row -->
-        </div>
-        <!-- / .container -->
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+  </div>
+        </header>
     </section>
 
 
