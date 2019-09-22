@@ -63,7 +63,7 @@
          <div id="logo" class="bg-white">
                 <img src="{{ asset('images/sample_1/logo/logo.png') }}" alt="bmlogo" height="100" width="300">
         </div>
-    <nav class="navbar navbar-expand-md" style="background-color: #669932; box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);max-height: 100px">
+    <nav class="navbar navbar-expand-md" style="background-color: #669932; box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); height: 50px !important;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation" >
                 <i class="fas fa-bars" style="color: white"></i>
         </button>
