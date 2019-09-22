@@ -44,24 +44,33 @@
   -o-background-size: cover;
   background-size: cover;
 }
-.carousel-caption h2{
-    font-size: 100px;
+.slider-h2{
+    font-size: 65px;
     text-transform: uppercase;
     font-weight: bold;
-    margin-bottom: 50px;
-    color: white;
-    text-shadow: 2px 2px gray;
+    /*margin-bottom: 50px;*/
+    color: black;
+  text-shadow: 3px 4px 6px white;
 }
-.carousel-caption p{
-    font-size: 50px;
+.slider-p-black{
+    font-size: 25px;
     text-transform: uppercase;
     font-weight: bold;
-    margin-bottom: 100px;
+    color: black;
+ 
+}
+.slider-p-white{
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
     color: white;
-    text-shadow: 2px 2px gray;
+    text-shadow: 3px 4px 6px black;
+ 
 }
 .section-title{
-    font-size: 50px; text-transform: uppercase;font-weight: bold; text-decoration: underline;
+    font-size: 50px; text-transform: uppercase;
+    font-weight: bold; 
+
 }
 .section-description{
     font-size: 25px;font-weight: bold;color: black;
@@ -69,6 +78,49 @@
 .color-black{
     color: black;
 }
+.color-green{
+    color: #669932;
+}
+.color-white{
+    color: white;
+}
+.bg-green{
+    background-color:#669932;
+}
+.jumbotron {
+  background:rgba(255,255,255,0.5);
+            /* Transparent background */
+    border-radius: 25px;
+}
+.font-30{
+    font-size:30px;
+}
+.font-20{
+    font-size:20px;
+}
+.txtbolder{
+font-weight: bold;
+}
+/*Gallery*/
+
+
+.myshadowbox{
+    -webkit-box-shadow: -1px 7px 10px 0px rgba(0,0,0,0.44);
+-moz-box-shadow: -1px 7px 10px 0px rgba(0,0,0,0.44);
+box-shadow: -1px 7px 10px 0px rgba(0,0,0,0.44);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width: 720px) {
     .carousel-caption h2{
         display: none;

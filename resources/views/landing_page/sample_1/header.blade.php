@@ -18,65 +18,82 @@
     <link rel="stylesheet" href="{{ asset('css/sample_1/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/responsive.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/sample_1/mycss.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sample_1/mycss.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
     
 
     <title>CE- Car Energies</title>
 </head>
+<style>
+    
+    #page-top {
+  min-height: 75rem;
+  padding-top: 12rem;
+}
+#nav-content a{
+    color: white;
+}
+.link-3 {
+  transition: 0.4s;
+  color: #ffffff;
+  font-size: 20px;
+  text-decoration: none;
+  padding: 0 10px;
+  margin: 0 10px;
+}
+.link-3:hover {
+  background-color: #58842c;
+  color: #EEA200;
+ 
+}
+#navbar {
+
+  display: block;
+  transition: top 0.3s;
+}
+.jumbo_text{
+    color: black;
+}
+
+</style>
+  <!-- NAVBAR
+    ================================================= -->
+<div class="fixed-top">
+         <div id="logo" class="bg-white">
+                <img src="{{ asset('images/sample_1/logo/logo.png') }}" alt="bmlogo" height="100" width="300">
+        </div>
+    <nav class="navbar navbar-expand-md" style="background-color: #669932; box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);max-height: 100px">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation" >
+                <i class="fas fa-bars" style="color: white"></i>
+        </button>
+
+        <!-- Brand -->
+        <!-- <a class="navbar-brand" href="#">Logo</a> -->
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse justify-content-end" id="nav-content">   
+        <ul class="navbar-nav">
+            <li class="nav-item link-3">
+                <a class="nav-link " href="{{ url('Sample_1') }}">Home</a>
+            </li>
+            <li class="nav-item  link-3">
+                <a class="nav-link" href="{{ url('Sample_1/Services/') }}">Services</a>
+            </li>
+            <li class="nav-item  link-3">
+                <a class="nav-link" href="{{ url('Sample_1/Benefits/') }}">Benefits</a>
+            </li>
+              <li class="nav-item link-3">
+                <a class="nav-link " href="{{ url('Sample_1/About/') }}">About Us</a>
+            </li>
+            <li class="nav-item  link-3">
+                <a class="nav-link" href="{{ url('Sample_1/Submit/') }}">Submit</a>
+            </li>
+        </ul>
+    </nav>
+</div>
 
 <body id="page-top">
 
-    <!-- NAVBAR
-    ================================================= -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
-        <div class="container">
-
-            <!-- Brand -->
-            <a class="navbar-brand js-scroll-trigger" href="{{ url('Sample_1') }}">
-                <h2>Car Energies</h2>
-
-            </a>
-
-            <!-- Toggler -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon-bar">
-                    <i class="fa fa-bars"></i>
-                </span>
-            </button>
-
-            <!-- Collapse -->
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <!-- Links -->
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{ url('Sample_1') }}">
-                            Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{ url('Sample_1/Services/') }}">
-                            Services
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{ url('Sample_1/Benefits/') }}">
-                            Benefits
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{ url('Sample_1/About/') }}">
-                            About Us
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{ url('Sample_1/Submit/') }}">
-                            Submit
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- / .navbar-collapse -->
-        </div>
-        <!-- / .container -->
-    </nav>
+  
+    

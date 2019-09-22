@@ -3,7 +3,7 @@
     </style>
     <!-- HERO
     ================================================== -->
-    <section class="">
+    <section>
         <header>
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -13,40 +13,74 @@
                     </ol>
                     <div class="carousel-inner" role="listbox">
                       <!-- Slide One - Set the background image for this slide in the line below -->
-                      <div  class="carousel-item slider active" style="background-image: url({{ asset('images/sample_1/slider/1.jpg') }})">
-                        <div class="carousel-caption row">
-                            <div class="col-md-5"></div>
-                            <div class="col-md-7 align-items-end">
-                                <h2 class="display-1">Stay away from Lemon</h2>
-                                <p class="lead">your best bet to stay away form buying another lemon</p>
+                      <div  class="carousel-item slider active" style="background-image: url({{ asset('images/sample_1/slider/1.jpg') }})"  >
+                        <div class="carousel-caption row ">
+                            <div class="col-md-7">
+                              <h2 class="text-left slider-h2">HAVE YOUR CAR CHECKED <span style="color: #669932">BY EXPERT ONLINE </span></h2>
+                                  <div class="" style="margin-bottom: 300px">
+                                    <!-- <hr class="my-4"> -->
+                                    
+                                    <p class="lead">
+                                      <p class="text-left slider-p-black">your best bet to stay away form buying another lemon</p>
+                                      <a class="btn btn-success btn-lg float-left" href="{{ url('Sample_1/Submit/') }}" role="button">TRY NOW FOR FREE</a>
+                                    </p>
+                                  </div>
                             </div>
+                        </div>
+                      </div>
+                         <!-- Slide Three - Set the background image for this slide in the line below -->
+                      <div  class="carousel-item slider" style="background-image: url({{ asset('images/sample_1/slider/4.jpg') }})">
+                        <!-- <div class="carousel-caption  d-md-block">
+                          <h2 class="display-4">Save money and time</h2>
+                          <p class="lead">A new best way to check used car mechanically from deep within</p>
+                        </div> -->
+                          <div class="carousel-caption row ">
+                        
+                            <div class="col-md-7 offset-md-5">
+                                    <div  class="jumbotron" style="max-height: 500px;margin-bottom: 300px;">
+                                         <h2  class="text-right slider-h2"><span>SAVE <span style="color: #D59531" >MONEY</span> & TIME</span></h2>
+                                                                    
+                                            <p class="lead">
+                                              <p class="text-right slider-p-black">purchasing the right used car can be challenging, time consuming and quite a headache. And still there is no guarantee that you haven't picked a lemon</p>
+                                              <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/Submit/') }}" role="button">TRY NOW FOR FREE</a>
+                                              <br>
+                                            </p>  
+                                    </div>
+                            </div>
+                           
                  
                         </div>
                       </div>
-                      <!-- Slide Two - Set the background image for this slide in the line below -->
-                      <div  class="carousel-item slider" style="background-image: url({{ asset('images/sample_1/slider/2.jpg') }})">
-                        <div class="carousel-caption d-md-block">
-                          <h2 class="display-1">3 Free Consultancy</h2>
-                          <p class="lead">Check for possible problems before you buy that used car</p>
+                      <div  class="carousel-item slider" style="background-image: url({{ asset('images/sample_1/slider/5.jpg') }})">
+
+                          <div class="carousel-caption row ">
+                        
+                            <div class="col-md-7 offset-md-5">
+                                    <div class="jumbotron" style="max-height: 500px;margin-bottom: 300px;">
+                                         <h2 class="text-right slider-h2" style="color: #669932"><span>3 FREE CONSULTANCY</span></h2>                                          
+                                            <p class="lead">
+                                              <p class="text-right slider-p-black">A new best way to check used car mechanically from deep within</p>
+                                              <h3 class="text-right" style="color:red;font-weight: bold;size: 150px"><span  >NO HIDDEN CHARGES</span></h3>
+                                              <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/Submit/') }}" role="button">TRY NOW FOR FREE</a>
+                                              <br>
+                                            </p>  
+                                    </div>
+                            </div>
+                           
+                 
                         </div>
                       </div>
-                      <!-- Slide Three - Set the background image for this slide in the line below -->
-                      <div  class="carousel-item slider" style="background-image: url({{ asset('images/sample_1/slider/4.jpg') }})">
-                        <div class="carousel-caption  d-md-block">
-                          <h2 class="display-4">Save money and time</h2>
-                          <p class="lead">A new best way to check used car mechanically from deep within</p>
-                        </div>
-                      </div>
+
                     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-  </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                  </div>
         </header>
     </section>
 
@@ -65,17 +99,16 @@
 
                 <div class="col-lg-6 ">
                     <div class="about-content">
-                        <h2 class="display-5 section-title">
-                            About Car Energies
-                        </h2>
-                        <p class="section-description">At CarEnergies.com, we specialize in analyzing the energies of cars, motorcycles, SUV, and trucks. Julia is very sensitive to the energies of objects and senses the defective or broken parts of vehicles. She has helped people to choose best used vehicle and stay away from buying lemons. She can help you too.</p>
+                        <h2 data-aos="fade-left" class="display-5 section-title"><span class="color-green">About</span> <span class="color-white bg-green px-3">Car Energies</span></h2>
+                        <br>
+                        <p class="section-description font-30">At CarEnergies.com, we specialize in analyzing the energies of cars, motorcycles, SUV, and trucks. Julia is very sensitive to the energies of objects and senses the defective or broken parts of vehicles. She has helped people to choose best used vehicle and stay away from buying lemons. She can help you too.</p>
 
 
-                        <ul class="list-unstyled skill-list ">
-                            <li class="section-description">3 FREE Consultancy</li>
-                            <li class="section-description">Easy Process</li>
-                            <li class="section-description">Tried and Tested</li>
-                            <li class="section-description">100% FREE</li>
+                        <ul class="list-unstyled">
+                            <li class="section-description"><i class="fas fa-check color-green"></i>  3 FREE Consultancy</li>
+                            <li class="section-description"><i class="fas fa-check color-green"></i>  Easy Process</li>
+                            <li class="section-description"><i class="fas fa-check color-green"></i>  Tried and Tested</li>
+                            <li class="section-description"><i class="fas fa-check color-green"></i>  100% FREE</li>
                         </ul>
 
                         
@@ -92,13 +125,11 @@
                 <div class="col-md-8 col-lg-7 text-center">
 
                     <!-- Heading -->
-                    <h2 class="lg-title mb-2 section-title">
-                        Why Choose Us
-                    </h2>
+                    <h2 data-aos="zoom-in" class="lg-title mb-2 section-title mb-5"><span class="color-green">Why</span> <span class="color-white bg-green px-3">Choose us</span></h2>
 
                     <!-- Subheading -->
-                    <p class="mb-5 section-description">
-                        No other person in the world <small>(that we know)</small> can do this, let alone do it online by just seeing a few photos online!
+                    <p class="mb-5 section-description font-30">
+                        No other person in the world can do this, let alone do it online by just seeing a few photos online!
                     </p>
 
                 </div>
@@ -115,8 +146,8 @@
                                         <img src="{{ asset('images/sample_1/icons/bulb.png') }}" alt="" height="100" width="100">
                                     </div>
                                     <div class="service-content ">
-                                        <h4 class="section-description"><span>EXPERT</span> Professional</h4>
-                                        <p style="color: black">In this section a description for and expert professional</p>
+                                        <h4 class="section-description"><span style="font-weight: bold;"  class="color-green txt-bold">EXPERT</span > Professional</h4>
+                                        <p class="color-black">In this section a description for and expert professional</p>
                                     </div>
                                 </div>
                          </div>
@@ -127,8 +158,8 @@
                                         <img src="{{ asset('images/sample_1/icons/free.png') }}" alt="" height="100" width="100">
                                     </div>
                                     <div class="service-content ">
-                                        <h4 class="section-description"><span>100%</span> Free Trial</h4>
-                                        <p style="color: black">Sign up now to get free 3 consultation, A one time offer</p>
+                                        <h4 class="section-description"><span style="font-weight: bold;"  class="txt-bold color-green">100%</span > Free Trial</h4>
+                                        <p class="color-black">Sign up now to get free 3 consultation, A one time offer</p>
                                     </div>
                                 </div>
                          </div>
@@ -138,8 +169,8 @@
                                         <img src="{{ asset('images/sample_1/icons/stars.png') }}" alt="" height="100" width="100">
                                     </div>
                                     <div class="service-content ">
-                                        <h4 class="section-description"><span>Trusted</span> by Clients</h4>
-                                        <p style="color: black">In this section a description for Trusted by Clients</p>
+                                        <h4 class="section-description"><span style="font-weight: bold;"  class="txt-bold color-green">Trusted</span > by Clients</h4>
+                                        <p class="color-black">In this section a description for Trusted by Clients</p>
                                     </div>
                                 </div>
                          </div>
@@ -149,8 +180,8 @@
                                         <img src="{{ asset('images/sample_1/icons/quick.png') }}" alt="" height="130" width="130">
                                     </div>
                                     <div class="service-content ">
-                                        <h4 class="section-description"><span>EASY</span> Process</h4>
-                                        <p style="color: black">This will only take up to 24 hours maximum, and can do 100 daily consultation</p>
+                                        <h4 class="section-description"><span style="font-weight: bold;"  class="txt-bold color-green">EASY</span > Process</h4>
+                                        <p class="color-black">This will only take up to 24 hours maximum, and can do 100 daily consultation</p>
                                     </div>
                                 </div>
                          </div>
@@ -169,14 +200,12 @@
     <section class="section pt-50 pb-30" id="feature">
                 <div class="container-fluid">
                     <div class="row justify-content-center mb-4">
-                        <div class="col-md-8 col-lg-6 text-center">
+                        <div class="col-md-12 col-lg-12 text-center">
                             <!-- Heading -->
-                            <h2 class="lg-title mb-2 section-title">
-                                Our Work Process
-                            </h2>
+                            <h2 data-aos="zoom-out-up" class="lg-title mb-2 section-title mb-5"><span style="font-weight: bold;"  class="color-green">Our</span> <span class="color-white bg-green px-3">Work Process</span></h2>
                             <!-- Subheading -->
-                            <p class="mb-5 section-description">
-                                place a brief description here that tackles about our business process 
+                            <p class="mb-5 section-description font-30">
+                                Our work process consist of only 4 steps, all made online
                             </p>
                         </div>
                     </div>
@@ -189,7 +218,7 @@
                                     <img src="{{ asset('images/sample_1/process/picture.png') }}" width="75" height="75">
                                 </div>
                                 <div class="service-content row justify-content-end">
-                                    <h4 class="section-description"><span>TAKE CAR'S</span> PICTURE</h4>
+                                    <h4 class="section-description"><span style="font-weight: bold;"  class="txt-bold color-green">TAKE CAR'S</span> PICTURE</h4>
                                     <p class="color-black">Upload 4 recent clear photos of the used car in(front,read,left side,rightside)</p>
                                 </div>
                                 
@@ -201,7 +230,7 @@
                                     <img src="{{ asset('images/sample_1/process/email.png') }}" width="75" height="75">
                                 </div>
                                 <div class="service-content row justify-content-end">
-                                    <h4 class="section-description"><span>SUBMIT DETAILS</span> THRU EMAIL</h4>
+                                    <h4 class="section-description"><span style="font-weight: bold;"   class="txt-bold color-green">SUBMIT DETAILS</span> THRU EMAIL</h4>
                                     <p class="color-black">Send us the pictures with your name, email address, state, city and country</p>
                                 </div>
                                 
@@ -222,7 +251,7 @@
                                     <img src="{{ asset('images/sample_1/process/diagnose.png') }}" width="75" height="75">
                                 </div>
                                 <div class="service-content row justify-content-start">
-                                    <h4 class="section-description"><span>CAR</span> DIAGNOSTIC</h4>
+                                    <h4 class="section-description"><span style="font-weight: bold;"   class="txt-bold color-green">CAR</span> DIAGNOSTIC</h4>
                                     <p class="color-black">We are going to check the car's energy thru the sent photos from you and list existing potential problems if theres any</p>
                                 </div>                               
                             </div>
@@ -233,7 +262,7 @@
                                     <img src="{{ asset('images/sample_1/process/report.jpg') }}" width="75" height="75">
                                 </div>
                                 <div class="service-content row justify-content-start">
-                                    <h4 class="section-description"><span>RESOLUTION &</span> RECOMMENDATION</h4>
+                                    <h4 class="section-description"><span style="font-weight: bold;"   class="txt-bold color-green">RESOLUTION &</span> RECOMMENDATION</h4>
                                     <p class="color-black">An email will be sent back to you consisting with diagnostic report up to 12-24 hours</p>
                                 </div>                               
                             </div>
@@ -247,12 +276,13 @@
            <div class="row justify-content-center mb-5">
                 <div class="col-md-8 col-lg-6 text-center">
                     <!-- Heading -->
-                    <h2 class="lg-title mb-2 section-title" style="color: white;">
+                    <!-- <h2 class="lg-title mb-2 section-title" style="color: white;">
                         What Our Customers Are Saying
-                    </h2>
+                    </h2> -->
+                           <h2 data-aos="fade-right" class="lg-title mb-2 section-title"><span style="font-weight: bold;"  class="color-white">What</span> <span class="color-white bg-green px-3">Our Customers Are Saying</span></h2>
                     <!-- Subheading -->
-                    <p class="mb-5 " style="color:lightgray;">
-                        No other person in the world (that we know) can do this, let alone do it online by just seeing a few photos online!
+                    <p class="mb-5 font-30" style="color:lightgray;">
+                        We appreciate our customers’ feedbacks!
                     </p>
                 </div>
             </div>
@@ -491,62 +521,18 @@
     </div>
 <!-- </div> -->
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-
-
-   
-
     <!-- Contact
     ================================================== -->
     <section class="section bg-light" id="contact">
         <div class="container">
             <div class="row justify-content-center mb-4">
-                <div class="col-md-8 col-lg-8 text-center">
+                <div class="col-md-12 col-lg-12 text-center">
 
                     <!-- Heading -->
-                    <h2 class="lg-title mb-2">
-                        Have any questions on mind?
-                    </h2>
+                     <h2 data-aos="fade-right" class="lg-title mb-4 section-title"><span style="font-weight: bold;"  class="color-green">Have any</span> <span class="color-white bg-green px-3">Questions on mind?</span></h2>
 
                     <!-- Subheading -->
-                    <p class="mb-5">
+                    <p class="mb-5 font-30 color-black">
                         Our duty towards you is to share our experience we're reaching in our work path with you.
                     </p>
 
@@ -594,7 +580,7 @@
 
                             <div class="col-lg-12">
                                 <div class="submit text-center">
-                                    <input name="submit" type="submit" class="btn btn-primary btn-lg" value="Submit Now">
+                                    <input name="submit" type="submit" class="btn btn-success btn-lg" value="Submit Now">
                                     <p class="pt-3">* We will not spam on you inbox.</p>
                                 </div>
                             </div>
@@ -605,88 +591,4 @@
         </div>
     </section>
 
-
-    <!-- FOOTER
-    ================================================== -->
-    <footer class="top-padding bg-dark">
-        <!--Content -->
-        <div class="container">
-            <div class="row align-self-center">
-                <div class="col-lg-4 col-md-6">
-                    <div class="footer-widget">
-                        <!-- Brand -->
-                        <a href="#" class="footer-brand text-white">
-                            Car Energies
-                        </a>
-                        <p>In expedita sapiente cumque enim dicta similique, animi adipisci quia et quo quod numquam, veniam eligendi reprehenderit .</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 ml-lg-auto col-md-2">
-
-                    <!-- Links -->
-                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
-                        <li>
-                            <a href="{{ url('Sample_1/Services/') }}" class="text-white">
-                                Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-white">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('Sample_1/Benefits/') }}" class="text-white">
-                                Benefits
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-4">
-
-                    <!-- Links -->
-                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
-                        <li>
-                            <i class="fa fa-mobile"></i> +345-345456
-                        </li>
-                        <li>
-                            <i class="fa fa-location-arrow"></i> California, USA
-                        </li>
-                        <li>
-                            <i class="fa fa-globe"></i> www.carenergies.com
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- / .row -->
-
-            <div class="row justify-content-md-center footer-copy">
-                <div class="col-lg-8 col-md-6 col-sm-6 text-center">
-                    <p class="lead text-white-50">&copy; Copyright 2019 | Design and Developed by Unciano </p>
-                </div>
-            </div>
-        </div>
-        <!-- / .container -->
-    </footer>
-
-    <!-- JAVASCRIPT
-    ================================================== -->
-    <!-- Global JS -->
-    <script src="{{ asset('lib/sample_1/jquery/jquery.js') }}"></script>
-    <script src="{{ asset('lib/sample_1/bootstrap/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="{{ asset('js/sample_1/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('js/sample_1/ajax-contact.js') }}"></script>
-
-    <!-- Theme JS -->
-    <script src="{{ asset('js/sample_1/theme.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-</body>
-
-</html>
-<script>
-  AOS.init();
-</script>
+@include('landing_page.sample_1.footer')

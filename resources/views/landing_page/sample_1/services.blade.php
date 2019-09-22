@@ -1,169 +1,112 @@
 @include('landing_page.sample_1.header')
 
-        <section class="section section-top section-full" style="max-height: 50vh;">
-
-        <!-- Cover -->
-        <div class="bg-cover" style="background-image: url({{ asset('images/sample_1/our-services.jpg') }} );"></div>
-
-        <!-- Overlay -->
-        <div class="bg-overlay"></div>
-        <!-- Content -->
-        <div class="container">
-            <div class="row justify-content-start align-items-center">
-                <div class="col-md-12">
-                    <div class="banner-content">
-                        
-                      
-
-                        <!-- Heading -->
-                        <h1 class="text-white text-center mb-4 display-4 font-weight-bold">
-                            Our Services
-                        </h1>
-
-                        <!-- Subheading -->
-                       <!--  <p class="lead text-white text-center mb-5">
-                            For a limited time only, Julia will check the energy of the car you are considering to buy free of charge!.
-                        </p> -->
-
-                        <!-- Button -->
-                       <!--  <p class="text-center mb-0" >
-                            <a href="#" target="_blank" class="btn btn-primary ">
-                                Contact Now
-                            </a>
-                        </p> -->
-                    </div>
-                </div>
-            </div>
-            <!-- / .row -->
-        </div>
-        <!-- / .container -->
-    </section>
-
 
         <!-- About Car Energies
     ================================================== -->
 
         <section class="section " id="about">
         <div class="container-fluid">
-            <div class="row ">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-5">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3">
+                        <h2 data-aos="fade-right" class="lg-title mb-2 section-title"><span style="font-weight: bold;"  class="color-green">What to</span> <span class="color-white bg-green px-3">expect from us</span></h2>
+                </div>
+            </div>
+            <div class="col-md-8 offset-md-2 row mb-5">
+                   <p class="section-description text-center">Where else can someone look at the photos of a car and see the failed arts, hidden problems,
+covered up headaches?</p>
+            </div>
+            <br>
+            <div class="row bg-light" style="position:relative;">
+                <div class="col-md-5 offset-md-1">
                     <div class="about-img">
-                        <img src="{{ asset('images/sample_1/business-woman.png') }}" alt="" class="" height="500">
+                        <img src="{{ asset('images/sample_1/business-woman.png') }}" alt="" class="" height="200">
                     </div>
                 </div>
-
-                <div class="col-lg-6 ">
-                    <div class="about-content">
-                        <h2 class="display-5 section-title">
-                            What Do You Expect From Us
-                        </h2>
-                        <p class="section-description">For a limited time only, Julia will check the energy of the car you are considering to buy free of charge!.</p>
-                        <p class="section-description">Fill out a simple table with your name email address, your City, State and Country.
+                <div class="col-md-6">
+                    <div style="margin-top: 10%">
+                        <h3 class="section-title px-5"><span class="bg-green color-white px-3">FREE</span> <span >CONSULTATION</span></h3>
+                        <p class=" px-5" style="font-size: 30px">For a limited time only, Julia will check the energy of the car you are considering to buy free of charge!.</p>
+                  
+                        <p class=" px-5" style="font-size: 30px">Julia will check the cars energy and will list existing potential problems that you may encounter if you decide to purchase the car. And will send the report to you in an email.In most cases, it will take maximum 24 hours, possibly much sooner.</p>
+                    </div>
+                </div>
+            </div>
+             <div class="row" style="position:relative;">
+                <div class="col-md-6">
+                    <div style="margin-top: 20%">
+                        <h3 class="section-title px-5">FILL UP FORM & <span class="bg-green color-white px-3">SUBMIT</span></h3>
+                            <p class=" px-5" style="font-size: 30px">Fill out a simple table with your name email address, your City, State and Country.
  and upload 4 recent photos of the car in the locations shown in here ( one from front of the car (hood up), one from behind the car and one from each side of the car, doors open) See the examples shown here.The website will generate a case number for each car you upload photos.</p>
- <p class="section-description">Julia will check the cars energy and will list existing potential problems that you may encounter if you decide to purchase the car. And will send the report to you in an email.In most cases, it will take maximum 24 hours, possibly much sooner.</p>
- <p class="section-description">Please note that this is for your personal use, and there are no guarantees that the car she approves, will be completely trouble free. But she has a proven track record of being %95 accurate in her evaluation.</p>
- <p class="section-description">Have Julia’s repot in your hand when you are going to the auction to buy that SUV, truck or automobile.</p>
- <p class="section-description">Imagine going to the seller knowing not only the condition of all parts of the vehicle, but also some trouble spots that even the seller may honestly not know. Even if you do not purchase it, the seller now can know the invaluable information on the coming future problems on the vehicle.</p>
+                    </div>
+                </div>
+                <div class="col-md-5 offset-md-1" style="padding-top:10%">
+                    <div class="about-img my-auto">
+                        <img src="{{ asset('images/sample_1/services/sendmail.jpg') }}" alt="" class="" height="400">
+                    </div>
+                </div>
+                
+            </div>
+   
+
+        </div>
+    </section>
+    <section>
+                 <div class="row col-md-12 bg-light py-5">
+                <div class="container">
+                  <div class="row mb-5">
+                    <a href="{{ asset('images/sample_1/car/front-hood.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4 ">
+                      <img src="{{ asset('images/sample_1/car/front-hood.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    </a>
+                    <a href="{{ asset('images/sample_1/car/rear.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4">
+                      <img src="{{ asset('images/sample_1/car/rear.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    </a>
+                    <a href="{{ asset('images/sample_1/car/driver-side.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4">
+                      <img src="{{ asset('images/sample_1/car/driver-side.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    </a>
+                  </div>
+                  <div class="row">
+                    <a href="{{ asset('images/sample_1/car/1.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4">
+                      <img src="{{ asset('images/sample_1/car/1.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    </a>
+                    <a href="{{ asset('images/sample_1/car/2.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4">
+                      <img src="{{ asset('images/sample_1/car/2.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    </a>
+                    <a href="{{ asset('images/sample_1/car/3.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4">
+                      <img src="{{ asset('images/sample_1/car/3.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    </a>
+                  </div>
+
+                </div>
+            </div>
+    </section>
+    <section class="py-5">
+            <div class="row ">
+                <div class="col-lg-12 ">
+                    <div class="container mb-5">
+                        <p class="px-5 text-center color-black" style="font-size: 30px">Have Julia’s repot in your hand when you are going to the auction to buy that SUV, truck or automobile.</p>
+                        <p class="px-5 text-center" style="font-size: 20px">Please note that this is for your personal use, and there are no guarantees that the car she approves, will be completely trouble free. But she has a proven track record of being %95 accurate in her evaluation.</p>
+
+
+                    </div>
+                <div class="row col-lg-12 justify-content-center">
+                    <a href="#" class="btn btn-success text-center font-30">TRY OUR SERVICE FOR FREE</a>
+                </div>  
+
+
+
+ 
 
 
 
 
 
                         
-                        <a href="#" class="btn btn-primary">TRY NOW FOR FREE</a>
-                    </div>
+                        
+            
                 </div>
             </div>
-        </div>
     </section>
 
 
 
-    <!-- FOOTER
-    ================================================== -->
-    <footer class="top-padding bg-dark">
-        <!--Content -->
-        <div class="container">
-            <div class="row align-self-center">
-                <div class="col-lg-4 col-md-6">
-                    <div class="footer-widget">
-                        <!-- Brand -->
-                        <a href="#" class="footer-brand text-white">
-                            Car Energies
-                        </a>
-                        <p>In expedita sapiente cumque enim dicta similique, animi adipisci quia et quo quod numquam, veniam eligendi reprehenderit .</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 ml-lg-auto col-md-2">
-
-                    <!-- Links -->
-                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
-                        <li>
-                            <a href="{{ url('Sample_1/Services/') }}" class="text-white">
-                                Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-white">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('Sample_1/Benefits/') }}" class="text-white">
-                                Benefits
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-4">
-
-                    <!-- Links -->
-                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
-                        <li>
-                            <i class="fa fa-mobile"></i> +345-345456
-                        </li>
-                        <li>
-                            <i class="fa fa-location-arrow"></i> California, USA
-                        </li>
-                        <li>
-                            <i class="fa fa-globe"></i> www.carenergies.com
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- / .row -->
-
-            <div class="row justify-content-md-center footer-copy">
-                <div class="col-lg-8 col-md-6 col-sm-6 text-center">
-                    <p class="lead text-white-50">&copy; Copyright 2019 | Design and Developed by Unciano </p>
-                </div>
-            </div>
-        </div>
-        <!-- / .container -->
-    </footer>
-
-    <!-- JAVASCRIPT
-    ================================================== -->
-    <!-- Global JS -->
-    <script src="{{ asset('lib/sample_1/jquery/jquery.js') }}"></script>
-    <script src="{{ asset('lib/sample_1/bootstrap/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="{{ asset('js/sample_1/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('js/sample_1/ajax-contact.js') }}"></script>
-
-    <!-- Theme JS -->
-    <script src="{{ asset('js/sample_1/theme.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-</body>
-
-</html>
-<script>
-  AOS.init();
-
-
-
-</script>
+@include('landing_page.sample_1.footer')
