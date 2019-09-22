@@ -89,20 +89,8 @@ covered up headaches?</p>
 
                     </div>
                 <div class="row col-lg-12 justify-content-center">
-                    <a href="#" class="btn btn-success text-center font-30">TRY OUR SERVICE FOR FREE</a>
+                    <a href="{{ url('Sample_1/Submit/') }}" class="btn btn-success text-center font-30">TRY OUR SERVICE FOR FREE</a>
                 </div>  
-
-
-
- 
-
-
-
-
-
-                        
-                        
-            
                 </div>
             </div>
     </section>

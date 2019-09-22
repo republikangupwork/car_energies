@@ -5,7 +5,7 @@
         
 
         <section class="section">
-                    <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 text-center mb-3">
                             <h2 data-aos="fade-right" class="lg-title mb-2 section-title"><span style="font-weight: bold;"  class="color-green">Your</span> <span class="color-white bg-green px-3">Benefits</span></h2>

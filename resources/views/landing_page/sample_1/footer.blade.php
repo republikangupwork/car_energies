@@ -88,7 +88,7 @@ window.onscroll = function() {
 
   var currentScrollPos = window.pageYOffset;
   if (prevScrollpos > currentScrollPos) {
-    $('#logo').show(500);
+    $('#logo').show(50);
   } else {
        $('#logo').hide(50);
   }
