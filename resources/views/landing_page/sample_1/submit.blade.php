@@ -27,28 +27,27 @@
         height: 400px;
         overflow-y: auto;
     }
+    #submit_section {
+        background-color: whitesmoke; 
+    }
 </style>
 
 
-<section class="section section-top section-full" style="max-height: 50vh;">
-    <!-- Cover -->
-    <div class="bg-cover" style="background-image: url({{ asset('images/sample_1/email.jpg') }});"></div>
-        <!-- Overlay -->
-        <div class="bg-overlay"></div>
-        <div class="container">
-            <div class="row justify-content-start align-items-center">
-                <div class="col-md-12">
-                    <div class="banner-content">
-                        <h1 class="text-white text-center mb-4 display-4 font-weight-bold">
-                            Submit Form
-                        </h1>
-                    </div>
-                </div>
+<section class="section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 text-center mb-3">
+                <h2 data-aos="fade-right" class="lg-title mb-2 section-title">
+                    <span style="font-weight: bold;"  class="color-green">Submit</span> 
+                    <span class="color-white bg-green px-3">Now!</span>
+                </h2>
+                <p class="section-description text-center">And grab this opportunity to learn more about car's.</p>
             </div>
         </div>
+    </div>
 </section>
 
-<section class="section" id="">
+<section class="section" id="submit_section">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 offset-md-2 text-center">
@@ -167,7 +166,7 @@
                                         </h4>
                                     </div>
                                     <div class="card-body">
-                                        <img id="imgid4" src="{{ asset('images/sample_1/car/left-side.png') }}" alt="" width="100%" class="" style="height: 300px;">
+                                        <img id="imgid4" src="{{ asset('images/sample_1/car/2.png') }}" alt="" width="100%" class="" style="height: 300px;">
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
