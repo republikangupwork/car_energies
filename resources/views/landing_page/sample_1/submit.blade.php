@@ -41,7 +41,7 @@
                     <span style="font-weight: bold;"  class="color-green">Submit</span> 
                     <span class="color-white bg-green px-3">Now!</span>
                 </h2>
-                <p class="section-description text-center">And grab this opportunity to learn more about car's.</p>
+                <p class="section-description text-center">And grab this opportunity to learn more about that car</p>
             </div>
         </div>
     </div>
@@ -52,10 +52,10 @@
         <div class="row">
             <div class="col-md-8 offset-md-2 text-center">
                 <div class="card" style="padding: 40px 20px;">
-                    <h2 class="lg-title mb-2 section-title color-green">Have any <span class="color-white bg-green px-3">questions on mind?</span></h2>
+                   <!--  <h2 class="lg-title mb-2 section-title color-green">Have any <span class="color-white bg-green px-3">questions on mind?</span></h2>
                     <p class="mb-5">
                         Our duty towards you is to share our experience we're reaching in our work path with you.
-                    </p>
+                    </p> -->
                     <form action="" method="">
                         <div class="row">
                             <div class="col-md-6">
