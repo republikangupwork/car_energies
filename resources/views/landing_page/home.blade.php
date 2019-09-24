@@ -1,4 +1,4 @@
-@include('landing_page.sample_1.header')
+@include('landing_page.header')
 
     </style>
     <!-- HERO
@@ -591,4 +591,4 @@
         </div>
     </section>
 
-@include('landing_page.sample_1.footer')
+@include('landing_page.footer')

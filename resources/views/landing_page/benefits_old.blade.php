@@ -1,4 +1,4 @@
-@include('landing_page.sample_1.header')
+@include('landing_page.header')
 
         <section class="section section-top section-full" style="max-height: 50vh;">
 
@@ -78,4 +78,4 @@
         </div>
     </section>
 
-@include('landing_page.sample_1.footer')
+@include('landing_page..footer')

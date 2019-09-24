@@ -19,17 +19,17 @@
                     <!-- Links -->
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
-                            <a href="{{ url('Sample_1/Services/') }}" class="text-white">
+                            <a href="{{ url('Services/') }}" class="text-white">
                                 Services
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-white">
+                            <a href="{{ url('About/') }}" class="text-white">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('Sample_1/Benefits/') }}" class="text-white">
+                            <a href="{{ url('Benefits/') }}" class="text-white">
                                 Benefits
                             </a>
                         </li>

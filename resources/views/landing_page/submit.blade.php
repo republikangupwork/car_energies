@@ -1,4 +1,4 @@
-@include('landing_page.sample_1.header')
+@include('landing_page.header')
 
 <style>
     .file-upload input[type='file'] {
@@ -231,7 +231,7 @@
     </div>
 </section>
 
-@include('landing_page.sample_1.footer')
+@include('landing_page.footer')
 
 
 <script>

@@ -75,19 +75,19 @@
         <div class="collapse navbar-collapse justify-content-end" id="nav-content">   
         <ul class="navbar-nav">
             <li class="nav-item link-3">
-                <a class="nav-link " href="{{ url('Sample_1') }}">Home</a>
+                <a class="nav-link " href="{{ url('/') }}">Home</a>
             </li>
             <li class="nav-item  link-3">
-                <a class="nav-link" href="{{ url('Sample_1/Services/') }}">Services</a>
+                <a class="nav-link" href="{{ url('Services/') }}">Services</a>
             </li>
             <li class="nav-item  link-3">
-                <a class="nav-link" href="{{ url('Sample_1/Benefits/') }}">Benefits</a>
+                <a class="nav-link" href="{{ url('Benefits/') }}">Benefits</a>
             </li>
               <li class="nav-item link-3">
-                <a class="nav-link " href="{{ url('Sample_1/About/') }}">About Us</a>
+                <a class="nav-link " href="{{ url('About/') }}">About Us</a>
             </li>
             <li class="nav-item  link-3">
-                <a class="nav-link" href="{{ url('Sample_1/Submit/') }}">Submit</a>
+                <a class="nav-link" href="{{ url('Submit/') }}">Submit</a>
             </li>
         </ul>
     </nav>

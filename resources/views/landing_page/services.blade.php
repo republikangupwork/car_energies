@@ -1,4 +1,4 @@
-@include('landing_page.sample_1.header')
+@include('landing_page.header')
 
 
         <!-- About Car Energies
@@ -97,4 +97,4 @@ covered up headaches?</p>
 
 
 
-@include('landing_page.sample_1.footer')
+@include('landing_page.footer')
