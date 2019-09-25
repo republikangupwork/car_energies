@@ -73,7 +73,7 @@
     <script src="{{ asset('js/sample_1/ajax-contact.js') }}"></script>
 
     <!-- Theme JS -->
-    <script src="{{ asset('js/sample_1/theme.js') }}"></script>
+    {{-- <script src="{{ asset('js/sample_1/theme.js') }}"></script> --}}
     <script src="{{ asset('js/sample_1/aos.js') }}"></script>
 
 </body>
