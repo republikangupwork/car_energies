@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('css/sample_1/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/mycss.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="{{ asset('css/sample_1/aos.css') }}" rel="stylesheet">
 
     
 
