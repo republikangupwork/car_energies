@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>CE- Car Energies</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
 	<style>
 		#content {
 		  	height: 100vh;
@@ -49,8 +49,8 @@
 		    </div>
 		</div>
 	</div>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="{{ asset('admin/assets/js/jquery.js') }}"></script>
+	<script src="{{ asset('admin/assets/js/bootstrap.min.js') }}"></script>
 
 	<script>
 		$('.alert').alert()
