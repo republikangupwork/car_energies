@@ -16,13 +16,13 @@
                       <div  class="carousel-item slider active" style="background-image: url({{ asset('images/sample_1/slider/1.jpg') }})"  >
                         <div class="carousel-caption row ">
                             <div class="col-md-7">
-                              <h2 class="text-left slider-h2">HAVE YOUR CAR CHECKED <span style="color: #669932">BY EXPERT ONLINE </span></h2>
+                              <h2 class="text-left slider-h2">HAVE YOUR CAR CHECKED FAST AND FREE <span style="color: #669932">BY AN EXPERT ONLINE </span></h2>
                                   <div class="" style="margin-bottom: 300px">
                                     <!-- <hr class="my-4"> -->
                                     
                                     <p class="lead">
-                                      <p class="text-left slider-p-black">your best bet to stay away form buying another lemon</p>
-                                      <a class="btn btn-success btn-lg float-left" href="{{ url('Sample_1/Submit/') }}" role="button">TRY NOW FOR FREE</a>
+                                      <p class="text-left slider-p-black" style="font-size: 34px;">your best bet to stay away form buying another lemon</p>
+                                      <a class="btn btn-success btn-lg float-left" href="{{ url('Sample_1/Submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                     </p>
                                   </div>
                             </div>
@@ -38,11 +38,11 @@
                         
                             <div class="col-md-7 offset-md-5">
                                     <div  class="jumbotron" style="max-height: 500px;margin-bottom: 300px;">
-                                         <h2  class="text-right slider-h2"><span>SAVE <span style="color: #D59531" >MONEY</span> & TIME</span></h2>
+                                         <h2  class="text-right slider-h2"><span>SAVE <span style="color: #D59531" >MONEY</span> & TIME <img src="{{ asset('images/sample_1/icons/clock.jpg') }}" width="65"></span></h2>
                                                                     
                                             <p class="lead">
-                                              <p class="text-right slider-p-black">purchasing the right used car can be challenging, time consuming and quite a headache. And still there is no guarantee that you haven't picked a lemon</p>
-                                              <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/Submit/') }}" role="button">TRY NOW FOR FREE</a>
+                                              <p class="text-right slider-p-black">purchasing the right used car can be challenging, time consuming and sometimes quite a headache. And still there is no guarantee that you haven't picked up someone's headache</p>
+                                              <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/Submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                               <br>
                                             </p>  
                                     </div>
@@ -57,11 +57,11 @@
                         
                             <div class="col-md-7 offset-md-5">
                                     <div class="jumbotron" style="max-height: 500px;margin-bottom: 300px;">
-                                         <h2 class="text-right slider-h2" style="color: #669932"><span>3 FREE CONSULTANCY</span></h2>                                          
+                                         <h2 class="text-right slider-h2" style="color: #669932"><span>UP TO 3 FREE CAR ANALYSIS</span></h2>                                          
                                             <p class="lead">
                                               <p class="text-right slider-p-black">A new best way to check used car mechanically from deep within</p>
-                                              <h3 class="text-right" style="color:red;font-weight: bold;size: 150px"><span  >NO HIDDEN CHARGES</span></h3>
-                                              <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/Submit/') }}" role="button">TRY NOW FOR FREE</a>
+                                              <h3 class="text-right" style="color:red;font-weight: bold; font-size: 30px"><span  >NO HIDDEN CHARGES</span></h3>
+                                              <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/Submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                               <br>
                                             </p>  
                                     </div>
@@ -198,75 +198,82 @@
     </section>
 
     <section class="section pt-50 pb-30" id="feature">
-                <div class="container-fluid">
-                    <div class="row justify-content-center mb-4">
-                        <div class="col-md-12 col-lg-12 text-center">
-                            <!-- Heading -->
-                            <h2 data-aos="zoom-out-up" class="lg-title mb-2 section-title mb-5"><span style="font-weight: bold;"  class="color-green">Our</span> <span class="color-white bg-green px-3">Work Process</span></h2>
-                            <!-- Subheading -->
-                            <p class="mb-5 section-description font-30">
-                                Our work process consist of only 4 steps, all made online
-                            </p>
-                        </div>
-                    </div>
+        <div class="container-fluid">
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-12 col-lg-12 text-center">
+                    <!-- Heading -->
+                    <h2 data-aos="zoom-out-up" class="lg-title mb-2 section-title mb-5"><span style="font-weight: bold;"  class="color-green">Our</span> <span class="color-white bg-green px-3">Work Process</span></h2>
+                    <!-- Subheading -->
+                    <p class="mb-5 section-description font-30">
+                        Our work process consist of only 4 steps, all made online
+                    </p>
+                </div>
+            </div>
             <!-- / .row -->
             <div class="row">
-                <div class=" row col-lg-4 d-flex ">
-                    <div class="row col-md-12">
-                          <div class="">
-                                <div class="row justify-content-end">
-                                    <img src="{{ asset('images/sample_1/process/picture.png') }}" width="75" height="75">
-                                </div>
-                                <div class="service-content row justify-content-end">
-                                    <h4 class="section-description"><span style="font-weight: bold;"  class="txt-bold color-green">TAKE CAR'S</span> PICTURE</h4>
-                                    <p class="color-black">Upload 4 recent clear photos of the used car in(front,read,left side,rightside)</p>
-                                </div>
-                                
+                <div class=" row col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="container-fluid">
+                                  <div class="row justify-content-end">
+                                      <img class="" src="{{ asset('images/sample_1/process/picture.png') }}" width="75" height="75">
+                                  </div>
+                                  <div class="service-content">
+                                      <h4 class="section-description text-right"><span style="font-weight: bold;"  class="txt-bold color-green">TAKE CAR'S</span> PICTURE</h4>
+                                      <p class="color-black text-right">Upload 4 recent clear photos of the used car in(front,read,left side,rightside)</p>
+                                  </div>
                             </div>
+                        </div>
                     </div>
-                     <div class="row col-md-12">
-                          <div class="">
-                                <div class="row justify-content-end">
-                                    <img src="{{ asset('images/sample_1/process/email.png') }}" width="75" height="75">
-                                </div>
-                                <div class="service-content row justify-content-end">
-                                    <h4 class="section-description"><span style="font-weight: bold;"   class="txt-bold color-green">SUBMIT DETAILS</span> THRU EMAIL</h4>
-                                    <p class="color-black">Send us the pictures with your name, email address, state, city and country</p>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                              <div class="container-fluid">
+                                  <div class="row justify-content-end">
+                                      <img class="" src="{{ asset('images/sample_1/process/email.png') }}" width="75" height="75">
+                                  </div>
+                                  <div class="service-content">
+                                      <h4 class="section-description text-right">
+                                          <span class="txt-bold color-green" style="font-weight: bold;">SUBMIT DETAILS</span> THRU EMAIL
+                                      </h4>
+                                      <p class="color-black text-right">Send us the pictures with your name, email address, state, city and country</p>
+                                  </div>
                                 
-                            </div>
+                              </div>
+                          </div>
                     </div>
-      
                 </div>
-                <div class="col-lg-4"> 
+                <div class="col-md-4"> 
                     <div data-aos="zoom-in" data-aos-delay="50" data-aos-duration="2000">
                         <img src="{{ asset('images/sample_1/frontcar.png') }}" alt="" class="img-fluid animated zoomIn">
                     </div>
-                        
                 </div>
-                     <div class=" row col-lg-4 d-flex">
-                        <div class="row col-md-12">
-                          <div class="">
-                                <div class="row justify-content-start">
-                                    <img src="{{ asset('images/sample_1/process/diagnose.png') }}" width="75" height="75">
-                                </div>
-                                <div class="service-content row justify-content-start">
-                                    <h4 class="section-description"><span style="font-weight: bold;"   class="txt-bold color-green">CAR</span> DIAGNOSTIC</h4>
-                                    <p class="color-black">We are going to check the car's energy thru the sent photos from you and list existing potential problems if theres any</p>
-                                </div>                               
-                            </div>
+                <div class=" row col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="container-fluid">
+                                <img src="{{ asset('images/sample_1/process/diagnose.png') }}" width="75" height="75">
+                                <div class="service-content">
+                                    <h4 class="section-description">
+                                        <span class="txt-bold color-green" style="font-weight: bold;">CAR</span> DIAGNOSTIC
+                                    </h4>
+                                    <p class="color-black text-left">We are going to check the car's energy thru the sent photos from you and list existing potential problems if theres any</p>
+                                </div>  
+                            </div>                             
                         </div>
-                         <div class="row col-md-12">
-                          <div class="">
-                                <div class="row justify-content-start">
-                                    <img src="{{ asset('images/sample_1/process/report.jpg') }}" width="75" height="75">
-                                </div>
-                                <div class="service-content row justify-content-start">
-                                    <h4 class="section-description"><span style="font-weight: bold;"   class="txt-bold color-green">RESOLUTION &</span> RECOMMENDATION</h4>
-                                    <p class="color-black">An email will be sent back to you consisting with diagnostic report up to 12-24 hours</p>
-                                </div>                               
-                            </div>
-                        </div>      
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="container-fluid">
+                                <img src="{{ asset('images/sample_1/process/report.jpg') }}" width="75" height="75">
+                                <div class="service-content">
+                                    <h4 class="section-description">
+                                        <span class="txt-bold color-green" style="font-weight: bold;">RESOLUTION &</span> RECOMMENDATION
+                                    </h4>
+                                    <p class="color-black text-left">An email will be sent back to you consisting with diagnostic report up to 12-24 hours</p>
+                                </div>  
+                            </div>                             
+                        </div>
+                    </div>      
                 </div>
             </div>
         </div> <!-- / .container -->

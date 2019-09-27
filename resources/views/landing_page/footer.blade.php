@@ -10,7 +10,7 @@
                         <a href="#" class="footer-brand text-white">
                             Car Energies
                         </a>
-                        <p>In expedita sapiente cumque enim dicta similique, animi adipisci quia et quo quod numquam, veniam eligendi reprehenderit .</p>
+                        <p>Let us evaluate the energies of your next car and help you choose the best car for your buck</p>
                     </div>
                 </div>
 
@@ -18,14 +18,14 @@
 
                     <!-- Links -->
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
-                        <li>
-                            <a href="{{ url('Services/') }}" class="text-white">
-                                Services
+                         <li>
+                            <a href="{{ url('/') }}" class="text-white">
+                                Home
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('About/') }}" class="text-white">
-                                About Us
+                            <a href="{{ url('Services/') }}" class="text-white">
+                                Services
                             </a>
                         </li>
                         <li>
@@ -40,6 +40,21 @@
                     <!-- Links -->
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
+                            <a href="{{ url('Submit/') }}" class="text-white">
+                                Submit
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('About/') }}" class="text-white">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-white">
+                                Contact Us
+                            </a>
+                        </li>
+                        {{-- <li>
                             <i class="fa fa-mobile color-green"></i> +345-345456
                         </li>
                         <li>
@@ -47,7 +62,7 @@
                         </li>
                         <li>
                             <i class="fa fa-globe color-green"></i> www.carenergies.com
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
