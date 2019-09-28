@@ -2,7 +2,10 @@
 
         <!-- About Car Energies
     ================================================== -->
-        
+        <style>
+            
+
+        </style>
 
         <section class="section">
             <div class="container-fluid">
@@ -12,7 +15,12 @@
                     </div>
                 </div>
                 <div class="col-md-8 offset-md-2 row mb-5">
-                       <p class="section-description">Imagine going to the seller knowing not only the condition of all parts of the vehicle, but also some trouble spots that even the seller may honestly not know. Even if you do not purchase it, the seller now can know the invaluable information on the coming future problems on the vehicle.</p>
+                      <!--  <p class="section-description">Imagine going to the seller knowing not only the condition of all parts of the vehicle, but also some trouble spots that even the seller may honestly not know. Even if you do not purchase it, the seller now can know the invaluable information on the coming future problems on the vehicle.</p> -->
+                      <ul class="dash-list">
+                          <li class="section-description">Imagine going to the seller, the auction in person or online, knowing not only the problems with the vehicle that might be covered up, but also the condition of parts soon to fail. or knowing that the car is in good shape and the asking price is well worth it. Either way, you are the head of the game. </li><br>
+                          <li class="section-description">You may be able to get a better deal during negotiation, when you show that you know a lot about the car that even the seller may not know. </li><br>
+                          <li class="section-description">And even if you walk away from it, you can help the seller by informing him of the coming troubles of the car.</li>
+                      </ul>
                 </div>
             </div>
           
@@ -24,8 +32,8 @@
                 </div>
                 <div class="col-md-6">
                     <div style="margin-top: 10%">
-                        <h3 class="section-title px-5"><span class="bg-green color-white px-3">DON'T BUY</span> <span >ANOTHER LEMON</span></h3>
-                        <p class=" px-5" style="font-size: 30px">Avoid being ripped off by a crook mechanic, that try to convince you of unnecessary and costly repairs! Know if you really need that!</p>
+                        <h3 class="section-title px-5"><span class="bg-green color-white px-3">DON'T BE DECEIEVED BY</span> <span >A DISHONEST MECHANIC</span></h3>
+                        <p class=" px-5" style="font-size: 30px">Avoid being taken advantage by a crook mechanic that tries to convince you of  unnecessary and costly repairs! Know if your vehicle really needs it</p>
        
                     </div>
                 </div>
@@ -33,37 +41,37 @@
             <div class="row" style="position:relative;">
                 <div class="col-md-6">
                     <div style="margin-top: 20%" class="px-5">
-                        <h3 class="section-title px-5">AHEAD <span class="bg-green color-white px-3">FROM ANYONE</span></h3>
+                        <h3 class="section-title px-5">AHEAD <span class="bg-green color-white px-3">OF EVERYONE</span></h3>
                         <p class="px-5"></p><br>
                         <div class="card">
                             <div class="card-body font-20 color-black">
                                  <img src="{{ asset('images/sample_1/benefits/ok.png') }}" alt="" class="" height="50" width="50">
-                                Bid with confidence in person or online automobile auctions.</div>
+                                A new best way to check a used car mechanical, electric, computer systems from deep within.</div>
                         </div>
                         <div class="card mt-2">
                             <div class="card-body font-20 color-black">
                                 <img src="{{ asset('images/sample_1/benefits/ok.png') }}" alt="" class="" height="50" width="50">
-                                Find gems that everybody else is overlooking (including possibly the car salesman), save thousands.</div>
+                                Find gems that everyone else is overlooking (including even the owner of the car) save thousands</div>
                         </div>
                         <div class="card mt-2">
                             <div class="card-body font-20 color-black"> 
                                 <img src="{{ asset('images/sample_1/benefits/ok.png') }}" alt="" class="" height="50" width="50">
-                                Increase your profits if you are in the business of buying and selling used cars, motorcycles, boats.</div>
+                                Walk away from problematic cars easily and happily.</div>
                         </div>
                          <div class="card mt-2">
                             <div class="card-body font-20 color-black"> 
                                 <img src="{{ asset('images/sample_1/benefits/ok.png') }}" alt="" class="" height="50" width="50">
-                                Free/easy/fast way to know the condition of your own vehicle.</div>
+                                Bid with confidence in person or online in auto auctions.</div>
                         </div>
                          <div class="card mt-2">
                             <div class="card-body font-20 color-black">
                                 <img src="{{ asset('images/sample_1/benefits/ok.png') }}" alt="" class="" height="50" width="50">
-                                Check for possible problems before you buy that used car.</div>
+                                Free/easy/fast way to know the condition of your own car.</div>
                         </div>
                          <div class="card mt-2">
                             <div class="card-body font-20 color-black">
                                 <img src="{{ asset('images/sample_1/benefits/ok.png') }}" alt="" class="" height="50" width="50">
-                                A new best way to check used car mechanically from deep within</div>
+                                Increase your profits if you are in the business of buying used cars, trucks, boats, motorcycles. </div>
                         </div>
                     </div>
                 </div>

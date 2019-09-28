@@ -70,7 +70,7 @@
 
             <div class="row justify-content-md-center footer-copy">
                 <div class="col-lg-8 col-md-6 col-sm-6 text-center">
-                    <p class="lead text-white-50">&copy; Copyright 2019 | Design and Developed by Unciano </p>
+                    <p class="lead text-white-50">&copy; Copyright 2019 | Design and Developed by Car Energies </p>
                 </div>
             </div>
         </div>

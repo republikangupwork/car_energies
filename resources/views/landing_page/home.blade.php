@@ -17,57 +17,48 @@
                         <div class="carousel-caption row ">
                             <div class="col-md-7">
                               <h2 class="text-left slider-h2">HAVE YOUR CAR CHECKED FAST AND FREE <span style="color: #669932">BY AN EXPERT ONLINE </span></h2>
-                                  <div class="" style="margin-bottom: 300px">
-                                    <!-- <hr class="my-4"> -->
-                                    
+                                  <div class="">
                                     <p class="lead">
-                                      <p class="text-left slider-p-black" style="font-size: 34px;">your best bet to stay away form buying another lemon</p>
+                                      <p class="text-left slider-p-black font-30" style="text-shadow: 2px 1px 0px rgba(255, 255, 255, 1);font-weight: bolder;">your best bet to stay away form buying another lemon</p>
                                       <a class="btn btn-success btn-lg float-left" href="{{ url('Sample_1/Submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                     </p>
                                   </div>
                             </div>
                         </div>
                       </div>
-                         <!-- Slide Three - Set the background image for this slide in the line below -->
+
                       <div  class="carousel-item slider" style="background-image: url({{ asset('images/sample_1/slider/4.jpg') }})">
-                        <!-- <div class="carousel-caption  d-md-block">
-                          <h2 class="display-4">Save money and time</h2>
-                          <p class="lead">A new best way to check used car mechanically from deep within</p>
-                        </div> -->
                           <div class="carousel-caption row ">
                         
                             <div class="col-md-7 offset-md-5">
-                                    <div  class="jumbotron" style="max-height: 500px;margin-bottom: 300px;">
+                                    <div  class="jumbotron" style="min-height: 500px">
                                          <h2  class="text-right slider-h2"><span>SAVE <span style="color: #D59531" >MONEY</span> & TIME <img src="{{ asset('images/sample_1/icons/clock.jpg') }}" width="65"></span></h2>
                                                                     
                                             <p class="lead">
-                                              <p class="text-right slider-p-black">purchasing the right used car can be challenging, time consuming and sometimes quite a headache. And still there is no guarantee that you haven't picked up someone's headache</p>
+                                              <p class="text-right slider-p-black font-20">purchasing the right used car can be challenging, time consuming and sometimes quite a headache. And still there is no guarantee that you haven't picked up someone's headache</p>
                                               <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/Submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                               <br>
                                             </p>  
                                     </div>
                             </div>
-                           
-                 
                         </div>
                       </div>
+
                       <div  class="carousel-item slider" style="background-image: url({{ asset('images/sample_1/slider/5.jpg') }})">
 
                           <div class="carousel-caption row ">
                         
                             <div class="col-md-7 offset-md-5">
-                                    <div class="jumbotron" style="max-height: 500px;margin-bottom: 300px;">
-                                         <h2 class="text-right slider-h2" style="color: #669932"><span>UP TO 3 FREE CAR ANALYSIS</span></h2>                                          
+                                    <div class="jumbotron" style="min-height: 500px;">
+                                         <h2 class="text-right text-shadow-black font-65 txtbolder" style="color: #669932;"><span>UP TO 3 FREE CAR ANALYSIS</span></h2>                                          
                                             <p class="lead">
-                                              <p class="text-right slider-p-black">A new best way to check used car mechanically from deep within</p>
-                                              <h3 class="text-right" style="color:red;font-weight: bold; font-size: 30px"><span  >NO HIDDEN CHARGES</span></h3>
+                                              <p class="text-right slider-p-black txtbolder font-30">A new best way to check used car mechanically from deep within</p>
+                                              <h3 class="text-right" style="color:red;font-weight: bold; font-size: 50px"><span  >NO HIDDEN CHARGES</span></h3>
                                               <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/Submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                               <br>
                                             </p>  
                                     </div>
                             </div>
-                           
-                 
                         </div>
                       </div>
 
@@ -105,8 +96,8 @@
 
 
                         <ul class="list-unstyled">
-                            <li class="section-description"><i class="fas fa-check color-green"></i>  3 FREE Consultancy</li>
-                            <li class="section-description"><i class="fas fa-check color-green"></i>  Easy Process</li>
+                            <li class="section-description"><i class="fas fa-check color-green"></i>  3 FREE Analysis</li>
+                            <li class="section-description"><i class="fas fa-check color-green"></i>  Fast, Accurate and Complete checking of your car</li>
                             <li class="section-description"><i class="fas fa-check color-green"></i>  Tried and Tested</li>
                             <li class="section-description"><i class="fas fa-check color-green"></i>  100% FREE</li>
                         </ul>
@@ -125,11 +116,11 @@
                 <div class="col-md-8 col-lg-7 text-center">
 
                     <!-- Heading -->
-                    <h2 data-aos="zoom-in" class="lg-title mb-2 section-title mb-5"><span class="color-green">Why</span> <span class="color-white bg-green px-3">Choose us</span></h2>
+                    <h2 data-aos="zoom-in" class="lg-title mb-2 section-title mb-5"><span class="color-green">Why</span> <span class="color-white bg-green px-3">CarEnergies.com</span></h2>
 
                     <!-- Subheading -->
                     <p class="mb-5 section-description font-30">
-                        No other person in the world can do this, let alone do it online by just seeing a few photos online!
+                        No other person in the world can check with an X-ray precision, the existing (and soon to come) troubles of the automobile you consider to purchase, by looking at a few photos and sensing the energies of it.
                     </p>
 
                 </div>
@@ -147,7 +138,7 @@
                                     </div>
                                     <div class="service-content ">
                                         <h4 class="section-description"><span style="font-weight: bold;"  class="color-green txt-bold">EXPERT</span > Professional</h4>
-                                        <p class="color-black">In this section a description for and expert professional</p>
+                                        <p class="color-black">Having a car mechanic dad, Julia knows different systems and parts of cars, and does a complete and professional analysis</p>
                                     </div>
                                 </div>
                          </div>
@@ -158,8 +149,8 @@
                                         <img src="{{ asset('images/sample_1/icons/free.png') }}" alt="" height="100" width="100">
                                     </div>
                                     <div class="service-content ">
-                                        <h4 class="section-description"><span style="font-weight: bold;"  class="txt-bold color-green">100%</span > Free Trial</h4>
-                                        <p class="color-black">Sign up now to get free 3 consultation, A one time offer</p>
+                                        <h4 class="section-description"><span style="font-weight: bold;"  class="txt-bold color-green">100%</span > Free</h4>
+                                        <p class="color-black">Go ahead and submit six photos of the car for a free evaluation report NOW</p>
                                     </div>
                                 </div>
                          </div>
@@ -170,7 +161,7 @@
                                     </div>
                                     <div class="service-content ">
                                         <h4 class="section-description"><span style="font-weight: bold;"  class="txt-bold color-green">Trusted</span > by Clients</h4>
-                                        <p class="color-black">In this section a description for Trusted by Clients</p>
+                                        <p class="color-black">Julia has helped many clients choose the best car for their money. She can help you too</p>
                                     </div>
                                 </div>
                          </div>
@@ -180,8 +171,8 @@
                                         <img src="{{ asset('images/sample_1/icons/quick.png') }}" alt="" height="130" width="130">
                                     </div>
                                     <div class="service-content ">
-                                        <h4 class="section-description"><span style="font-weight: bold;"  class="txt-bold color-green">EASY</span > Process</h4>
-                                        <p class="color-black">This will only take up to 24 hours maximum, and can do 100 daily consultation</p>
+                                        <h4 class="section-description"><span style="font-weight: bold;"  class="txt-bold color-green">EASY</span > Fast</h4>
+                                        <p class="color-black">You upload and send your car photos, and receive your report usually in less than 24 hours</p>
                                     </div>
                                 </div>
                          </div>
@@ -219,7 +210,7 @@
                                       <img class="" src="{{ asset('images/sample_1/process/picture.png') }}" width="75" height="75">
                                   </div>
                                   <div class="service-content">
-                                      <h4 class="section-description text-right"><span style="font-weight: bold;"  class="txt-bold color-green">TAKE CAR'S</span> PICTURE</h4>
+                                      <h4 class="section-description text-right"><span style="font-weight: bold;"  class="txt-bold color-green">1. TAKE YOUR CAR'S</span> PICTURE</h4>
                                       <p class="color-black text-right">Upload 4 recent clear photos of the used car in(front,read,left side,rightside)</p>
                                   </div>
                             </div>
@@ -233,7 +224,7 @@
                                   </div>
                                   <div class="service-content">
                                       <h4 class="section-description text-right">
-                                          <span class="txt-bold color-green" style="font-weight: bold;">SUBMIT DETAILS</span> THRU EMAIL
+                                          <span class="txt-bold color-green" style="font-weight: bold;"> 2. YOU UPLOAD AND </span> SUBMIT THEM
                                       </h4>
                                       <p class="color-black text-right">Send us the pictures with your name, email address, state, city and country</p>
                                   </div>
@@ -254,9 +245,9 @@
                                 <img src="{{ asset('images/sample_1/process/diagnose.png') }}" width="75" height="75">
                                 <div class="service-content">
                                     <h4 class="section-description">
-                                        <span class="txt-bold color-green" style="font-weight: bold;">CAR</span> DIAGNOSTIC
+                                        <span class="txt-bold color-green" style="font-weight: bold;"> 3. CAR</span> DIAGNOSIS
                                     </h4>
-                                    <p class="color-black text-left">We are going to check the car's energy thru the sent photos from you and list existing potential problems if theres any</p>
+                                    <p class="color-black text-left">We will analyze the car energies to find and list the existing and/or potential problems, if any</p>
                                 </div>  
                             </div>                             
                         </div>
@@ -267,7 +258,7 @@
                                 <img src="{{ asset('images/sample_1/process/report.jpg') }}" width="75" height="75">
                                 <div class="service-content">
                                     <h4 class="section-description">
-                                        <span class="txt-bold color-green" style="font-weight: bold;">RESOLUTION &</span> RECOMMENDATION
+                                        <span class="txt-bold color-green" style="font-weight: bold;">4.  RESOLUTION &</span> RECOMMENDATION
                                     </h4>
                                     <p class="color-black text-left">An email will be sent back to you consisting with diagnostic report up to 12-24 hours</p>
                                 </div>  
@@ -536,11 +527,11 @@
                 <div class="col-md-12 col-lg-12 text-center">
 
                     <!-- Heading -->
-                     <h2 data-aos="fade-right" class="lg-title mb-4 section-title"><span style="font-weight: bold;"  class="color-green">Have any</span> <span class="color-white bg-green px-3">Questions on mind?</span></h2>
+                     <h2 data-aos="fade-right" class="lg-title mb-4 section-title"><span style="font-weight: bold;"  class="color-green">Have any</span> <span class="color-white bg-green px-3">Questions or Comments?</span></h2>
 
                     <!-- Subheading -->
                     <p class="mb-5 font-30 color-black">
-                        Our duty towards you is to share our experience we're reaching in our work path with you.
+                        Our goal is to serve you making your automobile purchase easier and help you save time, money.
                     </p>
 
                 </div>
@@ -587,8 +578,8 @@
 
                             <div class="col-lg-12">
                                 <div class="submit text-center">
-                                    <input name="submit" type="submit" class="btn btn-success btn-lg" value="Submit Now">
-                                    <p class="pt-3">* We will not spam on you inbox.</p>
+                                    <input name="submit" type="submit" class="btn btn-success btn-lg" value="Send Now">
+                                    <p class="pt-3">* We respect your privacy. We will not share your information with anybody and we will not spam your inbox.</p>
                                 </div>
                             </div>
                         </div>
