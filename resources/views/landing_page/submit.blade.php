@@ -50,7 +50,7 @@
 <section class="section" id="submit_section">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8 offset-md-2 text-center">
+            <div class="col-md-12 text-center">
                 <div class="card" style="padding: 40px 20px;">
                    <!--  <h2 class="lg-title mb-2 section-title color-green">Have any <span class="color-white bg-green px-3">questions on mind?</span></h2>
                     <p class="mb-5">
@@ -60,7 +60,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="float-left">Name:</label>
+                                    <label class="float-left">Name: (<b class="required_fields">*</b>)</label>
                                     <input type="text" name="name" id="name" class="form-control" placeholder="e.g: Julia B.">
                                 </div>
                             </div>
@@ -70,10 +70,13 @@
                                     <input type="text" name="email" id="email" class="form-control" placeholder="e.g: car_energies@gmail.com" required="required">
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                              
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="float-left">Country:</label>
-                                    <select class=" form-control">
+                                    <label class="float-left">Country: (<b class="required_fields">*</b>)</label>
+                                    <select class=" form-control countries" name="country"  id="countryId">
                                         <option selected disabled="">Select Country</option>
                                         <option value="1">United States of America</option>
                                         <option value="2">New Zealand</option>
@@ -81,10 +84,10 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="float-left">State:</label>
-                                    <select class=" form-control">
+                                    <label class="float-left">State: (<b class="required_fields">*</b>)</label>
+                                    <select class=" form-control states" name="state" id="stateId">
                                         <option selected disabled="">Select State</option>
                                         <option value="1">United States of America</option>
                                         <option value="2">New Zealand</option>
@@ -92,10 +95,10 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                              <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="float-left">City:</label>
-                                    <select class=" form-control">
+                                    <label class="float-left">City: (<b class="required_fields">*</b>)</label>
+                                    <select class=" form-control cities" name="city" id="cityId">
                                         <option selected disabled="">Select City</option>
                                         <option value="1">United States of America</option>
                                         <option value="2">New Zealand</option>
@@ -186,10 +189,12 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
+
+
     <div class="modal fade" id="terms_and_condtion" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
