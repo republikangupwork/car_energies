@@ -30,8 +30,8 @@
                       <div  class="carousel-item slider" style="background-image: url({{ asset('images/sample_1/slider/4.jpg') }})">
                           <div class="carousel-caption row ">
                         
-                            <div class="col-md-7 offset-md-5">
-                                    <div  class="jumbotron" style="min-height: 500px">
+                            <div class="col-lg-8 offset-lg-4 col-md-8 offset-md-4">
+                                    <div class="jumbotron">
                                          <h2  class="text-right slider-h2"><span>SAVE <span style="color: #D59531" >MONEY</span> & TIME <img src="{{ asset('images/sample_1/icons/clock.jpg') }}" width="65"></span></h2>
                                                                     
                                             <p class="lead">
@@ -48,11 +48,11 @@
 
                           <div class="carousel-caption row ">
                         
-                            <div class="col-md-7 offset-md-5">
-                                    <div class="jumbotron" style="min-height: 500px;">
-                                         <h2 class="text-right text-shadow-black font-65 txtbolder" style="color: #669932;"><span>UP TO 3 FREE CAR ANALYSIS</span></h2>                                          
+                            <div class="col-lg-8 offset-lg-4 col-md-8 offset-md-4">
+                                    <div class="jumbotron">
+                                         <h2 class="text-right slider-h2 "><span>UP TO <span style="color: #669932;">3 FREE</span> CAR ANALYSIS</span></h2>                                          
                                             <p class="lead">
-                                              <p class="text-right slider-p-black txtbolder font-30">A new best way to check used car mechanically from deep within</p>
+                                              <p class="text-right slider-p-black txtbolder font-30 font-sm-view">A new best way to check used car mechanically from deep within</p>
                                               <h3 class="text-right" style="color:red;font-weight: bold; font-size: 50px"><span  >NO HIDDEN CHARGES</span></h3>
                                               <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/Submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                               <br>
