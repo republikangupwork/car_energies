@@ -90,7 +90,8 @@
     <!-- Theme JS -->
     {{-- <script src="{{ asset('js/sample_1/theme.js') }}"></script> --}}
     <script src="{{ asset('js/sample_1/aos.js') }}"></script>
-    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+    <script src="{{ asset('js/sample_1/countrystatecity.js') }}"></script>
+
 
 </body>
 
