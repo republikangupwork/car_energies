@@ -71,7 +71,7 @@
                                 <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="float-left">Country: (<b class="required_fields">*</b>)</label>
-                                    <select class=" form-control countries" name="country"  id="countryId">
+                                    <select class=" form-control countries order-alpha presel-byip" name="country"  id="countryId">
                                         <option selected disabled="">Select Country</option>
                                     </select>
                                 </div>
