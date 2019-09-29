@@ -3,7 +3,7 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta http-equiv="Content-Security-Policy" content="font-src 'self' data:;"/>
+    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' data:; "/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
