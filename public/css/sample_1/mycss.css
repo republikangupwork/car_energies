@@ -195,7 +195,7 @@ box-shadow: -1px 7px 10px 0px rgba(0,0,0,0.44);
         font-size: 33px !important;
     }
     .carousel-caption .font-sm-view {
-        font-size: 18px;
+        font-size: 18px !important;
     }
     .carousel-caption .jumbotron {
         max-height: 600px !important;
@@ -208,6 +208,9 @@ box-shadow: -1px 7px 10px 0px rgba(0,0,0,0.44);
     }
     .carousel-caption .jumbotron {
         max-height: 550px !important;
+    }
+    .carousel-caption .font-sm-view {
+        font-size: 20px !important;
     }
     .carousel-caption .jumbotron h2{
         /*display: none;*/
