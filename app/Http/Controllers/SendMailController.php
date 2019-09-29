@@ -8,7 +8,8 @@ class SendMailController extends Controller
 {
 
 // error_reporting(1);
-public function sendmail(){
+public function sendmail(Request $request){
+	dd($request);
 
 
 		require_once "vendor/autoload.php";

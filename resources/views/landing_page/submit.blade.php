@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <!-- <div class="card" style="padding: 40px 20px;"> -->
-                    <form action="" method="">
+                    <form action="" method="POST" id="submit_form">
                         <div class="row justify-content-center">
                             <div class="col-md-5">
                                 <div class="form-group">
@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="customFile" type="file" class="custom-file-input" onchange="readURL(this,imgid1,labelimg1);">
+                                            <input id="fronthoodup" type="file" class="custom-file-input" onchange="readURL(this,imgid1,labelimg1);">
                                             <label for="customFile" id="labelimg1" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -122,7 +122,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="customFile" type="file" class="custom-file-input" onchange="readURL(this,imgid2,labelimg2);">
+                                            <input id="backhoodup" type="file" class="custom-file-input" onchange="readURL(this,imgid2,labelimg2);">
                                             <label for="customFile" id="labelimg2" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -140,7 +140,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="customFile" type="file" class="custom-file-input" onchange="readURL(this,imgid3,labelimg3);">
+                                            <input id="driverseat" type="file" class="custom-file-input" onchange="readURL(this,imgid3,labelimg3);">
                                             <label for="customFile" id="labelimg3" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -160,7 +160,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="customFile4" type="file" class="custom-file-input" onchange="readURL(this,imgid4,labelimg4);">
+                                            <input id="left" type="file" class="custom-file-input" onchange="readURL(this,imgid4,labelimg4);">
                                             <label for="customFile" id="labelimg4" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -178,7 +178,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="customFile5" type="file" class="custom-file-input" onchange="readURL(this,imgid5,labelimg5);">
+                                            <input id="right" type="file" class="custom-file-input" onchange="readURL(this,imgid5,labelimg5);">
                                             <label for="customFile" id="labelimg5" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -196,7 +196,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="customFile6" type="file" class="custom-file-input" onchange="readURL(this,imgid6,labelimg6);">
+                                            <input id="front" type="file" class="custom-file-input" onchange="readURL(this,imgid6,labelimg6);">
                                             <label for="customFile" id="labelimg6" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -384,6 +384,40 @@
 
 
 <script>
+
+    $('#submit_form_button').on('click', function(){
+        var myform = $('#submit_form').serialize();
+        var fhu = $('#fronthoodup').prop('files')[0];
+        var bhu = $('#backhoodup').prop('files')[0];
+        var ds = $('#driverseat').prop('files')[0];
+        var fr = $('#front').prop('files')[0];
+        var le = $('#left').prop('files')[0];
+        var ri = $('#right').prop('files')[0];
+        var form_data = new FormData();
+        form_data.append('fronthoodup', fhu);
+        form_data.append('backhoodup', bhu);
+        form_data.append('driverseat', ds);
+        form_data.append('front', fr);
+        form_data.append('left', le);
+        form_data.append('right', ri);
+
+        $.ajax({
+                url: 'sendemail'+myform, // point to server-side PHP script 
+                dataType: 'text', // what to expect back from the PHP script
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function (response) {
+                    $('#msg').html('Application has been succesfully sent!'); // display success response from the PHP script
+                },
+                error: function (response) {
+                    $('#msg').html('There is something wrong, Please email admin@teamdriveway.com'); // display error response from the PHP script
+                }
+            });
+    })
+
     $(document).ready(function() {
         $('input[name=agreed_]').click(function() {
             if($(this).prop("checked") == true) {

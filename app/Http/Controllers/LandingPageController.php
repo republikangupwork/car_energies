@@ -34,4 +34,5 @@ class LandingPageController extends Controller
     {
         return view('landing_page.checkout');
     }
+
 }
