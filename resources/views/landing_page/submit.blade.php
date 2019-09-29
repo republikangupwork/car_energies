@@ -71,25 +71,19 @@
                                 <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="float-left">Country: (<b class="required_fields">*</b>)</label>
-                                    <select class=" form-control countries" name="country"  id="countryId">
-                                        <option selected disabled="">Select Country</option>
-                                    </select>
+                                    <input type="text" name="country" id="country" class="form-control" placeholder="Philipines">
                                 </div>
                             </div>
                              <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="float-left">State: (<b class="required_fields">*</b>)</label>
-                                    <select class=" form-control states" name="state" id="stateId">
-                                        <option selected disabled="">Select State</option>
-                                    </select>
+                                    <input type="text" name="state" id="state" class="form-control" placeholder="Manila">
                                 </div>
                             </div>
                               <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="float-left">City: (<b class="required_fields">*</b>)</label>
-                                    <select class=" form-control cities" name="city" id="cityId">
-                                        <option selected disabled="">Select City</option>
-                                    </select>
+                                    <input type="text" name="city" id="city" class="form-control" placeholder="Quezon City">
                                 </div>
                             </div>
                         </div>

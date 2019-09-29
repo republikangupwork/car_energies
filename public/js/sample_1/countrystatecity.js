@@ -26,7 +26,7 @@ function ajaxCall() {
 }
 
 function locationInfo() {
-    var rootUrl = "//geodata.solutions/api/api.php";
+    var rootUrl = "https://www.geodata.solutions/restapi";
     //set default values
     var username = 'demo';
     var ordering = 'name';
@@ -42,9 +42,9 @@ function locationInfo() {
     var call = new ajaxCall();
 
     this.confCity = function(id) {
-     //   console.log(id);
+       // console.log($('#countryId option:selected').attr('countryid'));
      //   console.log('started');
-        var url = rootUrl+'?type=confCity&countryId='+ jQuery('#countryId option:selected').attr('countryid') +'&stateId=' + jQuery('#stateId option:selected').attr('stateid') + '&cityId=' + id;
+        var url = rootUrl+'?country='+ $('#countryId option:selected').attr('countryid') +'&state=' + jQuery('#stateId option:selected').attr('stateid') + '&city=' + id;
         var method = "post";
         var data = {};
         call.send(data, url, method, function(data) {
@@ -161,106 +161,90 @@ function locationInfo() {
     };
 
     this.getCountries = function() {
-        //get additional fields
-        var countryClasses = jQuery('#countryId').attr('class');
 
-        var cC = countryClasses.split(" ");
-        cC.shift();
-        var addClasses = '';
-        if(cC.length > 0)
-        {
-            acC = cC.join();
-            addClasses = '&addClasses=' + encodeURIComponent(acC);
-        }
-
-        var presel = false;
-        var iip = 'N';
-        jQuery.each(cC, function( index, value ) {
-            if (value.match("^presel-")) {
-                presel = value.substring(7);
-
-            }
-            if(value.match("^presel-byi"))
-            {
-                var iip = 'Y';
-            }
-        });
+       
+        var rootUrl = "https://www.geodata.solutions/restapi";
 
 
-        var url = rootUrl+'?type=getCountries' + addParams + addClasses;
+        var url = rootUrl;
         var method = "post";
         var data = {};
         jQuery('.countries').find("option:eq(0)").html("Please wait..");
-        call.send(data, url, method, function(data) {
-            jQuery('.countries').find("option:eq(0)").html("Select Country");
+        $.post({url: rootUrl,data:data, function(data){
 
-            if(data.tp == 1){
-                if(data.hits > 1000)
-                {
-                    //alert('Free usage far exceeded. Please subscribe at geodata.solutions.');
-                    console.log('Daily geodata.solutions request limit exceeded:' + data.hits + ' of 1000');
-                }
-                else
-                {
-                    console.log('Daily geodata.solutions request count:' + data.hits + ' of 1000')
-                }
-                if(presel == 'byip')
-                {
-                    presel = data['presel'];
-                    console.log('2 presel is set as ' + presel);
-                }
+            console.log(data);
+        }})
+        // $.post(data, url, function(data) {
+        //     console.log(data);
+        //     jQuery('.countries').find("option:eq(0)").html("Select Country");
+
+        //     if(data.tp == 1){
+        //         if(data.hits > 1000)
+        //         {
+        //             //alert('Free usage far exceeded. Please subscribe at geodata.solutions.');
+        //             console.log('Daily geodata.solutions request limit exceeded:' + data.hits + ' of 1000');
+        //         }
+        //         else
+        //         {
+        //             console.log('Daily geodata.solutions request count:' + data.hits + ' of 1000')
+        //         }
+        //         if(presel == 'byip')
+        //         {
+        //             presel = data['presel'];
+        //             console.log('2 presel is set as ' + presel);
+        //         }
 
 
-                if(jQuery.inArray("group-continents",cC) > -1)
-                {
-                    var $select = jQuery('.countries');
-                    console.log(data['result']);
-                    jQuery.each(data['result'], function(i, optgroups) {
-                        var $optgroup = jQuery("<optgroup>", {label: i});
-                        if(optgroups.length > 0)
-                        {
-                            $optgroup.appendTo($select);
-                        }
+        //         if(jQuery.inArray("group-continents",cC) > -1)
+        //         {
+        //             var $select = jQuery('.countries');
+        //             console.log(data['result']);
+        //             jQuery.each(data['result'], function(i, optgroups) {
+        //                 var $optgroup = jQuery("<optgroup>", {label: i});
+        //                 if(optgroups.length > 0)
+        //                 {
+        //                     $optgroup.appendTo($select);
+        //                 }
 
-                        jQuery.each(optgroups, function(groupName, options) {
-                            var coption = jQuery('<option />');
-                            coption.attr('value', options.name).text(options.name);
-                            coption.attr('countryid', options.id);
-                            if(presel) {
-                                if (presel.toUpperCase() == options.id) {
-                                    coption.attr('selected', 'selected');
-                                }
-                            }
-                            coption.appendTo($optgroup);
-                        });
-                    });
-                }
-                else
-                {
-                    jQuery.each(data['result'], function(key, val) {
-                        var option = jQuery('<option />');
-                        option.attr('value', val).text(val);
-                        option.attr('countryid', key);
-                        if(presel)
-                        {
-                            if(presel.toUpperCase() ==  key)
-                            {
-                                option.attr('selected', 'selected');
-                            }
-                        }
-                        jQuery('.countries').append(option);
-                    });
-                }
-                if(presel)
-                {
-                    jQuery('.countries').trigger('change');
-                }
-                jQuery(".countries").prop("disabled",false);
-            }
-            else{
-                alert(data.msg);
-            }
-        });
+        //                 jQuery.each(optgroups, function(groupName, options) {
+        //                     var coption = jQuery('<option />');
+        //                     coption.attr('value', options.name).text(options.name);
+        //                     coption.attr('countryid', options.id);
+        //                     if(presel) {
+        //                         if (presel.toUpperCase() == options.id) {
+        //                             coption.attr('selected', 'selected');
+        //                         }
+        //                     }
+        //                     coption.appendTo($optgroup);
+        //                 });
+        //             });
+        //         }
+        //         else
+        //         {
+        //             jQuery.each(data['result'], function(key, val) {
+        //                 var option = jQuery('<option />');
+        //                 option.attr('value', val).text(val);
+        //                 option.attr('countryid', key);
+        //                 if(presel)
+        //                 {
+        //                     if(presel.toUpperCase() ==  key)
+        //                     {
+        //                         option.attr('selected', 'selected');
+        //                     }
+        //                 }
+        //                 jQuery('.countries').append(option);
+        //             });
+        //         }
+        //         if(presel)
+        //         {
+        //             jQuery('.countries').trigger('change');
+        //         }
+        //         jQuery(".countries").prop("disabled",false);
+        //     }
+        //     else{
+        //         alert(data.msg);
+        //     }
+        // });
     };
 
 }
