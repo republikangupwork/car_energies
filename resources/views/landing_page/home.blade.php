@@ -210,7 +210,7 @@
                                       <img class="" src="{{ asset('images/sample_1/process/picture.png') }}" width="75" height="75">
                                   </div>
                                   <div class="service-content">
-                                      <h4 class="section-description text-right"><span style="font-weight: bold;"  class="txt-bold color-green">1. TAKE YOUR CAR'S</span> PICTURE</h4>
+                                      <h4 class="section-description text-right"><span style="font-weight: bold;"  class="txt-bold color-green">TAKE YOUR CAR'S</span> PICTURE 1.</h4>
                                       <p class="color-black text-right">Upload 4 recent clear photos of the used car in(front,read,left side,rightside)</p>
                                   </div>
                             </div>
@@ -224,7 +224,7 @@
                                   </div>
                                   <div class="service-content">
                                       <h4 class="section-description text-right">
-                                          <span class="txt-bold color-green" style="font-weight: bold;"> 2. YOU UPLOAD AND </span> SUBMIT THEM
+                                          <span class="txt-bold color-green" style="font-weight: bold;">YOU UPLOAD AND </span> SUBMIT THEM 2.
                                       </h4>
                                       <p class="color-black text-right">Send us the pictures with your name, email address, state, city and country</p>
                                   </div>
@@ -301,10 +301,9 @@
                      <div class="row">
                         <div class="col-md-4">
                             <div class="card mb-2">
-                              <div class="card-body">
-                                <h3 class="card-title">VERY QUICK AND FAST</h3>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                  card's content.</p>
+                              <div class="card-body" style="min-height:320px">
+                                <h3 class="card-title">INVALUABLE HELP, SAVED A LOT</h3>
+                                <p class="card-text">Julia has helped me buy good dependable cars, as I was travelling the world. I saved probably over $3000 in two occasions.Thanks so much. </p>
                                  <div class="row">
                                             <div class="col-md-4"><img src="{{ asset('images/sample_1/testimonies/1.jpg') }}" class="" alt="..." height="100" width="100" style="border-radius: 50%;"></div>
                                             <div class="col-md-8">
@@ -322,7 +321,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card mb-2">
-                              <div class="card-body">
+                              <div class="card-body" style="min-height:320px">
                                 <h3 class="card-title">DONE IN 3 HOURS</h3>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                                   card's content.</p>
@@ -343,7 +342,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card mb-2">
-                              <div class="card-body">
+                              <div class="card-body" style="min-height:320px">
                                  <h3 class="card-title">FIND IT PROFESSIONAL</h3>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                                   card's content.</p>
@@ -372,7 +371,7 @@
                      <div class="row">
                         <div class="col-md-4">
                             <div class="card mb-2">
-                              <div class="card-body">
+                              <div class="card-body" style="min-height:320px">
                                 <h3 class="card-title">VERY QUICK AND FAST</h3>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                                   card's content.</p>
@@ -393,7 +392,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card mb-2">
-                              <div class="card-body">
+                              <div class="card-body" style="min-height:320px">
                                 <h3 class="card-title">DONE IN 3 HOURS</h3>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                                   card's content.</p>
@@ -414,7 +413,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card mb-2">
-                              <div class="card-body">
+                              <div class="card-body" style="min-height:320px">
                                  <h3 class="card-title">FIND IT PROFESSIONAL</h3>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                                   card's content.</p>
