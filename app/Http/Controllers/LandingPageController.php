@@ -30,4 +30,8 @@ class LandingPageController extends Controller
     {
     	return view('landing_page.submit');
     }
+    public function checkout()
+    {
+        return view('landing_page.checkout');
+    }
 }

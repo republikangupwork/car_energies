@@ -3,7 +3,9 @@
 
 <head>
     <!-- Required meta tags -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
@@ -21,10 +23,17 @@
     <link rel="stylesheet" href="{{ asset('css/sample_1/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/mycss.css') }}">
     <link href="{{ asset('css/sample_1/aos.css') }}" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148996261-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-148996261-1');
+    </script>
+    <title>CE- Car Energies</title>
 
     
-
-    <title>CE- Car Energies</title>
 </head>
 <style>
     
