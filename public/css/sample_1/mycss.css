@@ -143,22 +143,74 @@ box-shadow: -1px 7px 10px 0px rgba(0,0,0,0.44);
 
 
 @media only screen and (max-width: 720px) {
+    .carousel-caption .jumbotron {
+        /*height: 200px;*/
+        max-height: 600px !important;
+        margin-bottom: 0;
+    }
+    .carousel-caption .jumbotron img {
+        width: 45px;
+    }
+    .carousel-caption {
+        margin-bottom: 200px;
+    }
     .carousel-caption h2{
-        display: none;
+        /*display: none;*/
+        font-size: 46px !important;
+    }
+    .carousel-caption .jumbotron h2{
+        font-size: 50px !important;
+    }
+    .carousel-caption .jumbotron h3{
+        /*display: none;*/
+        font-size: 23px !important;
     }
     .carousel-caption p{
-        margin-bottom: 200px
+        /*margin-bottom: 200px;*/
+        font-size: 14px;
+    }
+    .carousel-caption .font-sm-view {
+        font-size: 14px;
+    }
+    .carousel-caption .jumbotron a {
+        padding: 10px !important;
     }
 }
-@media only screen and (max-width: 1256px) {
+@media only screen and (min-width: 720px, max-width: 1256px) {
 
     .carousel-caption{
-        margin-top: 100px;
+        /*margin-top: 100px;*/
+        margin-bottom: 200px;
+    }
+    .carousel-caption h2{
+        /*display: none;*/
+        font-size: 40px;
+    }
+    .carousel-caption .jumbotron h2{
+        /*display: none;*/
+        font-size: 53px;
+    }
+    .carousel-caption .jumbotron h3{
+        /*display: none;*/
+        font-size: 33px !important;
+    }
+    .carousel-caption .font-sm-view {
+        font-size: 18px;
+    }
+    .carousel-caption .jumbotron {
+        max-height: 600px !important;
     }
 }
 @media only screen and (min-width: 1257px) {
    
     .carousel-caption{
         margin-bottom: 250px;
+    }
+    .carousel-caption .jumbotron {
+        max-height: 550px !important;
+    }
+    .carousel-caption .jumbotron h2{
+        /*display: none;*/
+        font-size: 72px;
     }
 }
