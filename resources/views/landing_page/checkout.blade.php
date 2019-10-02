@@ -1,5 +1,41 @@
 @include('landing_page.header')
-<
+<style>
+  .StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+.__PrivateStripeElement{
+  width: 100% !important;
+  
+}
+#card-element{
+  height: 50px !important;
+
+}
+</style>
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -51,8 +87,8 @@
         </div>
 
         <div class="col-md-8 order-md-1">
-          <form class="needs-validation" novalidate>
-
+          <form action="{{ url('/checkout') }}" method="post" id="payment-form">
+            {{ csrf_field() }}
 
         
          <!--    <div class="custom-control custom-checkbox">
@@ -83,67 +119,28 @@
                         <img src="{{ asset('images/sample_1/checkout/logo.jpg') }}" alt=""  class="" style="height: 35px;margin-left: 100px">
                     </div>
                   </div>
-                </div>
-            <!-- <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-               
-              </div>
-            </div> -->
-             <!--  <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Debit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Paypal</label>
-              </div> -->
-            
+                </div>            
             <div class="row">
-              <div class="col-md-6 mb-3">
+              <div class="col-md-12 mb-3">
                 <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                <input type="text" class="form-control" id="cc-name" name="cc_name" placeholder="" required>
                 <small class="text-muted">Full name as displayed on card</small>
                 <div class="invalid-feedback">
                   Name on card is required
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                <div class="invalid-feedback">
-                  Credit card number is required
-                </div>
-              </div>
             </div>
             <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration Date</label>
-                <select class="custom-select d-block w-100" id="year" required style="height: 50px;">
-                  <option value="">Year</option>
-                  <option>2019</option>
-                </select>
-                <div class="invalid-feedback">
-                  Expiration date required
+                <div class="col-md-12 ">
+                      <div id="card-element" class="form-control">
+                      <!-- A Stripe Element will be inserted here. -->
+                    </div>
+
+                    <!-- Used to display Element errors. -->
+                    <div id="card-errors" role="alert"></div>
                 </div>
               </div>
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration"></label>
-                <select class="custom-select d-block w-100" id="year" required style="height: 50px;margin-top: 8px">
-                  <option value="">Month</option>
-                  <option>01</option>
-                </select>
-                <div class="invalid-feedback">
-                  Expiration date required
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
-              </div>
-            </div>
+          
             <hr class="mb-4">
             <button class="btn btn-success btn-lg btn-block" type="submit">Continue to checkout</button>
           </form>
@@ -151,11 +148,91 @@
       </div>
     </div>
 
+
 </section>
 
 @include('landing_page.footer')
       <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
+        var stripe = Stripe('pk_test_wrvJOlwyyqQew5S1wlk8n3c90083TVuaIs');
+        var elements = stripe.elements();
+
+        // Custom styling can be passed to options when creating an Element.
+var style = {
+  base: {
+    // Add your base input styles here. For example:
+    fontSize: '16px',
+    color: "black",
+
+  }
+};
+
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
+
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+
+card.addEventListener('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the customer that there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
+  });
+});
+
+function stripeTokenHandler(token) {
+  console.log(token);
+  // Insert the token ID into the form so it gets submitted to the server
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  form.submit();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       (function() {
         'use strict';
 
