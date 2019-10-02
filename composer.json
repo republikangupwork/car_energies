@@ -9,10 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "doctrine/dbal": "^2.9.2",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^5.8",
         "laravel/tinker": "^1.0",
-        "doctrine/dbal": "^2.9.2"
+        "phpmailer/phpmailer": "^6.1",
+        "cartalyst/stripe-laravel": "10.0.*"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
