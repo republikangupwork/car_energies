@@ -24,12 +24,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('Services/') }}" class="text-white">
+                            <a href="{{ url('services/') }}" class="text-white">
                                 Services
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('Benefits/') }}" class="text-white">
+                            <a href="{{ url('benefits/') }}" class="text-white">
                                 Benefits
                             </a>
                         </li>
@@ -40,12 +40,12 @@
                     <!-- Links -->
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
-                            <a href="{{ url('Submit/') }}" class="text-white">
+                            <a href="{{ url('submit/') }}" class="text-white">
                                 Submit
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('About/') }}" class="text-white">
+                            <a href="{{ url('about/') }}" class="text-white">
                                 About Us
                             </a>
                         </li>
@@ -90,7 +90,7 @@
     <!-- Theme JS -->
     {{-- <script src="{{ asset('js/sample_1/theme.js') }}"></script> --}}
     <script src="{{ asset('js/sample_1/aos.js') }}"></script>
-    <script src="../../assets/js/vendor/holder.min.js"></script>
+    {{-- <script src="../../assets/js/vendor/holder.min.js"></script> --}}
 <!--     <script src="{{ asset('js/sample_1/countrystatecity.js') }}"></script> -->
 
 
@@ -102,18 +102,17 @@
 </script>
 <script>
     var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
-
-  var currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) {
-    $('#logo').show(50);
-  } else {
-       $('#logo').hide(50);
-  }
-  prevScrollpos = currentScrollPos;
-}
-$(document).on("click", '[data-toggle="lightbox"]', function(event) {
-  event.preventDefault();
-  $(this).ekkoLightbox();
-});
+    window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            $('#logo').show(50);
+        } else {
+           $('#logo').hide(50);
+        }
+        prevScrollpos = currentScrollPos;
+    }
+    $(document).on("click", '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
 </script>

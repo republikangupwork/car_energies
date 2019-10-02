@@ -14,23 +14,23 @@
 
 // LANDING PAGE
 Route::get('/', ['as'=>'landing_page.home', 'uses'=>'LandingPageController@index']);
-Route::get('/About', ['as'=>'landing_page.about', 'uses'=>'LandingPageController@about']);
-Route::get('/Benefits', ['as'=>'landing_page.benefits', 'uses'=>'LandingPageController@benefits']);
-Route::get('/Services', ['as'=>'landing_page.services', 'uses'=>'LandingPageController@services']);
-Route::get('/Submit', ['as'=>'landing_page.submit', 'uses'=>'LandingPageController@submit']);
+Route::get('/about', ['as'=>'landing_page.about', 'uses'=>'LandingPageController@about']);
+Route::get('/benefits', ['as'=>'landing_page.benefits', 'uses'=>'LandingPageController@benefits']);
+Route::get('/services', ['as'=>'landing_page.services', 'uses'=>'LandingPageController@services']);
+Route::get('/submit', ['as'=>'landing_page.submit', 'uses'=>'LandingPageController@submit']);
 Route::get('/checkout', ['as'=>'landing_page.checkout', 'uses'=>'PaymentController@checkout']);
 Route::post('/checkout', ['as'=>'landing_page.payment_store', 'uses'=>'PaymentController@payment_store']);
 
 Route::post('/sendemail', ['as'=>'landing_page.sendemail', 'uses'=>'SendMailController@sendmail']);
 
 // ADMIN
-Route::group(['prefix' => 'Admin-Page', 'middleware' => 'admin'], function() {
+Route::group(['prefix' => 'admin-page', 'middleware' => 'admin'], function() {
 	Route::get('/', ['as'=>'admin.login', 'uses'=>'AdminController@dashboard']);
-	Route::get('/Dashboard', ['as'=>'admin.dashboard', 'uses'=>'AdminController@dashboard']);
-	Route::get('/Profile', ['as'=>'admin.profile', 'uses'=>'AdminController@profile']);
-	// Route::get('/Notification', ['as'=>'admin.notification', 'uses'=>'AdminController@notification']);
+	Route::get('/dashboard', ['as'=>'admin.dashboard', 'uses'=>'AdminController@dashboard']);
+	Route::get('/profile', ['as'=>'admin.profile', 'uses'=>'AdminController@profile']);
+	Route::get('/inbox', ['as'=>'admin.inbox', 'uses'=>'AdminController@inbox']);
 });
 
-Route::get('Admin-Page/Login', ['as'=>'admin.login', 'uses'=>'AdminController@loginPage']);
-Route::post('Admin-Page/Login', ['as'=>'admin.login.post', 'uses'=>'AdminController@login']);
-Route::get('Admin-Page/Logout', ['as'=>'admin.logout.post', 'uses'=>'AdminController@logout']);
+Route::get('admin-page/login', ['as'=>'admin.login', 'uses'=>'AdminController@loginPage']);
+Route::post('admin-page/login', ['as'=>'admin.login.post', 'uses'=>'AdminController@login']);
+Route::get('admin-page/logout', ['as'=>'admin.logout.post', 'uses'=>'AdminController@logout']);

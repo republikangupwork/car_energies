@@ -86,16 +86,16 @@
                 <a class="nav-link " href="{{ url('/') }}">Home</a>
             </li>
             <li class="nav-item  link-3">
-                <a class="nav-link" href="{{ url('Services/') }}">Services</a>
+                <a class="nav-link" href="{{ url('services/') }}">Services</a>
             </li>
             <li class="nav-item  link-3">
-                <a class="nav-link" href="{{ url('Benefits/') }}">Benefits</a>
+                <a class="nav-link" href="{{ url('benefits/') }}">Benefits</a>
             </li>
               <li class="nav-item link-3">
-                <a class="nav-link " href="{{ url('About/') }}">About Us</a>
+                <a class="nav-link " href="{{ url('about/') }}">About Us</a>
             </li>
             <li class="nav-item  link-3">
-                <a class="nav-link" href="{{ url('Submit/') }}">Submit</a>
+                <a class="nav-link" href="{{ url('submit/') }}">Submit</a>
             </li>
         </ul>
     </nav>
