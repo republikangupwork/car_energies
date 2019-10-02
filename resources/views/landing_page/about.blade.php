@@ -44,7 +44,7 @@
                         <p class="px-5 text-center color-black" style="font-size: 30px">Where else can someone look at the photos of a car and see the failed parts, hidden problems, covered up troubles?</p>
                     </div>
                 <div class="row col-lg-12 justify-content-center">
-                    <a href="{{ url('Sample_1/Submit/') }}" class="btn btn-success text-center font-30">TRY OUR SERVICE FOR FREE</a>
+                    <a href="{{ url('Sample_1/submit/') }}" class="btn btn-success text-center font-30">TRY OUR SERVICE FOR FREE</a>
                 </div>  
 
                 </div>

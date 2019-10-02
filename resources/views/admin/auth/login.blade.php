@@ -29,7 +29,7 @@
 							        <li><strong>{{ $message }}</strong></li>
 								</div>
 							@endif
-				            <form role="form" method="POST" action="{{ url('/Admin-Page/Login') }}">
+				            <form role="form" method="POST" action="{{ url('/admin-page/login') }}">
 				            	{{ csrf_field() }}
 				                <div class="form-group">
 				                	<label>Email : </label>

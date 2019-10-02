@@ -24,7 +24,7 @@ class AdminController extends Controller
             	session([ 
 	                'email' => $request->get('email') 
 	            ]);
-	            return redirect('Admin-Page/');
+	            return redirect('admin-page/');
             } else {
             	Session::flash('message', "Sorry! Please try again.");
             	return Redirect::back();
@@ -51,5 +51,10 @@ class AdminController extends Controller
     public function profile()
     {
     	return view('admin.profile');
+    }
+
+    public function inbox()
+    {
+        return view('admin.inbox');
     }
 }

@@ -35,24 +35,24 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="nav-item {{ Request::is('Admin-Page/Dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('Admin-Page/Dashboard') }}">
+                    <li class="nav-item {{ (Request::is('admin-page/dashboard') || Request::is('admin-page/')) ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('admin-page/dashboard') }}">
                             <i class="material-icons">dashboard</i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item {{ Request::is('Admin-Page/Profile') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('Admin-Page/Profile') }}">
+                    <li class="nav-item {{ Request::is('admin-page/profile') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('admin-page/profile') }}">
                             <i class="material-icons">person</i>
                             <p>User Profile</p>
                         </a>
                     </li>
-                    {{-- <li class="nav-item ">
-                        <a class="nav-link" href="">
-                            <i class="material-icons">notifications</i>
-                            <p>Notifications</p>
+                    <li class="nav-item {{ Request::is('admin-page/inbox') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('admin-page/inbox') }}">
+                            <i class="material-icons">mail</i>
+                            <p>Inbox</p>
                         </a>
-                    </li> --}}
+                    </li>
                 </ul>
             </div>
         </div>
@@ -62,11 +62,14 @@
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
                         <a class="navbar-brand" href="#">
-                            @if(Request::is('Admin-Page/Dashboard'))
+                            @if(Request::is('admin-page/dashboard'))
                                 Dashboard
                             @endif
-                            @if(Request::is('Admin-Page/Profile'))
+                            @if(Request::is('admin-page/profile'))
                                 Profile
+                            @endif
+                            @if(Request::is('admin-page/inbox'))
+                                Inbox
                             @endif
                         </a>
                     </div>
@@ -88,7 +91,7 @@
                         </form> --}}
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('Admin-Page/Dashboard') }}">
+                                <a class="nav-link" href="{{ url('admin-page/dashboard') }}">
                                     <i class="material-icons">dashboard</i>
                                     <p class="d-lg-none d-md-block">
                                         Stats
@@ -122,7 +125,7 @@
                                     <a class="dropdown-item" href="#">Profile</a>
                                     <a class="dropdown-item" href="#">Settings</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{ url('/Admin-Page/Logout') }}">Log out</a>
+                                    <a class="dropdown-item" href="{{ url('/admin-page/logout') }}">Log out</a>
                                 </div>
                             </li>
                         </ul>
@@ -159,13 +162,14 @@
                         </ul> --}}
                     </nav>
                     <div class="copyright float-right">
-                        CAR ENERGIES <i class="material-icons">favorite</i>
+                        {{-- CAR ENERGIES <i class="material-icons">favorite</i> --}}
+                        © Copyright 2019 | Design and Developed by Car Energies
                     </div>
                 </div>
             </footer>
         </div>
     </div>
-    <div class="fixed-plugin">
+    {{-- <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
                 <i class="fa fa-cog fa-2x"> </i>
@@ -208,7 +212,7 @@
                 </li>      
             </ul>
         </div>
-    </div>
+    </div> --}}
     <!--   Core JS Files   -->
     <script src="{{ asset('admin/assets/js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/core/popper.min.js') }}"></script>
