@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="description" content="CE - Free Car Consultancy">
+    <meta name="description" content="Carenergies - Free Car Evaluation">
     <meta name="author" content="Freddie">
 
     <!-- Fontawseom Icon CSS -->
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/sample_1/mycss.css') }}">
     <link href="{{ asset('css/sample_1/aos.css') }}" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148996261-1"></script>
+   <script src="https://js.stripe.com/v3/"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
