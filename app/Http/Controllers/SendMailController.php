@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use DB;
 
 class SendMailController extends Controller
 {
@@ -13,15 +14,45 @@ class SendMailController extends Controller
 	public function sendmail(Request $request)
 	{
 
-		// $id = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
-
 		$r = $_REQUEST;
-		// $name   = $r['name'];
-	 	// $email  = $r['email'];
-	 	// $country = $r['country']; 
-	 	// $state   = $r['state']; 
-	 	// $city    = $r['city'];
-	 	// $type    = $r['type'];
+
+		if ($r['type'] == 'feedback') {
+			$name   	= $r['name'];
+		 	$email  	= $r['email'];
+		 	$subject 	= $r['subject']; 
+		 	$message   	= $r['message']; 
+
+		 	if ($email != '') {
+		 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		 			return '0|Invalid Email Address.';
+		 		}
+		 	} else {
+		 		return '0|Please Fill-up your Email';
+		 	}
+
+		 	if ($subject == '') {
+		 		return '0|Please Fill-up the Subject Field';
+		 	}
+
+		 	if ($message == '') {
+		 		return '0|Please Fill-up the Message Field';
+		 	}
+
+		 	try {
+		 		$insert_feedback = DB::insert('INSERT INTO feedback (name,email,subject,message) VALUES(?,?,?,?)', [$name,$email,$subject,$message]);
+				return '1|Message successfully sent!';
+		 	} catch (Exeption $e) {
+		 		return '0|'.$e;
+		 	}
+
+		} else {
+			return 'form submit';
+		}
+
+	}
+
+	public function generate_mail()
+	{
 
 	    $name   	= 'Juan Tamad';
 	    $email  	= 'juantamad@app.com';
@@ -29,6 +60,7 @@ class SendMailController extends Controller
 	    $state   	= '-'; 
 	    $city    	= 'Marikina';
 
+		// $id = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
 	    // $filestosend =  array();
 
 	    // $allowed_ext = array('jpg','jpeg','docx','pdf');
@@ -220,7 +252,7 @@ class SendMailController extends Controller
 			$mail->Host = 'smtp.gmail.com';
 			$mail->SMTPAuth = true; 
 			$mail->Username = "carenergies@gmail.com";                 
-			$mail->Password = "P@$$word"; 
+			$mail->Password = "svauheqtghlphiav"; 
 			$mail->SMTPSecure = "tls";  
 			$mail->Port = 587; 
 			$mail->setFrom($email, 'CAR ENERGIES');

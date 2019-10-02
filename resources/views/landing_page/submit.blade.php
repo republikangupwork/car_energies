@@ -54,6 +54,7 @@
                 <!-- <div class="card" style="padding: 40px 20px;"> -->
                     <form id="submit_form">
                         {!! csrf_field() !!}
+                        <input type="hidden" name="type" value="form submit">
                         <div class="row justify-content-center">
                             <div class="col-md-5">
                                 <div class="form-group">

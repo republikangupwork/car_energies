@@ -540,16 +540,26 @@
 
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <form action="mail.php" method="post" id="main_contact_form" class="contact__form">
+                    <form id="main_contact_form" class="contact__form">
+                        {!! csrf_field() !!}
                         <!-- form message -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                        Your message was sent successfully.
-                                    </div>
+                        <input type="hidden" name="type" value="feedback">
+                        <div class="row">
+                            <div class="col-12">
+                                {{-- <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                    Your message was sent successfully.
+                                </div> --}}
+                                <div class="alert alert-success" id="success-msg-div" style="display: none">
+                                    <button type="button" class="close" data-dismiss="alert">×</button> 
+                                    <span id="success-msg"></span>
+                                </div>
+                                <div class="alert alert-danger" id="error-msg-div" style="display: none">
+                                    <button type="button" class="close" data-dismiss="alert">×</button> 
+                                    <span id="error-msg"></span>
                                 </div>
                             </div>
-                            <!-- end message -->
+                        </div>
+                        <!-- end message -->
                             
                         <div class="row">
                             <div class="col-lg-6">
@@ -571,13 +581,13 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <textarea name="message" id="message" cols="30" rows="6" class="form-control" placeholder="Enter your Message" required="required" ></textarea>
+                                    <textarea name="message" id="message" cols="30" rows="6" class="form-control" placeholder="Enter your Message *" required="required" ></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-12">
                                 <div class="submit text-center">
-                                    <input name="submit" type="submit" class="btn btn-success btn-lg" value="Send Now">
+                                    <button id="submit_feedback" type="button" class="btn btn-success btn-lg">Send Now</button>
                                     <p class="pt-3">* We respect your privacy. We will not share your information with anybody and we will not spam your inbox.</p>
                                 </div>
                             </div>
@@ -589,3 +599,39 @@
     </section>
 
 @include('landing_page.footer')
+
+<script>
+    $('#submit_feedback').on('click', function(e) {
+        e.preventDefault();
+        var formData = $('#main_contact_form').serialize();
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('sendemail/') }}", 
+            data: formData,
+            success: function (response) {
+                var message = response.split('|');
+                if (message[0] == 0) {
+                    $('#success-msg-div').hide();
+                    $('#error-msg-div').show(); 
+                    $('#error-msg').html(message[1]); 
+                } else {
+                    $('#name').val('');
+                    $('#email').val('');
+                    $('#subject').val('');
+                    $('#message').val('');
+
+                    $('#error-msg-div').hide(); 
+                    $('#success-msg-div').show();
+                    $('#success-msg').html(message[1]);
+                }
+                
+            },
+            error: function (err) {
+                $('#success-msg-div').hide();
+                $('#error-msg-div').show(); 
+                $('#error-msg').html(err); 
+                // $('#msg').html('There is something wrong, Please email admin@teamdriveway.com'); // display error response from the PHP script
+            }
+        });
+    })
+</script>
