@@ -28,12 +28,7 @@
   background-color: #fefde5 !important;
 }
 .__PrivateStripeElement{
-  width: 100% !important;
-  
-}
-#card-element{
-  height: 50px !important;
-
+  width: 800px !important;
 }
 </style>
     <div class="container">
@@ -121,7 +116,7 @@
                   </div>
                 </div>            
             <div class="row">
-              <div class="col-md-12 mb-3">
+              <div class="col-md-6 mb-3">
                 <label for="cc-name">Name on card</label>
                 <input type="text" class="form-control" id="cc-name" name="cc_name" placeholder="" required>
                 <small class="text-muted">Full name as displayed on card</small>
@@ -129,25 +124,57 @@
                   Name on card is required
                 </div>
               </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 ">
-                      <div id="card-element" class="form-control">
-                      <!-- A Stripe Element will be inserted here. -->
-                    </div>
-
-                    <!-- Used to display Element errors. -->
-                    <div id="card-errors" role="alert"></div>
+              <div class="col-md-6 mb-3">
+                <label for="cc-number">Credit card number</label>
+                <input type="text" class="form-control" id="cc-number" name="cc-number" placeholder="" required>
+                <div class="invalid-feedback">
+                  Credit card number is required
                 </div>
               </div>
-          
-            <hr class="mb-4">
+            </div>
+            <div class="row">
+   
+
+
+             
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration">Expiration Date</label>
+                <select class="custom-select d-block w-100" id="year" name="year" required style="height: 50px;">
+                  <option value="">Year</option>
+                  <option>2019</option>
+                </select>
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration"></label>
+                <select class="custom-select d-block w-100" id="month" name="month" required style="height: 50px;margin-top: 8px">
+                  <option value="">Month</option>
+                  <option>12</option>
+                </select>
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" name="cc-cvv" placeholder="" required>
+                <div class="invalid-feedback">
+                  Security code required
+                </div>
+              </div>
+               </div>
+               <hr class="mb-4">
             <button class="btn btn-success btn-lg btn-block" type="submit">Continue to checkout</button>
+            </div>
+            
           </form>
         </div>
       </div>
     </div>
 
+   
 
 </section>
 
@@ -162,8 +189,7 @@ var style = {
   base: {
     // Add your base input styles here. For example:
     fontSize: '16px',
-    color: "black",
-
+    color: "#32325d",
   }
 };
 

@@ -21,21 +21,21 @@ class PaymentController extends Controller
     public function payment_store(REQUEST $r){
 
     		// Set your secret key: remember to change this to your live secret key in production
-// See your keys here: https://dashboard.stripe.com/account/apikeys
-		$stripe = Stripe::make(env('STRIPE_SECRET'));
+// // See your keys here: https://dashboard.stripe.com/account/apikeys
+// 		$stripe = Stripe::make(env('STRIPE_SECRET'));
 
-		// Token is created using Checkout or Elements!
-		// Get the payment token ID submitted by the form:
-		$token = $_POST['stripeToken'];
-		$charge = $stripe->charges()->create([
-		    'amount' => 1.99,
-		    'currency' => 'usd',
-		    'description' => 'Example charge',
-		    'source' => $token,
-		]);
-		 if($charge['status'] =='succeeded'){
-		 	echo 'payment successfull!';
-		 }
+// 		// Token is created using Checkout or Elements!
+// 		// Get the payment token ID submitted by the form:
+// 		$token = $_POST['stripeToken'];
+// 		$charge = $stripe->charges()->create([
+// 		    'amount' => 1.99,
+// 		    'currency' => 'usd',
+// 		    'description' => 'Example charge',
+// 		    'source' => $token,
+// 		]);
+// 		 if($charge['status'] =='succeeded'){
+// 		 	echo 'payment successfull!';
+// 		 }
 
     	
     // 	$r = [
@@ -47,39 +47,39 @@ class PaymentController extends Controller
     //   "month" => "12",
     //   "cc-cvv" => "456"
     // ];
-    // $input =array_except($r,array('_token'));
-    // $stripe = Stripe::make(env('STRIPE_SECRET'));
-    // // try{
-    // 	$token = $stripe->tokens()->create([
-    // 		'card' => [
-    // 			'number' 		=> $r['cc-number'],
-    // 			'exp_month'		=> $r['month'],
-    // 			'exp_year'		=> $r['year'],
-    // 			'cvc'			=> $r['cc-cvv']
-    // 		],
-    // 	]);
+    $input =array_except($r,array('_token'));
+    $stripe = Stripe::make(env('STRIPE_SECRET'));
+    try{
+    	$token = $stripe->tokens()->create([
+    		'card' => [
+    			'number' 		=> $r['cc-number'],
+    			'exp_month'		=> $r['month'],
+    			'exp_year'		=> $r['year'],
+    			'cvc'			=> $r['cc-cvv']
+    		],
+    	]);
 
-    // 	$charge =$stripe->charges()->create([
-    // 		'card' 			=> $token['id'],
-    // 		'currency'		=> 'USD',
-    // 		'amount'		=> 10.50,
-    // 		'description'	=> 'Testing Add Money'
-    // 	]);
-    // } catch (Exception $e){
-    // 	\Session::put('error', $e->getMessage());
-    // 	// return redirect()->route('landing_page.checkout');
-    // 	echo 'Error 1';
-    // } catch(\Cartalyst\Stripe\Exception\CardErrorException $e){
-    // 	\Session::put('error', $e->getMessage());
-    // 	// return redirect()->route('landing_page.checkout');
-    // 	echo 'Error 2';
-    // } catch(\Cartalyst\Stripe\Exception\MissingParameterException $e){
-    // 	\Session::put('error', $e->getMessage());
-    // 	// return redirect()->route('landing_page.checkout');
-    // 	echo 'Error 3';
-    // } 
+    	$charge =$stripe->charges()->create([
+    		'card' 			=> $token['id'],
+    		'currency'		=> 'USD',
+    		'amount'		=> 11.50,
+    		'description'	=> 'Testing Add Money'
+    	]);
+    } catch (Exception $e){
+    	\Session::put('error', $e->getMessage());
+    	// return redirect()->route('landing_page.checkout');
+    	echo 'Error 1';
+    } catch(\Cartalyst\Stripe\Exception\CardErrorException $e){
+    	\Session::put('error', $e->getMessage());
+    	// return redirect()->route('landing_page.checkout');
+    	echo 'Error 2';
+    } catch(\Cartalyst\Stripe\Exception\MissingParameterException $e){
+    	\Session::put('error', $e->getMessage());
+    	// return redirect()->route('landing_page.checkout');
+    	echo 'Error 3';
+    } 
 
-    // dd($stripe);
+    
 
     }
 }
