@@ -430,7 +430,7 @@
             data: formData,
             success: function (response) {
                 console.log(response)
-                // location.reload();
+                location.reload();
                 // $('#msg').html('Application has been succesfully sent!'); // display success response from the PHP script
             },
             error: function (err) {
