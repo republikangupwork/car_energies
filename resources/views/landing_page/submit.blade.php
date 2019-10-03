@@ -55,37 +55,58 @@
                     <form id="submit_form">
                         {!! csrf_field() !!}
                         <input type="hidden" name="type" value="form submit">
+                        <input type="hidden" name="ip_address" value="">
                         <div class="row justify-content-center">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label class="float-left">Name: (<b class="required_fields">*</b>)</label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="e.g: Julia B.">
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="ex: Julia B.">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="float-left">Email: (<b class="required_fields">*</b>)</label>
-                                    <input type="text" name="email" id="email" class="form-control" placeholder="e.g: car_energies@gmail.com" required="required">
+                                    <input type="text" name="email" id="email" class="form-control" placeholder="ex: car_energies@gmail.com" required="required">
                                 </div>
                             </div>
                         </div>
                         <div class="row justify-content-center">
-                                <div class="col-md-3">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="float-left">Country: (<b class="required_fields">*</b>)</label>
-                                    <input type="text" name="country" id="country" class="form-control" placeholder="Philipines">
+                                    <input type="text" name="country" id="country" class="form-control" placeholder="ex: Philipines">
                                 </div>
                             </div>
                              <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="float-left">State: (<b class="required_fields">*</b>)</label>
-                                    <input type="text" name="state" id="state" class="form-control" placeholder="Manila">
+                                    <label class="float-left">State:</label>
+                                    <input type="text" name="state" id="state" class="form-control" placeholder="ex: Manila">
                                 </div>
                             </div>
                               <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="float-left">City: (<b class="required_fields">*</b>)</label>
-                                    <input type="text" name="city" id="city" class="form-control" placeholder="Quezon City">
+                                    <input type="text" name="city" id="city" class="form-control" placeholder="ex: Quezon City">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="float-left">Maker: (<b class="required_fields">*</b>)</label>
+                                    <input type="text" name="maker" id="maker" class="form-control" placeholder="ex: Toyota">
+                                </div>
+                            </div>
+                             <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="float-left">Model: (<b class="required_fields">*</b>)</label>
+                                    <input type="text" name="model" id="model" class="form-control" placeholder="ex: Vios">
+                                </div>
+                            </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="float-left">Year: (<b class="required_fields">*</b>)</label>
+                                    <input type="text" name="year" id="year" class="form-control" placeholder="ex: 2019">
                                 </div>
                             </div>
                         </div>
@@ -409,7 +430,7 @@
             data: formData,
             success: function (response) {
                 console.log(response)
-                location.reload();
+                // location.reload();
                 // $('#msg').html('Application has been succesfully sent!'); // display success response from the PHP script
             },
             error: function (err) {
