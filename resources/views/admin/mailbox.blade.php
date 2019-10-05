@@ -21,7 +21,7 @@
         <div class="container-fluid">
          	<div class="row">
          		<div class="col-md-2">
-         			<button class="btn btn-primary btn-block btn-md" id="compose_message" style="font-size: 14px;"><i class="far fa-edit"></i> &nbsp;&nbsp;Compose</button><br>
+         			{{-- <button class="btn btn-primary btn-block btn-md" id="compose_message" style="font-size: 14px;"><i class="far fa-edit"></i> &nbsp;&nbsp;Compose</button><br> --}}
          			<div class="list-group bg-light inbox-list-group" id="mailbox-list-tab" role="tablist">
 				      	<a class="list-group-item list-group-item-action active" data-toggle="list" id="Inbox" href="#inbox" role="tab" aria-controls="inbox"><i class="far fa-envelope"></i>&nbsp;&nbsp; Inbox
 				      	</a>

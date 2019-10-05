@@ -17,29 +17,30 @@ class SendMailController extends Controller
 		$r = $_REQUEST;
 
 		if ($r['type'] == 'feedback') {
-			$name   	= $r['name'];
-		 	$email  	= $r['email'];
-		 	$subject 	= $r['subject']; 
-		 	$message   	= $r['message']; 
+			$param = array();
+			$param['name']  	= $r['name'];
+		 	$param['email']  	= $r['email'];
+		 	$param['subject'] 	= $r['subject']; 
+		 	$param['message']   = $r['message']; 
 
-		 	if ($email != '') {
-		 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		 	if ($param['email'] != '') {
+		 		if (!filter_var($param['email'], FILTER_VALIDATE_EMAIL)) {
 		 			return '0|Invalid Email Address.';
 		 		}
 		 	} else {
 		 		return '0|Please Fill-up your Email';
 		 	}
 
-		 	if ($subject == '') {
+		 	if ($param['subject'] == '') {
 		 		return '0|Please Fill-up the Subject Field';
 		 	}
 
-		 	if ($message == '') {
+		 	if ($param['message'] == '') {
 		 		return '0|Please Fill-up the Message Field';
 		 	}
 
 		 	try {
-		 		$insert_feedback = DB::insert('INSERT INTO feedback (name,email,subject,message) VALUES(?,?,?,?)', [$name,$email,$subject,$message]);
+		 		$insert_feedback = DB::insert('INSERT INTO feedback (name,email,subject,message) VALUES(?,?,?,?)', [$param['name'],$param['email'],$param['subject'],$param['message']]);
 				$this->generate_feedback_mail($r);
 				return '1|Message successfully sent!';
 		 	} catch (Exeption $e) {
@@ -48,51 +49,95 @@ class SendMailController extends Controller
 
 		} else {
 
-			$name   	= $r['name'];
-		 	$email  	= $r['email'];
-		 	$country 	= $r['country']; 
-		 	$state   	= $r['state'];
-		 	$city   	= $r['city']; 
-		 	$maker 		= $r['maker']; 
-		 	$model   	= $r['model'];
-		 	$year   	= $r['year']; 
-		 	$ip_add   	= $r['ip_address']; 
+			$param = array();
+			$param['name']   			= $r['name'];
+		 	$param['email']  			= $r['email'];
+		 	$param['country'] 			= $r['country']; 
+		 	$param['state']   			= $r['state'];
+		 	$param['city']   			= $r['city']; 
+		 	$param['maker'] 			= $r['maker']; 
+		 	$param['model']   			= $r['model'];
+		 	$param['year']   			= $r['year']; 
+		 	$param['transaction_id'] 	= mt_rand(1000000000, 9999999999);
 
-		 	if ($name == '') {
+		 	if ($param['name'] == '') {
 		 		return '0|Please Fill-up the Name Field';
 		 	}
-			if ($email != '') {
-		 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			if ($param['email'] != '') {
+		 		if (!filter_var($param['email'], FILTER_VALIDATE_EMAIL)) {
 		 			return '0|Invalid Email Address.';
 		 		}
 		 	} else {
 		 		return '0|Please Fill-up your Email';
 		 	}
-		 	if ($country == '') {
+		 	if ($param['country'] == '') {
 		 		return '0|Please Fill-up the Country Field';
 		 	}
-		 	if ($city == '') {
+		 	if ($param['city'] == '') {
 		 		return '0|Please Fill-up the City Field';
 		 	}
-		 	if ($maker == '') {
+		 	if ($param['maker'] == '') {
 		 		return '0|Please Fill-up the Maker Field';
 		 	}
-		 	if ($model == '') {
+		 	if ($param['model'] == '') {
 		 		return '0|Please Fill-up the Model Field';
 		 	}
-		 	if ($year == '') {
+		 	if ($param['year'] == '') {
 		 		return '0|Please Fill-up the Year Field';
+		 	}
+		 	if ($_FILES['front_of_car_with_hood_up']['name'] == '') {
+		 		return '0|Please upload a Image for Front of car with Hood up';
+		 	}
+		 	if ($_FILES['rear_with_open_compartment']['name'] == '') {
+		 		return '0|Please upload a Image for Rear with open compartment';
+		 	}
+		 	if ($_FILES['left_side_open_doors']['name'] == '') {
+		 		return '0|Please upload a Image for Left side open doors';
+		 	}
+		 	if ($_FILES['left_side_view']['name'] == '') {
+		 		return '0|Please upload a Image for Left Side View';
+		 	}
+		 	if ($_FILES['right_side_view']['name'] == '') {
+		 		return '0|Please upload a Image for Right Side View';
+		 	}
+		 	if ($_FILES['front_view']['name'] == '') {
+		 		return '0|Please upload a Image for Front View';
 		 	}
 
 		 	try {
-		 		$insert_feedback = DB::insert('INSERT INTO form_submit (name,email,country,state,city,maker,model,year,ip_address) VALUES(?,?,?,?,?,?,?,?,?)', [$name,$email,$country,$state,$city,$maker,$model,$year,$ip_add]);
+
+		 		$check_if_free = $this->check_customer($param['email']);
+
+		 		if (count($check_if_free) > 0) {
+			 		if ($check_if_free[0]->tries > 3) {
+			 			return 'not free';
+			 		} else {
+			 			$new_tries = $check_if_free[0]->tries + 1;
+		 			 	// $update_customer = DB::update('UPDATE customers SET tries = ? WHERE email = ?', [$new_tries, $param['email']]);
+			 		}
+		 		} else {
+		 			$add_customer = DB::isert('INSERT INTO customers (name,email,country,state,city,tries) VALUES (?,?,?,?,?,1)',[$param['name'],$param['email'],$param['country'],$param['state'],$param['city']]);
+		 		}
+
+		 		$customer_detail = $this->check_customer($param['email']);
+		 		// print_r($customer_detail); die();
+		 		$add_form_submit = DB::insert('INSERT INTO form_submit (customer_id,transaction_id,maker,model,year) VALUES(?,?,?,?,?)', [$customer_detail[0]->id,$param['transaction_id'],$param['maker'],$param['model'],$param['year']]);
+
 				$this->generate_form_submit_mail($r);
+
 				return '1|Form successfully sent!';
+
 		 	} catch (Exeption $e) {
 		 		return '0|'.$e;
 		 	}
 		}
 
+	}
+
+	public function check_customer($email)
+	{
+		$customer = DB::table('customers')->where('email',$email)->get();
+		return $customer;
 	}
 
 	public function generate_feedback_mail($r)
@@ -285,6 +330,9 @@ class SendMailController extends Controller
 	 	$country 	= $r['country']; 
 	 	$state   	= $r['state'];
 	 	$city   	= $r['city'];
+	 	$maker 		= $r['maker']; 
+	 	$model   	= $r['model'];
+	 	$year   	= $r['year'];
 
 		// $id = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
 	    // $filestosend =  array();
@@ -324,22 +372,7 @@ class SendMailController extends Controller
 
 
 		$body = '
-		<!DOCTYPE html>
-		<html lang="en">
-		<head>
-	    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		    <title>CAR ENERGIES</title>
-
-			<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-			<!------ Include the above in your HEAD tag ---------->
-
-			<style>
+		<style>
 			body {
 			    padding: 0;
 			    margin: 0;
@@ -381,9 +414,10 @@ class SendMailController extends Controller
 			.table_width_100 {
 				width: 680px;
 			}
+			#possible_problems tr td {
+				word-wrap: break-word;
+			}
 		</style>
-	</head>
-	<body>
 
 		<div id="mailsub" class="notification" align="center">
 		    <!--<div align="center">
@@ -403,7 +437,7 @@ class SendMailController extends Controller
 			</td></tr>
 			<!--header -->
 			<tr><td align="center" bgcolor="#ffffff">
-				<!-- padding -->
+				<!-- pack(format)dding -->
 				<table width="90%" border="0" cellspacing="0" cellpadding="0">
 					<tr><td align="center">
 					    		<a href="#" target="_blank" style="color: #596167; font-family: Arial, Helvetica, sans-serif; float:left; width:100%; padding:20px;text-align:center; font-size: 13px;">
@@ -423,146 +457,161 @@ class SendMailController extends Controller
 			<!--content 1 -->
 			<tr><td align="center" bgcolor="#fbfcfd">
 			    <font face="Arial, Helvetica, sans-serif" size="4" color="#57697e" style="font-size: 15px;">
-				<table width="90%" border="0" cellspacing="0" cellpadding="0">
-					<tr><td>
-						<table width="100%">
-							<tr>
-								<td>
-									<p>
-										Case: 110-1001
-									</p>
-								</td>
-								<td>
-									<p>
-										Date: 2019/10/03
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<p>
-										Hi <strong>'.$name.',</strong>
-									</p>
-									<p style="text-indent:30px;">
-										Attached is the evaluation report for the vehicle you submitted recently.
-										Please note that after your third free report, you will be charged $4.99 for each extra vehicle evaluation.
-										<br/><br/>We accept Paypal, Mc, and visa for your convenience.
-									<p/>
-								</td>
-							</tr>
-						</table>
-						<hr>
-					    <table width="100%">
-					    	<tr>
-					    		<td>
-					    			<p>
-					    				Maker: <strong>Toyota</strong></span>
-					    			</p>
-					    		</td>
-					    		<td>
-					    			<p>
-					    				Model: <strong>Vios</strong></span>
-					    			</p>
-					    		</td>
-					    		<td>
-					    			<p>
-					    				Year: <strong>2019</strong></span>
-					    			</p>
-					    		</td>
-					    	</tr>
-					    	<tr>
-					    		<td colspan="3">
-					    			<hr>
-					    			<p class="float-left">Possible Problems: </p>
-					    		</td>
-					    	</tr>
-					    	<tr>
-					    		<td></td>
-					    	</tr>
-						    <tr>
-						    	<td colspan="3">
-						    		<table width="100%">
-						    			<tr>
-						    				<td><input type="checkbox"> Alternator</td>
-						    				<td><input type="checkbox"> Drive Shaft</td>
-						    				<td><input type="checkbox"> Junction Box</td>
-						    				<td><input type="checkbox"> Shift</td>
-						    			</tr>
-						    			<tr>
-						    				<td><input type="checkbox"> Breaking System</td>
-						    				<td><input type="checkbox"> Electrical System</td>
-						    				<td><input type="checkbox"> Knuckle</td>
-						    				<td><input type="checkbox"> Seats</td>
-						    			</tr>
-						    			<tr>
-						    				<td><input type="checkbox"> Battery</td>
-						    				<td><input type="checkbox"> Engine/Motor</td>
-						    				<td><input type="checkbox"> Lights, Front</td>
-						    				<td><input type="checkbox"> Shock Absorbers</td>
-						    			</tr>
-						    			<tr>
-						    				<td><input type="checkbox"> Cooling System</td>
-						    				<td><input type="checkbox"> Exhaust System</td>
-						    				<td><input type="checkbox"> Lights, Back</td>
-						    				<td><input type="checkbox"> Steering Wheel</td>
-						    			</tr>
-						    			<tr>
-						    				<td><input type="checkbox"> Cylinders</td>
-						    				<td><input type="checkbox"> Fuses</td>
-						    				<td><input type="checkbox"> Moon/Sunroof</td>
-						    				<td><input type="checkbox"> Tires</td>
-						    			</tr>
-						    			<tr>
-						    				<td><input type="checkbox"> Crankshaft</td>
-						    				<td><input type="checkbox"> Four-wheel Drive</td>
-						    				<td><input type="checkbox"> Mud Flap</td>
-						    				<td><input type="checkbox"> Transmission</td>
-						    			</tr>
-						    			<tr>
-						    				<td><input type="checkbox"> Clutch</td>
-						    				<td><input type="checkbox"> Frame</td>
-						    				<td><input type="checkbox"> Muffler</td>
-						    				<td><input type="checkbox"> Trank</td>
-						    			</tr>
-						    			<tr>
-						    				<td><input type="checkbox"> Computrer</td>
-						    				<td><input type="checkbox"> Fuel System</td>
-						    				<td><input type="checkbox"> Output Shaft</td>
-						    				<td><input type="checkbox"> Tail Pipe</td>
-						    			</tr>
-						    			<tr>
-						    				<td><input type="checkbox"> Drum Brakes</td>
-						    				<td><input type="checkbox"> Gear Box</td>
-						    				<td><input type="checkbox"> Pedal</td>
-						    				<td><input type="checkbox"> Undercarriege Leak</td>
-						    			</tr>
-						    			<tr>
-						    				<td><input type="checkbox"> Differential</td>
-						    				<td><input type="checkbox"> Gasket</td>
-						    				<td><input type="checkbox"> Piston</td>
-						    				<td><input type="checkbox"> Valve Visor</td>
-						    			</tr>
-						    			<tr>
-						    				<td><input type="checkbox"> Door Locks</td>
-						    				<td><input type="checkbox"> Hood</td>
-						    				<td><input type="checkbox"> Radiator</td>
-						    				<td><input type="checkbox"> Wheel</td>
-						    			</tr>
-						    			<tr>
-						    				<td><input type="checkbox"> Drive Belt</td>
-						    				<td><input type="checkbox"> Handle</td>
-						    				<td><input type="checkbox"> Signals</td>
-						    				<td><input type="checkbox"> Windows</td>
-						    			</tr>
-						    			<tr>
-						    				<td colspan="4"><input type="checkbox"> Other Sources of Negative Energies</td>
-						    			</tr>
-						    		</table>
-						    	</td>
-						    </tr>
-						</table>
-					</td></tr>
-				</table>
+			    <form action="http://127.0.0.1:8000/api/submit/reply/XYZ000" method="">
+				    <input type="hidden" name="country" value="'.$country.'">
+				    <input type="hidden" name="state" value="'.$state.'">
+				    <input type="hidden" name="city" value="'.$city.'">
+					<table width="90%" border="0" cellspacing="0" cellpadding="0">
+						<tr><td>
+							<table width="100%">
+								<tr>
+									<td>
+										<p>
+											Case: 110-1001
+											<input type="hidden" name="case" value="XYZ000">
+										</p>
+									</td>
+									<td>
+										<p>
+											Date: 2019/10/03
+											<input type="hidden" name="date" value="2019/10/03">
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<p>
+											Hi <strong>'.$name.',</strong>
+											<input type="hidden" name="name" value="'.$name.'">
+										</p>
+										<p style="text-indent:30px;">
+											Attached is the evaluation report for the vehicle you submitted recently.
+											Please note that after your third free report, you will be charged $4.99 for each extra vehicle evaluation.
+											<br/><br/>We accept Paypal, Mc, and visa for your convenience.
+										<p/>
+									</td>
+								</tr>
+							</table>
+							<hr>
+						    <table width="100%">
+						    	<tr>
+						    		<td>
+						    			<p>
+						    				Maker: <strong>'.$maker.'</strong></span>
+						    				<input type="hidden" name="maker" value="'.$maker.'">
+						    			</p>
+						    		</td>
+						    		<td>
+						    			<p>
+						    				Model: <strong>'.$model.'</strong></span>
+						    				<input type="hidden" name="model" value="'.$model.'">
+						    			</p>
+						    		</td>
+						    		<td>
+						    			<p>
+						    				Year: <strong>'.$year.'</strong></span>
+						    				<input type="hidden" name="year" value="'.$year.'">
+						    			</p>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td colspan="3">
+						    			<hr>
+						    			<p class="float-left">Possible Problems: </p>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td></td>
+						    	</tr>
+							    <tr>
+							    	<td colspan="3">
+							    		<table width="100%" id="possible_problems">
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Alternator"> Alternator</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Drive Shaft"> Drive Shaft</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Junction Box"> Junction Box</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Shift"> Shift</td>
+							    			</tr>
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Breaking System"> Breaking System</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Electrical System"> Electrical System</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Knuckle"> Knuckle</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Seats"> Seats</td>
+							    			</tr>
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Battery"> Battery</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Engine/Motor"> Engine/Motor</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Lights, Front"> Lights, Front</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Shock"> Shock Absorbers</td>
+							    			</tr>
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Cooling System"> Cooling System</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Exhaust System"> Exhaust System</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Lights, Back"> Lights, Back</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Steering Wheel"> Steering Wheel</td>
+							    			</tr>
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Cylinders"> Cylinders</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Fuses"> Fuses</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Moon/Sunroof"> Moon/Sunroof</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Tires"> Tires</td>
+							    			</tr>
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Crankshaft"> Crankshaft</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Four-wheel Drive"> Four-wheel Drive</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Mud Flap"> Mud Flap</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Transmission"> Transmission</td>
+							    			</tr>
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Clutch"> Clutch</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Frame"> Frame</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Muffler"> Muffler</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Trank"> Trank</td>
+							    			</tr>
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Computrer"> Computrer</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Fuel"> Fuel System</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Output Shaft"> Output Shaft</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Tail Pipe"> Tail Pipe</td>
+							    			</tr>
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Drum Brakes"> Drum Brakes</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Gear Box"> Gear Box</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Pedal"> Pedal</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Undercarriege Leak"> Undercarriege Leak</td>
+							    			</tr>
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Differential"> Differential</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Gasket"> Gasket</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Piston"> Piston</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Valve Visor"> Valve Visor</td>
+							    			</tr>
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Door Locks"> Door Locks</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Hood"> Hood</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Radiator"> Radiator</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Wheel"> Wheel</td>
+							    			</tr>
+							    			<tr>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Drive Belt"> Drive Belt</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Handle"> Handle</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Signals"> Signals</td>
+							    				<td><input type="checkbox" name="possible_problems[]" value="Windows"> Windows</td>
+							    			</tr>
+							    			<tr>
+							    				<td colspan="4"><input type="checkbox"> Other Sources of Negative Energies</td>
+							    			</tr>
+							    		</table>
+							    	</td>
+							    </tr>
+							    <tr>
+							    	<td colspan="2"></td>
+							    	<td><button type="submit" style="font-size: 16px; background-color: #28a745; padding:10px 25px; color: #fff; border-radius: 5px; border: transparent;">Reply</button></td>
+							    </tr>
+							</table>
+						</td></tr>
+					</table>
+				</form>
 				</font>
 			</td></tr>
 			<!--content 1 END-->

@@ -33,7 +33,7 @@
 </style>
 
 
-<section class="section">
+<section class="section" id="submit_div_form">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 text-center mb-3">
@@ -52,11 +52,17 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <!-- <div class="card" style="padding: 40px 20px;"> -->
-                    <form id="submit_form">
+                    <form id="submit_form" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         <input type="hidden" name="type" value="form submit">
                         <input type="hidden" name="ip_address" value="">
                         <div class="row justify-content-center">
+                            <div class="col-md-9 col-md-offset-2">
+                                <div class="alert alert-danger" id="error-msg-div" style="display: none">
+                                    <button type="button" class="close" data-dismiss="alert">×</button> 
+                                    <span id="error-msg"></span>
+                                </div>
+                            </div>
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label class="float-left">Name: (<b class="required_fields">*</b>)</label>
@@ -127,7 +133,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="fronthoodup" type="file" class="custom-file-input" onchange="readURL(this,imgid1,labelimg1);">
+                                            <input id="fronthoodup" type="file" name="front_of_car_with_hood_up" class="custom-file-input" onchange="readURL(this,imgid1,labelimg1);">
                                             <label for="customFile" id="labelimg1" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -145,7 +151,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="backhoodup" type="file" class="custom-file-input" onchange="readURL(this,imgid2,labelimg2);">
+                                            <input id="backhoodup" type="file" name="rear_with_open_compartment" class="custom-file-input" onchange="readURL(this,imgid2,labelimg2);">
                                             <label for="customFile" id="labelimg2" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -163,7 +169,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="driverseat" type="file" class="custom-file-input" onchange="readURL(this,imgid3,labelimg3);">
+                                            <input id="driverseat" type="file" name="left_side_open_doors" class="custom-file-input" onchange="readURL(this,imgid3,labelimg3);">
                                             <label for="customFile" id="labelimg3" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -183,7 +189,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="left" type="file" class="custom-file-input" onchange="readURL(this,imgid4,labelimg4);">
+                                            <input id="left" type="file" name="left_side_view" class="custom-file-input" onchange="readURL(this,imgid4,labelimg4);">
                                             <label for="customFile" id="labelimg4" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -201,7 +207,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="right" type="file" class="custom-file-input" onchange="readURL(this,imgid5,labelimg5);">
+                                            <input id="right" type="file" name="right_side_view" class="custom-file-input" onchange="readURL(this,imgid5,labelimg5);">
                                             <label for="customFile" id="labelimg5" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -219,7 +225,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="front" type="file" class="custom-file-input" onchange="readURL(this,imgid6,labelimg6);">
+                                            <input id="front" type="file" name="front_view" class="custom-file-input" onchange="readURL(this,imgid6,labelimg6);">
                                             <label for="customFile" id="labelimg6" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -233,7 +239,9 @@
                                 <input type="checkbox" name="agreed_">&nbsp;
                                 <small>By clicking Submit, you have agree to our <a href="" data-toggle="modal" data-target="#terms_and_condtion">Terms and Condition</a>.</small>
                             </span>
-                            <button type="button" class="btn btn-success float-right" id="submit_form_button" data-toggle="modal" data-target="#submit_form_modal" style="font-size: 18px; padding: 10px 25px !important;" disabled=""><i class="far fa-paper-plane"></i> &nbsp; Submit</button>
+                            <button type="submit" class="btn btn-success float-right" id="submit_form_button" style="font-size: 18px; padding: 10px 25px !important;" disabled=""><i class="far fa-paper-plane"></i> &nbsp; Submit</button>
+
+                            {{-- <button type="button" class="btn btn-success float-right" id="submit_form_button" style="font-size: 18px; padding: 10px 25px !important;" disabled=""><i class="far fa-paper-plane"></i> &nbsp; Submit</button> --}}
                         </div>
                         </div>
                        
@@ -390,8 +398,30 @@
                 <div class="modal-body" style="padding: 0 15px;">
                     <div class="row no-gutter">
                         <div class="col-md-12 text-center">
-                            <p class="modal-title" style="font-size: 18px; padding: 10px;">Thank you for trying our service! Your form will be submitted shortly.</p>
-                            <img src="{{ asset('images/sample_1/email_sending.gif') }}" style="width: 100%; height: 350px;">
+                            <p class="modal-title" style="font-size: 18px; padding: 10px;">Thank you for trying our service! Your form has been sent successfully.</p>
+                            <img src="{{ asset('images/sample_1/email_sent.gif') }}" style="width: 100%; height: 350px;">
+                        </div>                    
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="submit_payment_form_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding: 0 15px;">
+                    <div class="row no-gutter">
+                        <div class="col-md-12 text-center">
+                            <p class="modal-title" style="font-size: 18px; padding: 10px;">Payment form here. <b>[coming soon]</b></p>
                         </div>                    
                     </div>
                 </div>
@@ -408,34 +438,50 @@
 
 <script>
 
-    $('#submit_form_button').on('click', function(){
-        var formData = $('#submit_form').serialize();
-        // var fhu = $('#fronthoodup').prop('files')[0];
-        // var bhu = $('#backhoodup').prop('files')[0];
-        // var ds = $('#driverseat').prop('files')[0];
-        // var fr = $('#front').prop('files')[0];
-        // var le = $('#left').prop('files')[0];
-        // var ri = $('#right').prop('files')[0];
-        // var form_data = new FormData();
-        // form_data.append('fronthoodup', fhu);
-        // form_data.append('backhoodup', bhu);
-        // form_data.append('driverseat', ds);
-        // form_data.append('front', fr);
-        // form_data.append('left', le);
-        // form_data.append('right', ri);
+    $('#submit_form').submit(function(e){
+        e.preventDefault();
+
+        var formData = new FormData(this);
 
         $.ajax({
             type: 'POST',
             url: "{{ url('sendemail/') }}", 
             data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
             success: function (response) {
                 console.log(response)
-                location.reload();
-                // $('#msg').html('Application has been succesfully sent!'); // display success response from the PHP script
+                // if (response == 'not free') {
+                //     $('#submit_payment_form_modal').modal('show');
+                // } else {
+                //     var message = response.split('|');
+                //     if (message[0] == 0) {
+                //         $('#error-msg-div').show(); 
+                //         $('#error-msg').html(message[1]); 
+                //         $('html, body').animate({
+                //             scrollTop: $("#submit_div_form").offset().top
+                //         }, 1000);
+                //     } else {
+                //         $('#error-msg-div').hide(); 
+                //         $('#submit_form_modal').modal('show');
+                //         setTimeout(function() {
+                //             // $('#name').val('');
+                //             // $('#email').val('');
+                //             // $('#country').val('');
+                //             // $('#state').val('');
+                //             // $('#city').val('');
+                //             // $('#maker').val('');
+                //             // $('#model').val('');
+                //             // $('#year').val('');
+                //             $('#submit_form_modal').modal('hide');
+                //         }, 4000);
+                //     }
+                // }
             },
             error: function (err) {
-                console.log(err)
-                // $('#msg').html('There is something wrong, Please email admin@teamdriveway.com'); // display error response from the PHP script
+                $('#error-msg-div').show(); 
+                $('#error-msg').html(err);
             }
         });
     })
