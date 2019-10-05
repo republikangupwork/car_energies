@@ -94,7 +94,7 @@
 
                     </div>
                 <div class="row col-lg-12 justify-content-center">
-                    <a href="{{ url('Sample_1/submit/') }}" class="btn btn-success text-center" style="font-size: 2.5vw;">TRY OUR SERVICE FOR FREE</a>
+                    <a href="{{ url('submit/') }}" class="btn btn-success text-center" style="font-size: 2.5vw;">TRY OUR SERVICE FOR FREE</a>
                 </div>  
                 </div>
             </div>

@@ -20,7 +20,7 @@
                                   <div class="">
                                     <p class="lead">
                                       <p class="text-left slider-p-black font-30" style="text-shadow: 2px 1px 0px rgba(255, 255, 255, 1);font-weight: bolder;">your best bet to stay away form buying another lemon</p>
-                                      <a class="btn btn-success btn-lg float-left" href="{{ url('Sample_1/submit/') }}" role="button">TRY IT NOW FOR FREE</a>
+                                      <a class="btn btn-success btn-lg float-left" href="{{ url('submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                     </p>
                                   </div>
                             </div>
@@ -36,7 +36,7 @@
                                                                     
                                             <p class="lead">
                                               <p class="text-right slider-p-black font-20">purchasing the right used car can be challenging, time consuming and sometimes quite a headache. And still there is no guarantee that you haven't picked up someone's headache</p>
-                                              <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/submit/') }}" role="button">TRY IT NOW FOR FREE</a>
+                                              <a class="btn btn-success btn-lg float-right" href="{{ url('submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                               <br>
                                             </p>  
                                     </div>
@@ -54,7 +54,7 @@
                                             <p class="lead">
                                               <p class="text-right slider-p-black txtbolder font-30 font-sm-view">A new best way to check used car mechanically from deep within</p>
                                               <h3 class="text-right" style="color:red;font-weight: bold; font-size: 50px"><span  >NO HIDDEN CHARGES</span></h3>
-                                              <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/submit/') }}" role="button">TRY IT NOW FOR FREE</a>
+                                              <a class="btn btn-success btn-lg float-right" href="{{ url('submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                               <br>
                                             </p>  
                                     </div>
@@ -103,7 +103,7 @@
                         </ul>
 
                         
-                        <a href="#" class="btn"><img src="{{ asset('images/sample_1/trial.png') }}" alt="" height="50" width="300"></a>
+                        <a href="{{ url('submit/') }}" class="btn"><img src="{{ asset('images/sample_1/trial.png') }}" alt="" height="50" width="300"></a>
                     </div>
                 </div>
             </div>
