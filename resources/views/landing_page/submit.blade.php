@@ -451,33 +451,34 @@
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(response)
-                // if (response == 'not free') {
-                //     $('#submit_payment_form_modal').modal('show');
-                // } else {
-                //     var message = response.split('|');
-                //     if (message[0] == 0) {
-                //         $('#error-msg-div').show(); 
-                //         $('#error-msg').html(message[1]); 
-                //         $('html, body').animate({
-                //             scrollTop: $("#submit_div_form").offset().top
-                //         }, 1000);
-                //     } else {
-                //         $('#error-msg-div').hide(); 
-                //         $('#submit_form_modal').modal('show');
-                //         setTimeout(function() {
-                //             // $('#name').val('');
-                //             // $('#email').val('');
-                //             // $('#country').val('');
-                //             // $('#state').val('');
-                //             // $('#city').val('');
-                //             // $('#maker').val('');
-                //             // $('#model').val('');
-                //             // $('#year').val('');
-                //             $('#submit_form_modal').modal('hide');
-                //         }, 4000);
-                //     }
-                // }
+                // console.log(response)
+                if (response == 'not free') {
+                    $('#submit_payment_form_modal').modal('show');
+                } else {
+                    var message = response.split('|');
+                    // console.log(message)
+                    if (message[0] == 0) {
+                        $('#error-msg-div').show(); 
+                        $('#error-msg').html(message[1]); 
+                        $('html, body').animate({
+                            scrollTop: $("#submit_div_form").offset().top
+                        }, 1000);
+                    } else {
+                        $('#error-msg-div').hide(); 
+                        $('#submit_form_modal').modal('show');
+                        setTimeout(function() {
+                            $('#name').val('');
+                            $('#email').val('');
+                            $('#country').val('');
+                            $('#state').val('');
+                            $('#city').val('');
+                            $('#maker').val('');
+                            $('#model').val('');
+                            $('#year').val('');
+                            $('#submit_form_modal').modal('hide');
+                        }, 4000);
+                    }
+                }
             },
             error: function (err) {
                 $('#error-msg-div').show(); 

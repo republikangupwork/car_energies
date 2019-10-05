@@ -113,19 +113,23 @@ class SendMailController extends Controller
 			 			return 'not free';
 			 		} else {
 			 			$new_tries = $check_if_free[0]->tries + 1;
-		 			 	// $update_customer = DB::update('UPDATE customers SET tries = ? WHERE email = ?', [$new_tries, $param['email']]);
+		 			 	$update_customer = DB::update('UPDATE customers SET tries = ? WHERE email = ?', [$new_tries, $param['email']]);
 			 		}
 		 		} else {
 		 			$add_customer = DB::isert('INSERT INTO customers (name,email,country,state,city,tries) VALUES (?,?,?,?,?,1)',[$param['name'],$param['email'],$param['country'],$param['state'],$param['city']]);
 		 		}
 
 		 		$customer_detail = $this->check_customer($param['email']);
-		 		// print_r($customer_detail); die();
 		 		$add_form_submit = DB::insert('INSERT INTO form_submit (customer_id,transaction_id,maker,model,year) VALUES(?,?,?,?,?)', [$customer_detail[0]->id,$param['transaction_id'],$param['maker'],$param['model'],$param['year']]);
 
-				$this->generate_form_submit_mail($r);
+				$send_mail = $this->generate_form_submit_mail($param);
 
-				return '1|Form successfully sent!';
+				if ($send_mail == 'Message has been sent successfully') {
+					return '1|Form successfully sent!';
+				} else {
+					return '0|Smtp Error! Please contact admin for this issue.';
+				}
+				
 
 		 	} catch (Exeption $e) {
 		 		return '0|'.$e;
@@ -283,7 +287,7 @@ class SendMailController extends Controller
 		$mail = new PHPMailer($devemode);
 
 		try {
-			$mail->SMTPDebug = 2;
+			// $mail->SMTPDebug = 2;
 			$mail->isSMTP();   
 			if ($devemode) {
 				$mail->SMTPOptions = [
@@ -333,6 +337,9 @@ class SendMailController extends Controller
 	 	$maker 		= $r['maker']; 
 	 	$model   	= $r['model'];
 	 	$year   	= $r['year'];
+	 	$trans_id 	= $r['transaction_id'];
+	 	$date 		= date('Y/m/d');
+
 
 		// $id = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
 	    // $filestosend =  array();
@@ -457,7 +464,7 @@ class SendMailController extends Controller
 			<!--content 1 -->
 			<tr><td align="center" bgcolor="#fbfcfd">
 			    <font face="Arial, Helvetica, sans-serif" size="4" color="#57697e" style="font-size: 15px;">
-			    <form action="http://127.0.0.1:8000/api/submit/reply/XYZ000" method="">
+			    <form action="http://127.0.0.1:8000/api/submit/reply/'.base64_encode($trans_id).'" method="">
 				    <input type="hidden" name="country" value="'.$country.'">
 				    <input type="hidden" name="state" value="'.$state.'">
 				    <input type="hidden" name="city" value="'.$city.'">
@@ -467,14 +474,14 @@ class SendMailController extends Controller
 								<tr>
 									<td>
 										<p>
-											Case: 110-1001
-											<input type="hidden" name="case" value="XYZ000">
+											Case: '.$trans_id.'
+											<input type="hidden" name="case" value="'.$trans_id.'">
 										</p>
 									</td>
 									<td>
 										<p>
-											Date: 2019/10/03
-											<input type="hidden" name="date" value="2019/10/03">
+											Date: '.$date.'
+											<input type="hidden" name="date" value="'.$date.'">
 										</p>
 									</td>
 								</tr>
@@ -649,7 +656,7 @@ class SendMailController extends Controller
 		$mail = new PHPMailer($devemode);
 
 		try{
-			$mail->SMTPDebug = 2;
+			// $mail->SMTPDebug = 2;
 			$mail->isSMTP();   
 			if($devemode){
 				$mail->SMTPOptions = [
@@ -702,10 +709,10 @@ class SendMailController extends Controller
 			//         unlink($file);
 			//     }
 			// }
-		 	echo "Message has been sent successfully";
+		 	return "Message has been sent successfully";
 
 		} catch (Exception $e) {
-			echo "Mailer Error: " . $mail->ErrorInfo;
+			return "Mailer Error: " . $mail->ErrorInfo;
 		}
  
 	}

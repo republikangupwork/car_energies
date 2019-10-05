@@ -35,4 +35,18 @@ class LandingPageController extends Controller
         return view('landing_page.checkout');
     }
 
+    public function submit_reply(Request $request)
+    {
+        print_r('Comming Soon.');
+        // print_r($request['case']);
+        // print_r($request['name']);
+        // print_r($request['email']);
+        // print_r($request['country']);
+        // print_r($request['state']);
+        // print_r($request['city']);
+        // print_r($request['maker']);
+        // print_r($request['model']);
+        // print_r($request['year']);
+        // print_r($request['possible_problems']);
+    }
 }

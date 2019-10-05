@@ -16,3 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/submit/reply/{reply_datas}', ['as'=>'landing_page.submit_reply', 'uses'=>'LandingPageController@submit_reply']);
