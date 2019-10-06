@@ -129,7 +129,7 @@
                                         </h4>
                                     </div>
                                     <div class="card-body">
-                                        <img id="imgid1" src="{{ asset('images/sample_1/car/front-hood.png') }}" alt=""  class="" style="height: 300px;">
+                                        <img id="imgid1" src="{{ asset('images/sample_1/car/front_hood.jpg') }}" alt=""  class="" style="height: 300px;">
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
@@ -147,7 +147,7 @@
                                         </h4>
                                     </div>
                                     <div class="card-body">
-                                        <img id="imgid2" src="{{ asset('images/sample_1/car/rear.png') }}" alt=""  class="" style="height: 300px;">
+                                        <img id="imgid2" src="{{ asset('images/sample_1/car/rear.jpg') }}" alt=""  class="" style="height: 300px;">
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
@@ -165,7 +165,7 @@
                                         </h4>
                                     </div>
                                     <div class="card-body">
-                                        <img id="imgid3" src="{{ asset('images/sample_1/car/driver-side.png') }}" alt="" class="" style="height: 300px;">
+                                        <img id="imgid3" src="{{ asset('images/sample_1/car/driver_side.jpg') }}" alt="" class="" style="height: 300px;">
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
@@ -185,7 +185,7 @@
                                         </h4>
                                     </div>
                                     <div class="card-body">
-                                        <img id="imgid4" src="{{ asset('images/sample_1/car/1.png') }}" alt="" class="" style="height: 300px;">
+                                        <img id="imgid4" src="{{ asset('images/sample_1/car/1.jpg') }}" alt="" class="" style="height: 300px;">
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
@@ -203,7 +203,7 @@
                                         </h4>
                                     </div>
                                     <div class="card-body">
-                                        <img id="imgid5" src="{{ asset('images/sample_1/car/2.png') }}" alt="" class="" style="height: 300px;">
+                                        <img id="imgid5" src="{{ asset('images/sample_1/car/2.jpg') }}" alt="" class="" style="height: 300px;">
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
@@ -221,7 +221,7 @@
                                         </h4>
                                     </div>
                                     <div class="card-body">
-                                        <img id="imgid6" src="{{ asset('images/sample_1/car/3.png') }}" alt="" class="" style="height: 300px;">
+                                        <img id="imgid6" src="{{ asset('images/sample_1/car/3.jpg') }}" alt="" class="" style="height: 300px;">
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
