@@ -37,16 +37,36 @@ class LandingPageController extends Controller
 
     public function submit_reply(Request $request)
     {
-        print_r('Comming Soon.');
-        // print_r($request['case']);
-        // print_r($request['name']);
-        // print_r($request['email']);
-        // print_r($request['country']);
-        // print_r($request['state']);
-        // print_r($request['city']);
-        // print_r($request['maker']);
-        // print_r($request['model']);
-        // print_r($request['year']);
-        // print_r($request['possible_problems']);
+        $param = array();
+        $param['transaction_id']    = $request['case'];
+        $param['name']              = $request['name'];
+        $param['email']             = $request['email'];
+        $param['country']           = $request['country'];
+        $param['state']             = $request['state'];
+        $param['city']              = $request['city'];
+        $param['maker']             = $request['maker'];
+        $param['model']             = $request['model'];
+        $param['year']              = $request['year'];
+        $param['possible_problems'] = $request['possible_problems'];
+        $param['date']              = $request['date'];
+        $param['type']              = $request['type'];
+
+        $problem_list = array();
+        foreach ($param['possible_problems'] as $problem) {
+            $problem_list[$problem] = $problem;
+        }
+
+        $param['prob_list'] = $problem_list;
+
+        $send_mail_cont = new SendMailController();
+        $send_reply = $send_mail_cont->client_reply($param);
+
+        if ($send_reply == 'Message has been sent successfully') {
+            return view('landing_page.reply', compact('param'));
+        } else {
+            return view('landing_page.reply_error');
+        }
+
+        
     }
 }

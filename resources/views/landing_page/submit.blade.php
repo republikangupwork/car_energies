@@ -55,7 +55,6 @@
                     <form id="submit_form" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         <input type="hidden" name="type" value="form submit">
-                        <input type="hidden" name="ip_address" value="">
                         <div class="row justify-content-center">
                             <div class="col-md-9 col-md-offset-2">
                                 <div class="alert alert-danger" id="error-msg-div" style="display: none">
@@ -411,9 +410,10 @@
     </div>
 
     <div class="modal fade" id="submit_payment_form_modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <p>Payment form here. <b>[coming soon]</b></p>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -421,7 +421,7 @@
                 <div class="modal-body" style="padding: 0 15px;">
                     <div class="row no-gutter">
                         <div class="col-md-12 text-center">
-                            <p class="modal-title" style="font-size: 18px; padding: 10px;">Payment form here. <b>[coming soon]</b></p>
+                            <p class="modal-title" style="font-size: 18px; padding: 10px;">Sorry! you have used all your free tries. Thank you for trying our services!</p>
                         </div>                    
                     </div>
                 </div>
@@ -447,16 +447,16 @@
             type: 'POST',
             url: "{{ url('sendemail/') }}", 
             data: formData,
-            cache:false,
+            cache: false,
             contentType: false,
             processData: false,
             success: function (response) {
-                // console.log(response)
+                console.log(response)
                 if (response == 'not free') {
                     $('#submit_payment_form_modal').modal('show');
                 } else {
                     var message = response.split('|');
-                    // console.log(message)
+                    console.log(message)
                     if (message[0] == 0) {
                         $('#error-msg-div').show(); 
                         $('#error-msg').html(message[1]); 
