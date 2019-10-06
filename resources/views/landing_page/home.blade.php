@@ -180,7 +180,7 @@
                 </div>
                 <div class="col-lg-6">
                     <!-- <div class="about-img"> -->
-                        <img src="{{ asset('images/sample_1/about/whyus.png') }}" alt="" class="img-fluid">
+                        <img src="{{ asset('images/sample_1/about/whyus.') }}" alt="" class="img-fluid">
                     <!-- </div> -->
                 </div>
                 
@@ -449,17 +449,14 @@
 
     </section>
 
-    <section class="section pb-30 pt-50" >
-            <!-- <div class="box"> -->
+    <!-- <section class="section pb-30 pt-50" > -->
+<!-- 
             <div class="container">
                 <div class="row">
                      
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mybox">
                        
                             <div class="box-part text-center">
-                                
-                                <!-- <i class="fas fa-instagram fa-3x" aria-hidden="true"></i> -->
-                                <!-- <i class="fab fa-facebook-f fa-3x"></i> -->
                                 <img src="{{ asset('images/sample_1/socmed/insta.png') }}" width="100" height="100">
                                 <div class="title">
                                     <h4 style="font-size:30px ">Instagram</h4>
@@ -477,8 +474,7 @@
                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 shadowbox ">
                        
                             <div class="box-part text-center">
-                                
-                                <!-- <i class="fas fa-twitter fa-3x" aria-hidden="true"></i> -->
+
                                  <img src="{{ asset('images/sample_1/socmed/twiter.png') }}" width="100" height="100">
                                 <div class="title">
                                     <h4 style="font-size:30px ">Twitter</h4>
@@ -497,7 +493,6 @@
                        
                             <div class="box-part text-center">
                                 
-                               <!-- <i class="fab fa-facebook-f fa-3x"></i> -->
                                <img src="{{ asset('images/sample_1/socmed/facebook.png') }}" width="100" height="100">
                                 
                                 <div class="title">
@@ -513,9 +508,9 @@
                              </div>
                         </div>   
                 </div>      
-    </div>
-<!-- </div> -->
-    </section>
+    </div> -->
+
+    <!-- </section> -->
     <!-- Contact
     ================================================== -->
     <section class="section bg-light" id="contact">
