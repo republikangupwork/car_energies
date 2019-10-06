@@ -180,7 +180,7 @@
                 </div>
                 <div class="col-lg-6">
                     <!-- <div class="about-img"> -->
-                        <img src="{{ asset('images/sample_1/about/whyus.') }}" alt="" class="img-fluid">
+                        <img src="{{ asset('images/sample_1/about/whyus.png') }}" alt="" class="img-fluid">
                     <!-- </div> -->
                 </div>
                 
