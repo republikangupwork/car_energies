@@ -180,7 +180,7 @@
                 </div>
                 <div class="col-lg-6">
                     <!-- <div class="about-img"> -->
-                        <img src="{{ asset('images/sample_1/about/whyus.png') }}" alt="" class="img-fluid">
+                        <img src="{{ asset('images/sample_1/about/whyus.') }}" alt="" class="img-fluid">
                     <!-- </div> -->
                 </div>
                 
@@ -305,10 +305,10 @@
                                 <h3 class="card-title">INVALUABLE HELP, SAVED A LOT</h3>
                                 <p class="card-text">Julia has helped me buy good dependable cars, as I was travelling the world. I saved probably over $3000 in two occasions.Thanks so much. </p>
                                  <div class="row">
-                                            <div class="col-md-4"><img src="{{ asset('images/sample_1/testimonies/1.jpg') }}" class="" alt="..." height="100" width="100" style="border-radius: 50%;"></div>
+                                            <div class="col-md-4"><img src="{{ asset('images/sample_1/testimonies/1.jpg') }}" class="" alt="..." height="100" width="100" style="border-radius: 50%; max-height: 75px;max-width: 75px;"></div>
                                             <div class="col-md-8">
-                                                <span><strong>Jacico Albano</strong></span><br>
-                                                <i>Senior Web Developer</i><br>
+                                                <span><strong>Ali H.</strong></span><br>
+                                                <i>Civil Engineer</i><br>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
@@ -323,12 +323,11 @@
                             <div class="card mb-2">
                               <div class="card-body" style="min-height:320px">
                                 <h3 class="card-title">DONE IN 3 HOURS</h3>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                  card's content.</p>
-                                 <div class="row">
+                                <p class="card-text">It is very convinient service , had my car evaluated by Julia and get report in less than 3 hours saved me time and money.</p>
+                                 <div class="row" style="margin-top:75px;">
                                             <div class="col-md-4"><img src="{{ asset('images/sample_1/testimonies/2.jpg') }}" class="" alt="..." height="100" width="100" style="border-radius: 50%;"></div>
                                             <div class="col-md-8">
-                                                <span><strong>Rita Avila</strong></span><br>
+                                                <span><strong>Rita Ho</strong></span><br>
                                                 <i>Car Dealer Specialist</i><br>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
@@ -344,20 +343,19 @@
                             <div class="card mb-2">
                               <div class="card-body" style="min-height:320px">
                                  <h3 class="card-title">FIND IT PROFESSIONAL</h3>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                  card's content.</p>
-                                 <div class="row">
+                                <p class="card-text">I bought my first car with Julia's help, she's so professional in her service.</p>
+                                 <div class="row" style="margin-top:100px;">
                                             <div class="col-md-4"><img src="{{ asset('images/sample_1/testimonies/3.jpg') }}" class="" alt="..." height="100" width="100" style="border-radius: 50%;"></div>
                                             <div class="col-md-8">
-                                                <span><strong>Linda Kuratsa</strong></span><br>
-                                                <i>Palamon Sa Bahay</i><br>
+                                                <span><strong>Lyn Losello</strong></span><br>
+                                                <i>Freelancer</i><br>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                             </div>
-                                        </div>
+                                  </div>
                               </div>
                             </div>
                         </div>
@@ -366,7 +364,7 @@
             </div>
 
     <!--/.Second slide-->
-    <div class="carousel-item">
+<!--     <div class="carousel-item">
                 <div class="container">
                      <div class="row">
                         <div class="col-md-4">
@@ -434,7 +432,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
            
           </div>
 
@@ -451,17 +449,14 @@
 
     </section>
 
-    <section class="section pb-30 pt-50" >
-            <!-- <div class="box"> -->
+    <!-- <section class="section pb-30 pt-50" > -->
+<!-- 
             <div class="container">
                 <div class="row">
                      
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mybox">
                        
                             <div class="box-part text-center">
-                                
-                                <!-- <i class="fas fa-instagram fa-3x" aria-hidden="true"></i> -->
-                                <!-- <i class="fab fa-facebook-f fa-3x"></i> -->
                                 <img src="{{ asset('images/sample_1/socmed/insta.png') }}" width="100" height="100">
                                 <div class="title">
                                     <h4 style="font-size:30px ">Instagram</h4>
@@ -479,8 +474,7 @@
                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 shadowbox ">
                        
                             <div class="box-part text-center">
-                                
-                                <!-- <i class="fas fa-twitter fa-3x" aria-hidden="true"></i> -->
+
                                  <img src="{{ asset('images/sample_1/socmed/twiter.png') }}" width="100" height="100">
                                 <div class="title">
                                     <h4 style="font-size:30px ">Twitter</h4>
@@ -499,7 +493,6 @@
                        
                             <div class="box-part text-center">
                                 
-                               <!-- <i class="fab fa-facebook-f fa-3x"></i> -->
                                <img src="{{ asset('images/sample_1/socmed/facebook.png') }}" width="100" height="100">
                                 
                                 <div class="title">
@@ -515,9 +508,9 @@
                              </div>
                         </div>   
                 </div>      
-    </div>
-<!-- </div> -->
-    </section>
+    </div> -->
+
+    <!-- </section> -->
     <!-- Contact
     ================================================== -->
     <section class="section bg-light" id="contact">
