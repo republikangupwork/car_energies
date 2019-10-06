@@ -22,6 +22,7 @@ class SendMailController extends Controller
 		 	$param['email']  	= $r['email'];
 		 	$param['subject'] 	= $r['subject']; 
 		 	$param['message']   = $r['message']; 
+		 	$param['type']   	= $r['type'];
 
 		 	if ($param['email'] != '') {
 		 		if (!filter_var($param['email'], FILTER_VALIDATE_EMAIL)) {
@@ -58,6 +59,7 @@ class SendMailController extends Controller
 		 	$param['maker'] 			= $r['maker']; 
 		 	$param['model']   			= $r['model'];
 		 	$param['year']   			= $r['year']; 
+		 	$param['type']   			= $r['type'];
 		 	$param['transaction_id'] 	= mt_rand(1000000000, 9999999999);
 
 		 	if ($param['name'] == '') {
@@ -116,14 +118,16 @@ class SendMailController extends Controller
 		 			 	$update_customer = DB::update('UPDATE customers SET tries = ? WHERE email = ?', [$new_tries, $param['email']]);
 			 		}
 		 		} else {
-		 			$add_customer = DB::isert('INSERT INTO customers (name,email,country,state,city,tries) VALUES (?,?,?,?,?,1)',[$param['name'],$param['email'],$param['country'],$param['state'],$param['city']]);
+		 			$add_customer = DB::table('customers')->insert([
+					    ['name' => $param['name'], 'email' => $param['email'], 'country' => $param['country'], 'state' => $param['state'], 'city' => $param['city'], 'tries' => 1],
+					]);
 		 		}
 
 		 		$customer_detail = $this->check_customer($param['email']);
 		 		$add_form_submit = DB::insert('INSERT INTO form_submit (customer_id,transaction_id,maker,model,year) VALUES(?,?,?,?,?)', [$customer_detail[0]->id,$param['transaction_id'],$param['maker'],$param['model'],$param['year']]);
 
-				$send_mail = $this->generate_form_submit_mail($param);
-
+				$send_mail = $this->generate_form_submit_mail($param,$_FILES);
+				
 				if ($send_mail == 'Message has been sent successfully') {
 					return '1|Form successfully sent!';
 				} else {
@@ -326,9 +330,8 @@ class SendMailController extends Controller
  
 	}
 
-	public function generate_form_submit_mail($r)
+	public function generate_form_submit_mail($r,$files)
 	{
-
 	    $name   	= $r['name'];
 	 	$email  	= $r['email'];
 	 	$country 	= $r['country']; 
@@ -338,45 +341,41 @@ class SendMailController extends Controller
 	 	$model   	= $r['model'];
 	 	$year   	= $r['year'];
 	 	$trans_id 	= $r['transaction_id'];
+	 	$type 		= $r['type'];
 	 	$date 		= date('Y/m/d');
 
 
 		// $id = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
-	    // $filestosend =  array();
+	 //    $filestosend =  array();
+	 //    $allowed_ext = array('jpg','jpeg','png');
+	 //    $destination = '/uploads/customers_submit/';
 
-	    // $allowed_ext = array('jpg','jpeg','docx','pdf');
-	    // $destination = 'uploads/';
-		// foreach ($_FILES as $key => $value) {
+		// foreach ($files as $key => $value) {
+		// 	if(isset($files[$key])){
 
-		// 		if(isset($_FILES[$key])){
-		// 			$filename = $key.'_name';
-		// 			$tmp_filename =$key.'_tmp_name';
+		// 		$filename = $key.'_name';
+		// 		// $tmp_filename = $key.'_tmp_name';
 
-		// 			$filename = $_FILES[$key]['name'];
-		// 			$file_ext = end(explode(".", $filename));
-		// 			$tmp_filename = $_FILES[$key]['tmp_name'];
+		// 		$filename = $files[$key]['name'];
+		// 		$file_ext = explode(".", $filename);
+		// 		$tmp_filename = $files[$key]['tmp_name'];
+				
+		// 		if (isset($filename)) {
+		// 			if (!empty($filename)) {
+		// 				if (in_array($file_ext[1], $allowed_ext)) {
+		// 					$filestosend[] = $destination.$id.$filename;
 
-		// 			if(isset($filename)){
-		// 				if(!empty($filename)){
-
-
-		// 					if(in_array($file_ext, $allowed_ext)){
-								
-		// 						$filestosend[] = $destination.$id.$filename;
-		// 						if(move_uploaded_file($tmp_filename, $destination.$id.$filename)){
-									
-		// 						}
-		// 					}else{
-		// 						echo 'File Extension Invalid';
+		// 					if (move_uploaded_file($tmp_filename, $destination.$id.$filename)) {
+					
 		// 					}
-							
+		// 				} else {
+		// 					echo 'File Extension Invalid';
 		// 				}
+						
 		// 			}
+		// 		}
 		// 	}
-			
 		// }
-
-
 
 		$body = '
 		<style>
@@ -421,9 +420,6 @@ class SendMailController extends Controller
 			.table_width_100 {
 				width: 680px;
 			}
-			#possible_problems tr td {
-				word-wrap: break-word;
-			}
 		</style>
 
 		<div id="mailsub" class="notification" align="center">
@@ -465,6 +461,7 @@ class SendMailController extends Controller
 			<tr><td align="center" bgcolor="#fbfcfd">
 			    <font face="Arial, Helvetica, sans-serif" size="4" color="#57697e" style="font-size: 15px;">
 			    <form action="http://127.0.0.1:8000/api/submit/reply/'.base64_encode($trans_id).'" method="">
+			    	<input type="hidden" name="type" value="'.$type.'">
 				    <input type="hidden" name="country" value="'.$country.'">
 				    <input type="hidden" name="state" value="'.$state.'">
 				    <input type="hidden" name="city" value="'.$city.'">
@@ -474,12 +471,12 @@ class SendMailController extends Controller
 								<tr>
 									<td>
 										<p>
-											Case: '.$trans_id.'
+											Case: #'.$trans_id.'
 											<input type="hidden" name="case" value="'.$trans_id.'">
 										</p>
 									</td>
-									<td>
-										<p>
+									<td align="right">
+										<p style="margin-left:30px;">
 											Date: '.$date.'
 											<input type="hidden" name="date" value="'.$date.'">
 										</p>
@@ -490,6 +487,7 @@ class SendMailController extends Controller
 										<p>
 											Hi <strong>'.$name.',</strong>
 											<input type="hidden" name="name" value="'.$name.'">
+											<input type="hidden" name="email" value="'.$email.'">
 										</p>
 										<p style="text-indent:30px;">
 											Attached is the evaluation report for the vehicle you submitted recently.
@@ -504,19 +502,19 @@ class SendMailController extends Controller
 						    	<tr>
 						    		<td>
 						    			<p>
-						    				Maker: <strong>'.$maker.'</strong></span>
+						    				Maker: <strong>'.$maker.'</strong>
 						    				<input type="hidden" name="maker" value="'.$maker.'">
 						    			</p>
 						    		</td>
 						    		<td>
 						    			<p>
-						    				Model: <strong>'.$model.'</strong></span>
+						    				Model: <strong>'.$model.'</strong>
 						    				<input type="hidden" name="model" value="'.$model.'">
 						    			</p>
 						    		</td>
-						    		<td>
+						    		<td align="right">
 						    			<p>
-						    				Year: <strong>'.$year.'</strong></span>
+						    				Year: <strong>'.$year.'</strong>
 						    				<input type="hidden" name="year" value="'.$year.'">
 						    			</p>
 						    		</td>
@@ -524,7 +522,7 @@ class SendMailController extends Controller
 						    	<tr>
 						    		<td colspan="3">
 						    			<hr>
-						    			<p class="float-left">Possible Problems: </p>
+						    			<p>Possible Problems: </p>
 						    		</td>
 						    	</tr>
 						    	<tr>
@@ -532,83 +530,27 @@ class SendMailController extends Controller
 						    	</tr>
 							    <tr>
 							    	<td colspan="3">
-							    		<table width="100%" id="possible_problems">
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Alternator"> Alternator</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Drive Shaft"> Drive Shaft</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Junction Box"> Junction Box</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Shift"> Shift</td>
-							    			</tr>
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Breaking System"> Breaking System</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Electrical System"> Electrical System</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Knuckle"> Knuckle</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Seats"> Seats</td>
-							    			</tr>
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Battery"> Battery</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Engine/Motor"> Engine/Motor</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Lights, Front"> Lights, Front</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Shock"> Shock Absorbers</td>
-							    			</tr>
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Cooling System"> Cooling System</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Exhaust System"> Exhaust System</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Lights, Back"> Lights, Back</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Steering Wheel"> Steering Wheel</td>
-							    			</tr>
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Cylinders"> Cylinders</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Fuses"> Fuses</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Moon/Sunroof"> Moon/Sunroof</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Tires"> Tires</td>
-							    			</tr>
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Crankshaft"> Crankshaft</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Four-wheel Drive"> Four-wheel Drive</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Mud Flap"> Mud Flap</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Transmission"> Transmission</td>
-							    			</tr>
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Clutch"> Clutch</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Frame"> Frame</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Muffler"> Muffler</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Trank"> Trank</td>
-							    			</tr>
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Computrer"> Computrer</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Fuel"> Fuel System</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Output Shaft"> Output Shaft</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Tail Pipe"> Tail Pipe</td>
-							    			</tr>
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Drum Brakes"> Drum Brakes</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Gear Box"> Gear Box</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Pedal"> Pedal</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Undercarriege Leak"> Undercarriege Leak</td>
-							    			</tr>
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Differential"> Differential</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Gasket"> Gasket</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Piston"> Piston</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Valve Visor"> Valve Visor</td>
-							    			</tr>
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Door Locks"> Door Locks</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Hood"> Hood</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Radiator"> Radiator</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Wheel"> Wheel</td>
-							    			</tr>
-							    			<tr>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Drive Belt"> Drive Belt</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Handle"> Handle</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Signals"> Signals</td>
-							    				<td><input type="checkbox" name="possible_problems[]" value="Windows"> Windows</td>
-							    			</tr>
-							    			<tr>
-							    				<td colspan="4"><input type="checkbox"> Other Sources of Negative Energies</td>
-							    			</tr>
-							    		</table>
+							    		<table width="100%" id="possible_problems">';
+							    			$count = 0;
+											$total_id = count($possible_problems_list)-1;
+											foreach ($possible_problems_list as $id => $val) {
+												if ($count > 3) {
+													$count = 0;
+													$body .= '</tr>';
+												}
+												if ($count == 0) {
+													$body .= '<tr>';
+												}
+												if ($id == $total_id) {
+													$body .= '<td colspan="4"><input type="checkbox" name="possible_problems[]" value="'.$val->problem.'">'.$val->problem.'</td>';
+													$body .= '</tr>';
+												} else {
+													$body .= '<td><input type="checkbox" name="possible_problems[]" value="'.$val->problem.'">'.$val->problem.'</td>';
+												}
+												
+												$count++;
+											}
+			$body .=				    '</table>
 							    	</td>
 							    </tr>
 							    <tr>
@@ -689,7 +631,6 @@ class SendMailController extends Controller
 
 			$mail->isHTML(true);
 
-
 			$mail->Subject = "FORM SUBMIT";
 			$mail->Body = "<i>Mail body in HTML</i>";
 			$mail->Body = $body;
@@ -715,6 +656,340 @@ class SendMailController extends Controller
 			return "Mailer Error: " . $mail->ErrorInfo;
 		}
  
+	}
+
+	public function client_reply($r)
+	{
+		$name   		= $r['name'];
+	 	$email  		= $r['email'];
+	 	$country 		= $r['country']; 
+	 	$state   		= $r['state'];
+	 	$city   		= $r['city'];
+	 	$maker 			= $r['maker']; 
+	 	$model   		= $r['model'];
+	 	$year   		= $r['year'];
+	 	$trans_id 		= $r['transaction_id'];
+	 	$type 			= $r['type'];
+	 	$date 			= $r['date'];
+	 	$pos_problems 	= $r['possible_problems'];
+
+	 	$possible_problems_list = DB::table('possible_problems')->get();
+	 	
+		// $id = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
+	    // $filestosend =  array();
+
+	    // $allowed_ext = array('jpg','jpeg','docx','pdf');
+	    // $destination = 'uploads/';
+		// foreach ($_FILES as $key => $value) {
+
+		// 		if(isset($_FILES[$key])){
+		// 			$filename = $key.'_name';
+		// 			$tmp_filename =$key.'_tmp_name';
+
+		// 			$filename = $_FILES[$key]['name'];
+		// 			$file_ext = end(explode(".", $filename));
+		// 			$tmp_filename = $_FILES[$key]['tmp_name'];
+
+		// 			if(isset($filename)){
+		// 				if(!empty($filename)){
+
+
+		// 					if(in_array($file_ext, $allowed_ext)){
+								
+		// 						$filestosend[] = $destination.$id.$filename;
+		// 						if(move_uploaded_file($tmp_filename, $destination.$id.$filename)){
+									
+		// 						}
+		// 					}else{
+		// 						echo 'File Extension Invalid';
+		// 					}
+							
+		// 				}
+		// 			}
+		// 	}
+			
+		// }
+
+
+
+		$body = '
+		<style>
+			body {
+			    padding: 0;
+			    margin: 0;
+			}
+
+			html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
+			@media only screen and (max-device-width: 680px), only screen and (max-width: 680px) { 
+			    *[class="table_width_100"] {
+					width: 96% !important;
+				}
+				*[class="border-right_mob"] {
+					border-right: 1px solid #dddddd;
+				}
+				*[class="mob_100"] {
+					width: 100% !important;
+				}
+				*[class="mob_center"] {
+					text-align: center !important;
+				}
+				*[class="mob_center_bl"] {
+					float: none !important;
+					display: block !important;
+					margin: 0px auto;
+				}	
+				.iage_footer a {
+					text-decoration: none;
+					color: #929ca8;
+				}
+				img.mob_display_none {
+					width: 0px !important;
+					height: 0px !important;
+					display: none !important;
+				}
+				img.mob_width_50 {
+					width: 40% !important;
+					height: auto !important;
+				}
+			}
+			.table_width_100 {
+				width: 680px;
+			}
+		</style>
+
+		<div id="mailsub" class="notification" align="center">
+		    <!--<div align="center">
+		       <img src="https://www.carenergies.com/images/sample_1/logo/logo.png" width="250" alt="CAR ENERGIES" border="0"  /> 
+		    </div> -->
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="min-width: 320px;"><tr><td align="center" bgcolor="#eff3f8">
+
+
+		<!--[if gte mso 10]>
+		<table width="680" border="0" cellspacing="0" cellpadding="0">
+		<tr><td>
+		<![endif]-->
+
+		<table border="0" cellspacing="0" cellpadding="0" class="table_width_100" width="100%" style="max-width: 680px; min-width: 300px;">
+		    <tr><td>
+			<!-- padding -->
+			</td></tr>
+			<!--header -->
+			<tr><td align="center" bgcolor="#ffffff">
+				<!-- pack(format)dding -->
+				<table width="90%" border="0" cellspacing="0" cellpadding="0">
+					<tr><td align="center">
+					    		<a href="#" target="_blank" style="color: #596167; font-family: Arial, Helvetica, sans-serif; float:left; width:100%; padding:20px;text-align:center; font-size: 13px;">
+											<font face="Arial, Helvetica, sans-seri; font-size: 13px;" size="3" color="#596167">
+											<img src="https://www.carenergies.com/images/sample_1/logo/logo.png" width="250" alt="CAR ENERGIES" border="0"  /></font></a>
+							</td>
+							<td align="right">
+						<!--[endif]--><!-- 
+
+					</td>
+					</tr>
+				</table>
+				<!-- padding -->
+			</td></tr>
+			<!--header END-->
+
+			<!--content 1 -->
+			<tr><td align="center" bgcolor="#fbfcfd">
+			    <font face="Arial, Helvetica, sans-serif" size="4" color="#57697e" style="font-size: 15px;">
+			    <form action="http://127.0.0.1:8000/api/submit/reply/'.base64_encode($trans_id).'" method="">
+			    	<input type="hidden" name="type" value="'.$type.'">
+				    <input type="hidden" name="country" value="'.$country.'">
+				    <input type="hidden" name="state" value="'.$state.'">
+				    <input type="hidden" name="city" value="'.$city.'">
+					<table width="90%" border="0" cellspacing="0" cellpadding="0">
+						<tr><td>
+							<table width="100%">
+								<tr>
+									<td>
+										<p>
+											Case: #'.$trans_id.'
+											<input type="hidden" name="case" value="'.$trans_id.'">
+										</p>
+									</td>
+									<td align="right">
+										<p>
+											Date: '.$date.'
+											<input type="hidden" name="date" value="'.$date.'">
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<p>
+											Hi <strong>'.$name.',</strong>
+											<input type="hidden" name="name" value="'.$name.'">
+											<input type="hidden" name="email" value="'.$email.'">
+										</p>
+										<p style="text-indent:30px;">
+											Attached is the evaluation report for the vehicle you submitted recently.
+											Please note that after your third free report, you will be charged $4.99 for each extra vehicle evaluation.
+											<br/><br/>We accept Paypal, Mc, and visa for your convenience.
+										<p/>
+									</td>
+								</tr>
+							</table>
+							<hr>
+						    <table width="100%">
+						    	<tr>
+						    		<td>
+						    			<p>
+						    				Maker: <strong>'.$maker.'</strong>
+						    				<input type="hidden" name="maker" value="'.$maker.'">
+						    			</p>
+						    		</td>
+						    		<td>
+						    			<p>
+						    				Model: <strong>'.$model.'</strong>
+						    				<input type="hidden" name="model" value="'.$model.'">
+						    			</p>
+						    		</td>
+						    		<td align="right">
+						    			<p>
+						    				Year: <strong>'.$year.'</strong>
+						    				<input type="hidden" name="year" value="'.$year.'">
+						    			</p>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td colspan="3">
+						    			<hr>
+						    			<p>Possible Problems: </p>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td></td>
+						    	</tr>
+							    <tr>
+							    	<td colspan="3">
+							    		<table width="100%" id="possible_problems">';							    			$count = 0;
+											$total_id = count($possible_problems_list)-1;
+											foreach ($possible_problems_list as $id => $val) {
+												if (isset($r['prob_list'][$val->problem])) {
+													$checked = 'checked';
+												} else {
+													$checked = '';
+												}
+												if ($count > 3) {
+													$count = 0;
+													$body .= '</tr>';
+												}
+												if ($count == 0) {
+													$body .= '<tr>';
+												}
+												if ($id == $total_id) {
+													$body .= '<td colspan="4"><input type="checkbox" value="'.$val->problem.'" '.$checked.'>'.$val->problem.'</td>';
+													$body .= '</tr>';
+												} else {
+													$body .= '<td><input type="checkbox" value="'.$val->problem.'" '.$checked.'>'.$val->problem.'</td>';
+												}
+												
+												$count++;
+											}
+
+							$body .= 	'</table>
+							    	</td>
+							    </tr>
+							</table>
+						</td></tr>
+					</table>
+				</form>
+				</font>
+			</td></tr>
+			<!--content 1 END-->
+
+
+			<!--footer -->
+			<tr><td class="iage_footer" align="center" bgcolor="#ffffff">
+
+				
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr><td align="center" style="padding:20px;flaot:left;width:100%; text-align:center;">
+						<font face="Arial, Helvetica, sans-serif" size="3" color="#96a5b5" style="font-size: 13px;">
+						<span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #96a5b5;">
+							&copy; Copyright 2019 | Design and Developed by Car Energies.
+						</span></font>				
+					</td></tr>			
+				</table>
+			</td></tr>
+			<!--footer END-->
+			<tr><td>
+
+			</td></tr>
+		</table>
+		<!--[if gte mso 10]>
+		</td></tr>
+		</table>
+		<![endif]-->
+		 
+		</td></tr>
+		</table>
+		';
+		//PHPMailer Object
+		$devemode = true;
+		$mail = new PHPMailer($devemode);
+
+		try {
+			// $mail->SMTPDebug = 2;
+			$mail->isSMTP();   
+			if ($devemode) {
+				$mail->SMTPOptions = [
+					'ssl'=>[
+						'verify_peer' => false,
+						'verify_peer_name' => false,
+						'allow_self_signed' => true	
+					]
+				];
+			}
+
+			$mail->Host = 'smtp.gmail.com';
+			$mail->SMTPAuth = true; 
+			$mail->Username = "carenergies@gmail.com";                 
+			$mail->Password = "svauheqtghlphiav"; 
+			$mail->SMTPSecure = "tls";  
+			$mail->Port = 587; 
+			$mail->setFrom('carenergies@gmail.com', 'CAR ENERGIES');
+			$mail->AddReplyTo('carenergies@gmail.com', 'CAR ENERGIES');
+			$mail->addAddress($email);
+
+			// foreach ($filestosend as $key => $value) {
+			// 	$mail->addAttachment($value);
+			// }
+
+			// $mail->addAttachment('uploads/'); 
+			// $mail->addAttachment('/var/tmp/file.tar.gz');        // Add attachments
+		 	// $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); 
+
+			$mail->isHTML(true);
+
+
+			$mail->Subject = "FORM SUBMIT";
+			$mail->Body = "<i>Mail body in HTML</i>";
+			$mail->Body = $body;
+			$mail->send();
+			$mail->ClearAllRecipients();
+
+			//The name of the folder.
+			// $folder = 'uploads';
+			//Get a list of all of the file names in the folder.
+			// $files = glob($folder . '/*');
+		 
+			//Loop through the file list.
+			// foreach($files as $file){
+			//     //Make sure that this is a file and not a directory.
+			//     if(is_file($file)){
+			//         //Use the unlink function to delete the file.
+			//         unlink($file);
+			//     }
+			// }
+		 	return "Message has been sent successfully";
+
+		} catch (Exception $e) {
+			return "Mailer Error: " . $mail->ErrorInfo;
+		}
 	}
 
 }
