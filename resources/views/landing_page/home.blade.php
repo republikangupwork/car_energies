@@ -11,11 +11,12 @@
                       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                     </ol>
-                    <div class="carousel-inner" role="listbox">
+                    <div class="carousel-inner" role="listbox" style="overflow:auto;">
                       <!-- Slide One - Set the background image for this slide in the line below -->
                       <div  class="carousel-item slider active" style="background-image: url({{ asset('images/sample_1/slider/1.jpg') }})"  >
-                        <div class="carousel-caption row ">
+                        <div class="carousel-caption row " style="overflow:auto;">
                             <div class="col-md-7">
+                              <br>
                               <h2 class="text-left slider-h2">HAVE YOUR CAR CHECKED FAST AND FREE <span style="color: #669932">BY AN EXPERT ONLINE </span></h2>
                                   <div class="">
                                     <p class="lead">
@@ -50,7 +51,7 @@
                         
                             <div class="col-lg-8 offset-lg-4 col-md-8 offset-md-4">
                                     <div class="jumbotron">
-                                         <h2 class="text-right slider-h2 "><span>UP TO <span style="color: #669932;">3 FREE</span> CAR ANALYSIS</span></h2>                                          
+                                         <h2 class="text-right slider-h2 "><span>UP TO <span style="color: #669932;">3 FREE</span> CAR EVALUATION</span></h2>                                          
                                             <p class="lead">
                                               <p class="text-right slider-p-black txtbolder font-30 font-sm-view">A new best way to check used car mechanically from deep within</p>
                                               <h3 class="text-right" style="color:red;font-weight: bold; font-size: 50px"><span  >NO HIDDEN CHARGES</span></h3>
@@ -196,7 +197,7 @@
                     <h2 data-aos="zoom-out-up" class="lg-title mb-2 section-title mb-5"><span style="font-weight: bold;"  class="color-green">Our</span> <span class="color-white bg-green px-3">Work Process</span></h2>
                     <!-- Subheading -->
                     <p class="mb-5 section-description font-30">
-                        Our work process consist of only 4 steps, all made online
+                        Our work process consists of only 4 steps, all made online
                     </p>
                 </div>
             </div>
@@ -210,8 +211,8 @@
                                       <img class="" src="{{ asset('images/sample_1/process/picture.png') }}" width="75" height="75">
                                   </div>
                                   <div class="service-content">
-                                      <h4 class="section-description text-right"><span style="font-weight: bold;"  class="txt-bold color-green">TAKE YOUR CAR'S</span> PICTURE 1.</h4>
-                                      <p class="color-black text-right">Upload 4 recent clear photos of the used car in(front,read,left side,rightside)</p>
+                                      <h4 class="section-description text-right"><span style="font-weight: bold;"  class="txt-bold color-green">1. TAKE YOUR CAR'S</span> PICTURE</h4>
+                                      <p class="color-black text-right">Upload 6 recent clear photos of the car in(front,read,left side,rightside)</p>
                                   </div>
                             </div>
                         </div>
@@ -224,7 +225,7 @@
                                   </div>
                                   <div class="service-content">
                                       <h4 class="section-description text-right">
-                                          <span class="txt-bold color-green" style="font-weight: bold;">YOU UPLOAD AND </span> SUBMIT THEM 2.
+                                          <span class="txt-bold color-green" style="font-weight: bold;">2. YOU UPLOAD AND </span> SUBMIT THEM
                                       </h4>
                                       <p class="color-black text-right">Send us the pictures with your name, email address, state, city and country</p>
                                   </div>
@@ -258,9 +259,9 @@
                                 <img src="{{ asset('images/sample_1/process/report.jpg') }}" width="75" height="75">
                                 <div class="service-content">
                                     <h4 class="section-description">
-                                        <span class="txt-bold color-green" style="font-weight: bold;">4.  RESOLUTION &</span> RECOMMENDATION
+                                        <span class="txt-bold color-green" style="font-weight: bold;">4.  EVALUATION &</span> FINDINGS
                                     </h4>
-                                    <p class="color-black text-left">An email will be sent back to you consisting with diagnostic report up to 12-24 hours</p>
+                                    <p class="color-black text-left">An email will be sent back to you consisting with diagnostic report up to 24 hours</p>
                                 </div>  
                             </div>                             
                         </div>
