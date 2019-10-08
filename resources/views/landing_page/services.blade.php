@@ -41,9 +41,9 @@
                             possible problem areas of the car, like a sample shown "HERE".</p>
                     </div>
                 </div>
-                <div class="col-md-5 offset-md-1" style="padding-top:10%">
+                <div class="col-md-5 offset-md-1" style="padding-top:15%">
                     <div class="about-img my-auto">
-                        <img src="{{ asset('images/sample_1/services/sendmail.jpg') }}" alt="" class="" height="400">
+                        <img src="{{ asset('images/sample_1/services/sendmail.jpg') }}" alt="" class="" height="400" width="600">
                     </div>
                 </div>
                 
@@ -56,25 +56,25 @@
         <div class="row col-md-12 bg-light py-5">
             <div class="container">
                   <div class="row mb-5">
-                    <a href="{{ asset('images/sample_1/car/front-hood.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4 " style="text-decoration: none;">
-                      <span style="font-size: 60px;">1</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/front-hood.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    <a href="{{ asset('images/sample_1/car/front_hood.jpg') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4 " style="text-decoration: none;">
+                      <span style="font-size: 60px;color:green;">1</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/front_hood.jpg') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
                     </a>
-                    <a href="{{ asset('images/sample_1/car/rear.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4" style="text-decoration: none;">
-                      <span style="font-size: 60px;">2</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/rear.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    <a href="{{ asset('images/sample_1/car/rear.jpg') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4" style="text-decoration: none;">
+                      <span style="font-size: 60px;color:green;">2</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/rear.jpg') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
                     </a>
-                    <a href="{{ asset('images/sample_1/car/driver-side.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4" style="text-decoration: none;">
-                      <span style="font-size: 60px;">3</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/driver-side.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    <a href="{{ asset('images/sample_1/car/driver_side.jpg') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4" style="text-decoration: none;">
+                      <span style="font-size: 60px;color:green;">3</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/driver_side.jpg') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
                     </a>
                   </div>
                   <div class="row">
-                    <a href="{{ asset('images/sample_1/car/1.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4" style="text-decoration: none;">
-                      <span style="font-size: 60px;">4</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/1.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    <a href="{{ asset('images/sample_1/car/1.jpg') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4" style="text-decoration: none;">
+                      <span style="font-size: 60px;color:green;">4</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/1.jpg') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
                     </a>
-                    <a href="{{ asset('images/sample_1/car/2.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4" style="text-decoration: none;">
-                      <span style="font-size: 60px;">5</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/2.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    <a href="{{ asset('images/sample_1/car/2.jpg') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4" style="text-decoration: none;">
+                      <span style="font-size: 60px;color:green;">5</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/2.jpg') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
                     </a>
-                    <a href="{{ asset('images/sample_1/car/3.png') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4" style="text-decoration: none;">
-                      <span style="font-size: 60px;">6</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/3.png') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
+                    <a href="{{ asset('images/sample_1/car/3.jpg') }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4" style="text-decoration: none;">
+                      <span style="font-size: 60px;color:green;">6</span>&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/sample_1/car/3.jpg') }}" class="img-fluid rounded myshadowbox" height="300" width="300">
                     </a>
                   </div>
 
@@ -94,7 +94,7 @@
 
                     </div>
                 <div class="row col-lg-12 justify-content-center">
-                    <a href="{{ url('Sample_1/submit/') }}" class="btn btn-success text-center" style="font-size: 2.5vw;">TRY OUR SERVICE FOR FREE</a>
+                    <a href="{{ url('submit/') }}" class="btn btn-success text-center" style="font-size: 2.5vw;">TRY OUR SERVICE FOR FREE</a>
                 </div>  
                 </div>
             </div>

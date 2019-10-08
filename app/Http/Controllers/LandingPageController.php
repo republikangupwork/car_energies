@@ -35,4 +35,38 @@ class LandingPageController extends Controller
         return view('landing_page.checkout');
     }
 
+    public function submit_reply(Request $request)
+    {
+        $param = array();
+        $param['transaction_id']    = $request['case'];
+        $param['name']              = $request['name'];
+        $param['email']             = $request['email'];
+        $param['country']           = $request['country'];
+        $param['state']             = $request['state'];
+        $param['city']              = $request['city'];
+        $param['maker']             = $request['maker'];
+        $param['model']             = $request['model'];
+        $param['year']              = $request['year'];
+        $param['possible_problems'] = $request['possible_problems'];
+        $param['date']              = $request['date'];
+        $param['type']              = $request['type'];
+
+        $problem_list = array();
+        foreach ($param['possible_problems'] as $problem) {
+            $problem_list[$problem] = $problem;
+        }
+
+        $param['prob_list'] = $problem_list;
+
+        $send_mail_cont = new SendMailController();
+        $send_reply = $send_mail_cont->client_reply($param);
+
+        if ($send_reply == 'Message has been sent successfully') {
+            return view('landing_page.reply', compact('param'));
+        } else {
+            return view('landing_page.reply_error');
+        }
+
+        
+    }
 }

@@ -69,6 +69,9 @@
             <!-- / .row -->
 
             <div class="row justify-content-md-center footer-copy">
+                <div class="col-md-4">
+                    <table width="135" border="0" cellpadding="2" cellspacing="0" title="Click to Verify - This site chose Symantec SSL for secure e-commerce and confidential communications."><tr><td width="135" align="center" valign="top"><script type="text/javascript" src="https://seal.websecurity.norton.com/getseal?host_name=https://www.carenergies.com/&amp;size=L&amp;use_flash=NO&amp;use_transparent=No&amp;lang=en"></script><br /><a href="https://www.websecurity.symantec.com/ssl-certificate" target="_blank"  style="color:#000000; text-decoration:none; font:bold 10px verdana,sans-serif; letter-spacing:.5px;text-align:center; margin:0px; padding:0px;"> ABOUT SSL CERTIFICATES</a></td></tr></table>
+                </div>
                 <div class="col-lg-8 col-md-6 col-sm-6 text-center">
                     <p class="lead text-white-50">&copy; Copyright 2019 | Design and Developed by Car Energies </p>
                 </div>

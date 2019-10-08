@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use DB;
 
 class SendMailController extends Controller
 {
@@ -13,59 +14,148 @@ class SendMailController extends Controller
 	public function sendmail(Request $request)
 	{
 
-		// $id = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
-
 		$r = $_REQUEST;
-		// $name   = $r['name'];
-	 	// $email  = $r['email'];
-	 	// $country = $r['country']; 
-	 	// $state   = $r['state']; 
-	 	// $city    = $r['city'];
-	 	// $type    = $r['type'];
 
-	    $name   	= 'Juan Tamad';
-	    $email  	= 'juantamad@app.com';
-	    $country 	= 'Philippines'; 
-	    $state   	= '-'; 
-	    $city    	= 'Marikina';
+		if ($r['type'] == 'feedback') {
+			$param = array();
+			$param['name']  	= $r['name'];
+		 	$param['email']  	= $r['email'];
+		 	$param['subject'] 	= $r['subject']; 
+		 	$param['message']   = $r['message']; 
+		 	$param['type']   	= $r['type'];
 
-	    // $filestosend =  array();
+		 	if ($param['email'] != '') {
+		 		if (!filter_var($param['email'], FILTER_VALIDATE_EMAIL)) {
+		 			return '0|Invalid Email Address.';
+		 		}
+		 	} else {
+		 		return '0|Please Fill-up your Email';
+		 	}
 
-	    // $allowed_ext = array('jpg','jpeg','docx','pdf');
-	    // $destination = 'uploads/';
-		// foreach ($_FILES as $key => $value) {
+		 	if ($param['subject'] == '') {
+		 		return '0|Please Fill-up the Subject Field';
+		 	}
 
-		// 		if(isset($_FILES[$key])){
-		// 			$filename = $key.'_name';
-		// 			$tmp_filename =$key.'_tmp_name';
+		 	if ($param['message'] == '') {
+		 		return '0|Please Fill-up the Message Field';
+		 	}
 
-		// 			$filename = $_FILES[$key]['name'];
-		// 			$file_ext = end(explode(".", $filename));
-		// 			$tmp_filename = $_FILES[$key]['tmp_name'];
+		 	try {
+		 		$insert_feedback = DB::insert('INSERT INTO feedback (name,email,subject,message) VALUES(?,?,?,?)', [$param['name'],$param['email'],$param['subject'],$param['message']]);
+				$this->generate_feedback_mail($r);
+				return '1|Message successfully sent!';
+		 	} catch (Exeption $e) {
+		 		return '0|'.$e;
+		 	}
 
-		// 			if(isset($filename)){
-		// 				if(!empty($filename)){
+		} else {
 
+			$param = array();
+			$param['name']   			= $r['name'];
+		 	$param['email']  			= $r['email'];
+		 	$param['country'] 			= $r['country']; 
+		 	$param['state']   			= $r['state'];
+		 	$param['city']   			= $r['city']; 
+		 	$param['maker'] 			= $r['maker']; 
+		 	$param['model']   			= $r['model'];
+		 	$param['year']   			= $r['year']; 
+		 	$param['type']   			= $r['type'];
+		 	$param['transaction_id'] 	= mt_rand(1000000000, 9999999999);
 
-		// 					if(in_array($file_ext, $allowed_ext)){
-								
-		// 						$filestosend[] = $destination.$id.$filename;
-		// 						if(move_uploaded_file($tmp_filename, $destination.$id.$filename)){
-									
-		// 						}
-		// 					}else{
-		// 						echo 'File Extension Invalid';
-		// 					}
-							
-		// 				}
-		// 			}
-		// 	}
-			
-		// }
+		 	if ($param['name'] == '') {
+		 		return '0|Please Fill-up the Name Field';
+		 	}
+			if ($param['email'] != '') {
+		 		if (!filter_var($param['email'], FILTER_VALIDATE_EMAIL)) {
+		 			return '0|Invalid Email Address.';
+		 		}
+		 	} else {
+		 		return '0|Please Fill-up your Email';
+		 	}
+		 	if ($param['country'] == '') {
+		 		return '0|Please Fill-up the Country Field';
+		 	}
+		 	if ($param['city'] == '') {
+		 		return '0|Please Fill-up the City Field';
+		 	}
+		 	if ($param['maker'] == '') {
+		 		return '0|Please Fill-up the Maker Field';
+		 	}
+		 	if ($param['model'] == '') {
+		 		return '0|Please Fill-up the Model Field';
+		 	}
+		 	if ($param['year'] == '') {
+		 		return '0|Please Fill-up the Year Field';
+		 	}
+		 	if ($_FILES['front_of_car_with_hood_up']['name'] == '') {
+		 		return '0|Please upload a Image for Front of car with Hood up';
+		 	}
+		 	if ($_FILES['rear_with_open_compartment']['name'] == '') {
+		 		return '0|Please upload a Image for Rear with open compartment';
+		 	}
+		 	if ($_FILES['left_side_open_doors']['name'] == '') {
+		 		return '0|Please upload a Image for Left side open doors';
+		 	}
+		 	if ($_FILES['left_side_view']['name'] == '') {
+		 		return '0|Please upload a Image for Left Side View';
+		 	}
+		 	if ($_FILES['right_side_view']['name'] == '') {
+		 		return '0|Please upload a Image for Right Side View';
+		 	}
+		 	if ($_FILES['front_view']['name'] == '') {
+		 		return '0|Please upload a Image for Front View';
+		 	}
 
+		 	try {
 
+		 		$check_if_free = $this->check_customer($param['email']);
 
-		$body = '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		 		if (count($check_if_free) > 0) {
+			 		if ($check_if_free[0]->tries > 3) {
+			 			return 'not free';
+			 		} else {
+			 			$new_tries = $check_if_free[0]->tries + 1;
+		 			 	$update_customer = DB::update('UPDATE customers SET tries = ? WHERE email = ?', [$new_tries, $param['email']]);
+			 		}
+		 		} else {
+		 			$add_customer = DB::table('customers')->insert([
+					    ['name' => $param['name'], 'email' => $param['email'], 'country' => $param['country'], 'state' => $param['state'], 'city' => $param['city'], 'tries' => 1],
+					]);
+		 		}
+
+		 		$customer_detail = $this->check_customer($param['email']);
+		 		$add_form_submit = DB::insert('INSERT INTO form_submit (customer_id,transaction_id,maker,model,year) VALUES(?,?,?,?,?)', [$customer_detail[0]->id,$param['transaction_id'],$param['maker'],$param['model'],$param['year']]);
+
+				$send_mail = $this->generate_form_submit_mail($param,$_FILES);
+				
+				if ($send_mail == 'Message has been sent successfully') {
+					return '1|Form successfully sent!';
+				} else {
+					return '0|Smtp Error! Please contact admin for this issue.';
+				}
+				
+
+		 	} catch (Exeption $e) {
+		 		return '0|'.$e;
+		 	}
+		}
+
+	}
+
+	public function check_customer($email)
+	{
+		$customer = DB::table('customers')->where('email',$email)->get();
+		return $customer;
+	}
+
+	public function generate_feedback_mail($r)
+	{
+	    $name   	= $r['name'];
+	 	$email  	= $r['email'];
+	 	$subject 	= $r['subject']; 
+	 	$message   	= $r['message'];
+
+		$body = '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 		<!------ Include the above in your HEAD tag ---------->
@@ -116,7 +206,7 @@ class SendMailController extends Controller
 
 		<div id="mailsub" class="notification" align="center">
 		    <!--<div align="center">
-		       <img src="https://www.carenergies.com/images/sample_1/logo/logo.png" width="250" alt="Metronic" border="0"  /> 
+		       <img src="https://www.carenergies.com/images/sample_1/logo/logo.png" width="250" alt="CAR ENERGIES" border="0"  /> 
 		    </div> -->
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="min-width: 320px;"><tr><td align="center" bgcolor="#eff3f8">
 
@@ -131,45 +221,41 @@ class SendMailController extends Controller
 			<!-- padding -->
 			</td></tr>
 			<!--header -->
-			<tr><td align="center" bgcolor="#ffffff">
-				<!-- padding -->
-				<table width="90%" border="0" cellspacing="0" cellpadding="0">
-					<tr><td align="center">
-					    		<a href="#" target="_blank" style="color: #596167; font-family: Arial, Helvetica, sans-serif; float:left; width:100%; padding:20px;text-align:center; font-size: 13px;">
-											<font face="Arial, Helvetica, sans-seri; font-size: 13px;" size="3" color="#596167">
-											<img src="https://www.carenergies.com/images/sample_1/logo/logo.png" width="250" alt="Metronic" border="0"  /></font></a>
-							</td>
-							<td align="right">
-						<!--[endif]--><!-- 
+			<tr>
+				<td align="center" bgcolor="#ffffff">
+					<!-- padding -->
+					<table width="90%" border="0" cellspacing="0" cellpadding="0">
+						<tr><td align="center">
+						    		<a href="#" target="_blank" style="color: #596167; font-family: Arial, Helvetica, sans-serif; float:left; width:100%; padding:20px;text-align:center; font-size: 13px;">
+												<font face="Arial, Helvetica, sans-seri; font-size: 13px;" size="3" color="#596167">
+												<img src="https://www.carenergies.com/images/sample_1/logo/logo.png" width="250" alt="CAR ENERGIES" border="0"  /></font></a>
+								</td>
+								<td align="right">
+							<!--[endif]--><!-- 
 
-					</td>
-					</tr>
-				</table>
-				<!-- padding -->
-			</td></tr>
+						</td>
+						</tr>
+					</table>
+					<!-- padding -->
+				</td>
+			</tr>
 			<!--header END-->
 
 			<!--content 1 -->
-			<tr><td align="center" bgcolor="#fbfcfd">
-			    <font face="Arial, Helvetica, sans-serif" size="4" color="#57697e" style="font-size: 15px;">
-				<table width="90%" border="0" cellspacing="0" cellpadding="0">
-					<tr><td>
-					    Dear CAR ENERGIES,<br/><br/>
-					    Name: <strong> '.ucwords($name).' </strong><br/>
-					    Email: <strong> '.strtolower($email).' </strong><br/>
-		                Country: <strong> '.ucwords($country).' </strong><br/>
-		                State: <strong> '.ucwords($state).' </strong><br/>
-		                City: <strong> '.ucwords($city).' </strong><br/><br><br>
-
-					</td></tr>
-					<tr><td align="center">
-						Please check attachement for his/her car\'s pictures.
-						<!-- padding --><div style="height: 60px; line-height: 60px; font-size: 10px;"></div>
-					</td></tr>
-
-				</table>
-				</font>
-			</td></tr>
+			<tr>
+				<td align="center" bgcolor="#fbfcfd">
+				    <font face="Arial, Helvetica, sans-serif" size="4" color="#57697e" style="font-size: 15px;">
+						<table width="90%" border="0" cellspacing="0" cellpadding="0">
+							<tr><td>
+							    Name: <strong> '.$name.' </strong><br/>
+							    Email: <strong> '.$email.' </strong><br/>
+							    Subject: <strong> '.$subject.' </strong><br/>
+				                Message: <p style="text-indent: 50px;"> '.$message.' </p><br/>
+							</td></tr>
+						</table>
+					</font>
+				</td>
+			</tr>
 			<!--content 1 END-->
 
 
@@ -181,7 +267,7 @@ class SendMailController extends Controller
 					<tr><td align="center" style="padding:20px;flaot:left;width:100%; text-align:center;">
 						<font face="Arial, Helvetica, sans-serif" size="3" color="#96a5b5" style="font-size: 13px;">
 						<span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #96a5b5;">
-							2015 © CTM. ALL Rights Reserved.
+							&copy; Copyright 2019 | Design and Developed by Car Energies.
 						</span></font>				
 					</td></tr>			
 				</table>
@@ -204,8 +290,315 @@ class SendMailController extends Controller
 		$devemode = true;
 		$mail = new PHPMailer($devemode);
 
+		try {
+			// $mail->SMTPDebug = 2;
+			$mail->isSMTP();   
+			if ($devemode) {
+				$mail->SMTPOptions = [
+					'ssl'=>[
+						'verify_peer' => false,
+						'verify_peer_name' => false,
+						'allow_self_signed' => true	
+					]
+				];
+			}
+
+			$mail->Host = 'smtp.gmail.com';
+			$mail->SMTPAuth = true; 
+			$mail->Username = "carenergies@gmail.com";                 
+			$mail->Password = "svauheqtghlphiav"; 
+			$mail->SMTPSecure = "tls";  
+			$mail->Port = 587; 
+			$mail->setFrom('carenergies@gmail.com', 'CAR ENERGIES');
+			$mail->AddReplyTo($email, $name);
+			$mail->addAddress("carenergies@gmail.com");
+			$mail->addAddress("iamjulius2607@gmail.com");
+
+			$mail->isHTML(true);
+
+			$mail->Subject = $subject;
+			$mail->Body = "<i>Mail body in HTML</i>";
+			$mail->Body = $body;
+			$mail->send();
+			$mail->ClearAllRecipients();
+
+		 	echo "Message has been sent successfully";
+
+		} catch (Exception $e) {
+			echo "Mailer Error: " . $mail->ErrorInfo;
+		}
+ 
+	}
+
+	public function generate_form_submit_mail($r,$files)
+	{
+	    $name   	= $r['name'];
+	 	$email  	= $r['email'];
+	 	$country 	= $r['country']; 
+	 	$state   	= $r['state'];
+	 	$city   	= $r['city'];
+	 	$maker 		= $r['maker']; 
+	 	$model   	= $r['model'];
+	 	$year   	= $r['year'];
+	 	$trans_id 	= $r['transaction_id'];
+	 	$type 		= $r['type'];
+	 	$date 		= date('Y/m/d');
+
+
+		// $id = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
+	 //    $filestosend =  array();
+	 //    $allowed_ext = array('jpg','jpeg','png');
+	 //    $destination = '/uploads/customers_submit/';
+
+		// foreach ($files as $key => $value) {
+		// 	if(isset($files[$key])){
+
+		// 		$filename = $key.'_name';
+		// 		// $tmp_filename = $key.'_tmp_name';
+
+		// 		$filename = $files[$key]['name'];
+		// 		$file_ext = explode(".", $filename);
+		// 		$tmp_filename = $files[$key]['tmp_name'];
+				
+		// 		if (isset($filename)) {
+		// 			if (!empty($filename)) {
+		// 				if (in_array($file_ext[1], $allowed_ext)) {
+		// 					$filestosend[] = $destination.$id.$filename;
+
+		// 					if (move_uploaded_file($tmp_filename, $destination.$id.$filename)) {
+					
+		// 					}
+		// 				} else {
+		// 					echo 'File Extension Invalid';
+		// 				}
+						
+		// 			}
+		// 		}
+		// 	}
+		// }
+
+		$body = '
+		<style>
+			body {
+			    padding: 0;
+			    margin: 0;
+			}
+
+			html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
+			@media only screen and (max-device-width: 680px), only screen and (max-width: 680px) { 
+			    *[class="table_width_100"] {
+					width: 96% !important;
+				}
+				*[class="border-right_mob"] {
+					border-right: 1px solid #dddddd;
+				}
+				*[class="mob_100"] {
+					width: 100% !important;
+				}
+				*[class="mob_center"] {
+					text-align: center !important;
+				}
+				*[class="mob_center_bl"] {
+					float: none !important;
+					display: block !important;
+					margin: 0px auto;
+				}	
+				.iage_footer a {
+					text-decoration: none;
+					color: #929ca8;
+				}
+				img.mob_display_none {
+					width: 0px !important;
+					height: 0px !important;
+					display: none !important;
+				}
+				img.mob_width_50 {
+					width: 40% !important;
+					height: auto !important;
+				}
+			}
+			.table_width_100 {
+				width: 680px;
+			}
+		</style>
+
+		<div id="mailsub" class="notification" align="center">
+		    <!--<div align="center">
+		       <img src="https://www.carenergies.com/images/sample_1/logo/logo.png" width="250" alt="CAR ENERGIES" border="0"  /> 
+		    </div> -->
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="min-width: 320px;"><tr><td align="center" bgcolor="#eff3f8">
+
+
+		<!--[if gte mso 10]>
+		<table width="680" border="0" cellspacing="0" cellpadding="0">
+		<tr><td>
+		<![endif]-->
+
+		<table border="0" cellspacing="0" cellpadding="0" class="table_width_100" width="100%" style="max-width: 680px; min-width: 300px;">
+		    <tr><td>
+			<!-- padding -->
+			</td></tr>
+			<!--header -->
+			<tr><td align="center" bgcolor="#ffffff">
+				<!-- pack(format)dding -->
+				<table width="90%" border="0" cellspacing="0" cellpadding="0">
+					<tr><td align="center">
+					    		<a href="#" target="_blank" style="color: #596167; font-family: Arial, Helvetica, sans-serif; float:left; width:100%; padding:20px;text-align:center; font-size: 13px;">
+											<font face="Arial, Helvetica, sans-seri; font-size: 13px;" size="3" color="#596167">
+											<img src="https://www.carenergies.com/images/sample_1/logo/logo.png" width="250" alt="CAR ENERGIES" border="0"  /></font></a>
+							</td>
+							<td align="right">
+						<!--[endif]--><!-- 
+
+					</td>
+					</tr>
+				</table>
+				<!-- padding -->
+			</td></tr>
+			<!--header END-->
+
+			<!--content 1 -->
+			<tr><td align="center" bgcolor="#fbfcfd">
+			    <font face="Arial, Helvetica, sans-serif" size="4" color="#57697e" style="font-size: 15px;">
+			    <form action="http://127.0.0.1:8000/api/submit/reply/'.base64_encode($trans_id).'" method="">
+			    	<input type="hidden" name="type" value="'.$type.'">
+				    <input type="hidden" name="country" value="'.$country.'">
+				    <input type="hidden" name="state" value="'.$state.'">
+				    <input type="hidden" name="city" value="'.$city.'">
+					<table width="90%" border="0" cellspacing="0" cellpadding="0">
+						<tr><td>
+							<table width="100%">
+								<tr>
+									<td>
+										<p>
+											Case: #'.$trans_id.'
+											<input type="hidden" name="case" value="'.$trans_id.'">
+										</p>
+									</td>
+									<td align="right">
+										<p style="margin-left:30px;">
+											Date: '.$date.'
+											<input type="hidden" name="date" value="'.$date.'">
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<p>
+											Hi <strong>'.$name.',</strong>
+											<input type="hidden" name="name" value="'.$name.'">
+											<input type="hidden" name="email" value="'.$email.'">
+										</p>
+										<p style="text-indent:30px;">
+											Attached is the evaluation report for the vehicle you submitted recently.
+											Please note that after your third free report, you will be charged $4.99 for each extra vehicle evaluation.
+											<br/><br/>We accept Paypal, Mc, and visa for your convenience.
+										<p/>
+									</td>
+								</tr>
+							</table>
+							<hr>
+						    <table width="100%">
+						    	<tr>
+						    		<td>
+						    			<p>
+						    				Maker: <strong>'.$maker.'</strong>
+						    				<input type="hidden" name="maker" value="'.$maker.'">
+						    			</p>
+						    		</td>
+						    		<td>
+						    			<p>
+						    				Model: <strong>'.$model.'</strong>
+						    				<input type="hidden" name="model" value="'.$model.'">
+						    			</p>
+						    		</td>
+						    		<td align="right">
+						    			<p>
+						    				Year: <strong>'.$year.'</strong>
+						    				<input type="hidden" name="year" value="'.$year.'">
+						    			</p>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td colspan="3">
+						    			<hr>
+						    			<p>Possible Problems: </p>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td></td>
+						    	</tr>
+							    <tr>
+							    	<td colspan="3">
+							    		<table width="100%" id="possible_problems">';
+							    			$count = 0;
+											$total_id = count($possible_problems_list)-1;
+											foreach ($possible_problems_list as $id => $val) {
+												if ($count > 3) {
+													$count = 0;
+													$body .= '</tr>';
+												}
+												if ($count == 0) {
+													$body .= '<tr>';
+												}
+												if ($id == $total_id) {
+													$body .= '<td colspan="4"><input type="checkbox" name="possible_problems[]" value="'.$val->problem.'">'.$val->problem.'</td>';
+													$body .= '</tr>';
+												} else {
+													$body .= '<td><input type="checkbox" name="possible_problems[]" value="'.$val->problem.'">'.$val->problem.'</td>';
+												}
+												
+												$count++;
+											}
+			$body .=				    '</table>
+							    	</td>
+							    </tr>
+							    <tr>
+							    	<td colspan="2"></td>
+							    	<td><button type="submit" style="font-size: 16px; background-color: #28a745; padding:10px 25px; color: #fff; border-radius: 5px; border: transparent;">Reply</button></td>
+							    </tr>
+							</table>
+						</td></tr>
+					</table>
+				</form>
+				</font>
+			</td></tr>
+			<!--content 1 END-->
+
+
+			<!--footer -->
+			<tr><td class="iage_footer" align="center" bgcolor="#ffffff">
+
+				
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr><td align="center" style="padding:20px;flaot:left;width:100%; text-align:center;">
+						<font face="Arial, Helvetica, sans-serif" size="3" color="#96a5b5" style="font-size: 13px;">
+						<span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #96a5b5;">
+							&copy; Copyright 2019 | Design and Developed by Car Energies.
+						</span></font>				
+					</td></tr>			
+				</table>
+			</td></tr>
+			<!--footer END-->
+			<tr><td>
+
+			</td></tr>
+		</table>
+		<!--[if gte mso 10]>
+		</td></tr>
+		</table>
+		<![endif]-->
+		 
+		</td></tr>
+		</table>
+		';
+
+		//PHPMailer Object
+		$devemode = true;
+		$mail = new PHPMailer($devemode);
+
 		try{
-			$mail->SMTPDebug = 2;
+			// $mail->SMTPDebug = 2;
 			$mail->isSMTP();   
 			if($devemode){
 				$mail->SMTPOptions = [
@@ -220,11 +613,347 @@ class SendMailController extends Controller
 			$mail->Host = 'smtp.gmail.com';
 			$mail->SMTPAuth = true; 
 			$mail->Username = "carenergies@gmail.com";                 
-			$mail->Password = "P@$$word"; 
+			$mail->Password = "svauheqtghlphiav"; 
 			$mail->SMTPSecure = "tls";  
 			$mail->Port = 587; 
-			$mail->setFrom($email, 'CAR ENERGIES');
-			$mail->addAddress("iamjulius2707@gmail.com");
+			$mail->setFrom('carenergies@gmail.com', 'CAR ENERGIES');
+			$mail->AddReplyTo($email, $name);
+			$mail->addAddress("carenergies@gmail.com");
+			$mail->addAddress("iamjulius2607@gmail.com");
+
+			// foreach ($filestosend as $key => $value) {
+			// 	$mail->addAttachment($value);
+			// }
+
+			// $mail->addAttachment('uploads/'); 
+			// $mail->addAttachment('/var/tmp/file.tar.gz');        // Add attachments
+		 	// $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); 
+
+			$mail->isHTML(true);
+
+			$mail->Subject = "FORM SUBMIT";
+			$mail->Body = "<i>Mail body in HTML</i>";
+			$mail->Body = $body;
+			$mail->send();
+			$mail->ClearAllRecipients();
+
+			//The name of the folder.
+			// $folder = 'uploads';
+			//Get a list of all of the file names in the folder.
+			// $files = glob($folder . '/*');
+		 
+			//Loop through the file list.
+			// foreach($files as $file){
+			//     //Make sure that this is a file and not a directory.
+			//     if(is_file($file)){
+			//         //Use the unlink function to delete the file.
+			//         unlink($file);
+			//     }
+			// }
+		 	return "Message has been sent successfully";
+
+		} catch (Exception $e) {
+			return "Mailer Error: " . $mail->ErrorInfo;
+		}
+ 
+	}
+
+	public function client_reply($r)
+	{
+		$name   		= $r['name'];
+	 	$email  		= $r['email'];
+	 	$country 		= $r['country']; 
+	 	$state   		= $r['state'];
+	 	$city   		= $r['city'];
+	 	$maker 			= $r['maker']; 
+	 	$model   		= $r['model'];
+	 	$year   		= $r['year'];
+	 	$trans_id 		= $r['transaction_id'];
+	 	$type 			= $r['type'];
+	 	$date 			= $r['date'];
+	 	$pos_problems 	= $r['possible_problems'];
+
+	 	$possible_problems_list = DB::table('possible_problems')->get();
+	 	
+		// $id = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
+	    // $filestosend =  array();
+
+	    // $allowed_ext = array('jpg','jpeg','docx','pdf');
+	    // $destination = 'uploads/';
+		// foreach ($_FILES as $key => $value) {
+
+		// 		if(isset($_FILES[$key])){
+		// 			$filename = $key.'_name';
+		// 			$tmp_filename =$key.'_tmp_name';
+
+		// 			$filename = $_FILES[$key]['name'];
+		// 			$file_ext = end(explode(".", $filename));
+		// 			$tmp_filename = $_FILES[$key]['tmp_name'];
+
+		// 			if(isset($filename)){
+		// 				if(!empty($filename)){
+
+
+		// 					if(in_array($file_ext, $allowed_ext)){
+								
+		// 						$filestosend[] = $destination.$id.$filename;
+		// 						if(move_uploaded_file($tmp_filename, $destination.$id.$filename)){
+									
+		// 						}
+		// 					}else{
+		// 						echo 'File Extension Invalid';
+		// 					}
+							
+		// 				}
+		// 			}
+		// 	}
+			
+		// }
+
+
+
+		$body = '
+		<style>
+			body {
+			    padding: 0;
+			    margin: 0;
+			}
+
+			html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
+			@media only screen and (max-device-width: 680px), only screen and (max-width: 680px) { 
+			    *[class="table_width_100"] {
+					width: 96% !important;
+				}
+				*[class="border-right_mob"] {
+					border-right: 1px solid #dddddd;
+				}
+				*[class="mob_100"] {
+					width: 100% !important;
+				}
+				*[class="mob_center"] {
+					text-align: center !important;
+				}
+				*[class="mob_center_bl"] {
+					float: none !important;
+					display: block !important;
+					margin: 0px auto;
+				}	
+				.iage_footer a {
+					text-decoration: none;
+					color: #929ca8;
+				}
+				img.mob_display_none {
+					width: 0px !important;
+					height: 0px !important;
+					display: none !important;
+				}
+				img.mob_width_50 {
+					width: 40% !important;
+					height: auto !important;
+				}
+			}
+			.table_width_100 {
+				width: 680px;
+			}
+		</style>
+
+		<div id="mailsub" class="notification" align="center">
+		    <!--<div align="center">
+		       <img src="https://www.carenergies.com/images/sample_1/logo/logo.png" width="250" alt="CAR ENERGIES" border="0"  /> 
+		    </div> -->
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="min-width: 320px;"><tr><td align="center" bgcolor="#eff3f8">
+
+
+		<!--[if gte mso 10]>
+		<table width="680" border="0" cellspacing="0" cellpadding="0">
+		<tr><td>
+		<![endif]-->
+
+		<table border="0" cellspacing="0" cellpadding="0" class="table_width_100" width="100%" style="max-width: 680px; min-width: 300px;">
+		    <tr><td>
+			<!-- padding -->
+			</td></tr>
+			<!--header -->
+			<tr><td align="center" bgcolor="#ffffff">
+				<!-- pack(format)dding -->
+				<table width="90%" border="0" cellspacing="0" cellpadding="0">
+					<tr><td align="center">
+					    		<a href="#" target="_blank" style="color: #596167; font-family: Arial, Helvetica, sans-serif; float:left; width:100%; padding:20px;text-align:center; font-size: 13px;">
+											<font face="Arial, Helvetica, sans-seri; font-size: 13px;" size="3" color="#596167">
+											<img src="https://www.carenergies.com/images/sample_1/logo/logo.png" width="250" alt="CAR ENERGIES" border="0"  /></font></a>
+							</td>
+							<td align="right">
+						<!--[endif]--><!-- 
+
+					</td>
+					</tr>
+				</table>
+				<!-- padding -->
+			</td></tr>
+			<!--header END-->
+
+			<!--content 1 -->
+			<tr><td align="center" bgcolor="#fbfcfd">
+			    <font face="Arial, Helvetica, sans-serif" size="4" color="#57697e" style="font-size: 15px;">
+			    <form action="http://127.0.0.1:8000/api/submit/reply/'.base64_encode($trans_id).'" method="">
+			    	<input type="hidden" name="type" value="'.$type.'">
+				    <input type="hidden" name="country" value="'.$country.'">
+				    <input type="hidden" name="state" value="'.$state.'">
+				    <input type="hidden" name="city" value="'.$city.'">
+					<table width="90%" border="0" cellspacing="0" cellpadding="0">
+						<tr><td>
+							<table width="100%">
+								<tr>
+									<td>
+										<p>
+											Case: #'.$trans_id.'
+											<input type="hidden" name="case" value="'.$trans_id.'">
+										</p>
+									</td>
+									<td align="right">
+										<p>
+											Date: '.$date.'
+											<input type="hidden" name="date" value="'.$date.'">
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<p>
+											Hi <strong>'.$name.',</strong>
+											<input type="hidden" name="name" value="'.$name.'">
+											<input type="hidden" name="email" value="'.$email.'">
+										</p>
+										<p style="text-indent:30px;">
+											Attached is the evaluation report for the vehicle you submitted recently.
+											Please note that after your third free report, you will be charged $4.99 for each extra vehicle evaluation.
+											<br/><br/>We accept Paypal, Mc, and visa for your convenience.
+										<p/>
+									</td>
+								</tr>
+							</table>
+							<hr>
+						    <table width="100%">
+						    	<tr>
+						    		<td>
+						    			<p>
+						    				Maker: <strong>'.$maker.'</strong>
+						    				<input type="hidden" name="maker" value="'.$maker.'">
+						    			</p>
+						    		</td>
+						    		<td>
+						    			<p>
+						    				Model: <strong>'.$model.'</strong>
+						    				<input type="hidden" name="model" value="'.$model.'">
+						    			</p>
+						    		</td>
+						    		<td align="right">
+						    			<p>
+						    				Year: <strong>'.$year.'</strong>
+						    				<input type="hidden" name="year" value="'.$year.'">
+						    			</p>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td colspan="3">
+						    			<hr>
+						    			<p>Possible Problems: </p>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td></td>
+						    	</tr>
+							    <tr>
+							    	<td colspan="3">
+							    		<table width="100%" id="possible_problems">';							    			$count = 0;
+											$total_id = count($possible_problems_list)-1;
+											foreach ($possible_problems_list as $id => $val) {
+												if (isset($r['prob_list'][$val->problem])) {
+													$checked = 'checked';
+												} else {
+													$checked = '';
+												}
+												if ($count > 3) {
+													$count = 0;
+													$body .= '</tr>';
+												}
+												if ($count == 0) {
+													$body .= '<tr>';
+												}
+												if ($id == $total_id) {
+													$body .= '<td colspan="4"><input type="checkbox" value="'.$val->problem.'" '.$checked.'>'.$val->problem.'</td>';
+													$body .= '</tr>';
+												} else {
+													$body .= '<td><input type="checkbox" value="'.$val->problem.'" '.$checked.'>'.$val->problem.'</td>';
+												}
+												
+												$count++;
+											}
+
+							$body .= 	'</table>
+							    	</td>
+							    </tr>
+							</table>
+						</td></tr>
+					</table>
+				</form>
+				</font>
+			</td></tr>
+			<!--content 1 END-->
+
+
+			<!--footer -->
+			<tr><td class="iage_footer" align="center" bgcolor="#ffffff">
+
+				
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr><td align="center" style="padding:20px;flaot:left;width:100%; text-align:center;">
+						<font face="Arial, Helvetica, sans-serif" size="3" color="#96a5b5" style="font-size: 13px;">
+						<span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #96a5b5;">
+							&copy; Copyright 2019 | Design and Developed by Car Energies.
+						</span></font>				
+					</td></tr>			
+				</table>
+			</td></tr>
+			<!--footer END-->
+			<tr><td>
+
+			</td></tr>
+		</table>
+		<!--[if gte mso 10]>
+		</td></tr>
+		</table>
+		<![endif]-->
+		 
+		</td></tr>
+		</table>
+		';
+		//PHPMailer Object
+		$devemode = true;
+		$mail = new PHPMailer($devemode);
+
+		try {
+			// $mail->SMTPDebug = 2;
+			$mail->isSMTP();   
+			if ($devemode) {
+				$mail->SMTPOptions = [
+					'ssl'=>[
+						'verify_peer' => false,
+						'verify_peer_name' => false,
+						'allow_self_signed' => true	
+					]
+				];
+			}
+
+			$mail->Host = 'smtp.gmail.com';
+			$mail->SMTPAuth = true; 
+			$mail->Username = "carenergies@gmail.com";                 
+			$mail->Password = "svauheqtghlphiav"; 
+			$mail->SMTPSecure = "tls";  
+			$mail->Port = 587; 
+			$mail->setFrom('carenergies@gmail.com', 'CAR ENERGIES');
+			$mail->AddReplyTo('carenergies@gmail.com', 'CAR ENERGIES');
+			$mail->addAddress($email);
 
 			// foreach ($filestosend as $key => $value) {
 			// 	$mail->addAttachment($value);
@@ -256,12 +985,11 @@ class SendMailController extends Controller
 			//         unlink($file);
 			//     }
 			// }
-		 	echo "Message has been sent successfully";
+		 	return "Message has been sent successfully";
 
 		} catch (Exception $e) {
-			echo "Mailer Error: " . $mail->ErrorInfo;
+			return "Mailer Error: " . $mail->ErrorInfo;
 		}
- 
 	}
 
 }

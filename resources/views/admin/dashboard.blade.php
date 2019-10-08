@@ -8,7 +8,12 @@
     }
 
     </style>
-      <div class="content">
+    <div id="loading_dashboard">
+        <div class="container text-center">
+            <img src="{{ asset('images/sample_1/icons/loading.gif') }}" style="margin-top: 200px;">
+        </div>
+    </div>
+      <div class="content" style="visibility: hidden;">
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -486,19 +491,23 @@
 @endsection
 
 @section('scripts')
-  <script>
+<script>
     $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
+        setTimeout(function() {
+            $('#loading_dashboard').hide();
+            $('.content').css('visibility', 'visible');
+        },1000);
+        // Javascript method's body can be found in assets/js/demos.js
+        md.initDashboardPageCharts();
     });
-  </script>
+</script>
   <!-- Resources -->
-  <script src="https://www.amcharts.com/lib/4/core.js"></script>
-  <script src="https://www.amcharts.com/lib/4/maps.js"></script>
-  <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/maps.js"></script>
+<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
-  <script>
+<script>
 am4core.ready(function() {
 
 // Themes begin

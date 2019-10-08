@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="Carenergies - Free Car Evaluation">
     <meta name="author" content="Freddie">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('images/sample_1/logo/logo.png') }}">
 
     <!-- Fontawseom Icon CSS -->
     <link rel="stylesheet" href="{{ asset('css/sample_1/all.css') }}">
@@ -63,7 +64,9 @@
 .jumbo_text{
     color: black;
 }
-
+.nav-item .active{
+  color:red;
+}
 </style>
   <!-- NAVBAR
     ================================================= -->
@@ -82,7 +85,7 @@
         <!-- Links -->
         <div class="collapse navbar-collapse justify-content-end" id="nav-content">   
         <ul class="navbar-nav">
-            <li class="nav-item link-3">
+            <li class="nav-item link-3 active">
                 <a class="nav-link " href="{{ url('/') }}">Home</a>
             </li>
             <li class="nav-item  link-3">
@@ -94,7 +97,7 @@
               <li class="nav-item link-3">
                 <a class="nav-link " href="{{ url('about/') }}">About Us</a>
             </li>
-            <li class="nav-item  link-3">
+            <li class="nav-item link-3">
                 <a class="nav-link" href="{{ url('submit/') }}">Submit</a>
             </li>
         </ul>

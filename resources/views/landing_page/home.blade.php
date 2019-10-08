@@ -21,7 +21,7 @@
                                   <div class="">
                                     <p class="lead">
                                       <p class="text-left slider-p-black font-30" style="text-shadow: 2px 1px 0px rgba(255, 255, 255, 1);font-weight: bolder;">your best bet to stay away form buying another lemon</p>
-                                      <a class="btn btn-success btn-lg float-left" href="{{ url('Sample_1/submit/') }}" role="button">TRY IT NOW FOR FREE</a>
+                                      <a class="btn btn-success btn-lg float-left" href="{{ url('submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                     </p>
                                   </div>
                             </div>
@@ -37,7 +37,7 @@
                                                                     
                                             <p class="lead">
                                               <p class="text-right slider-p-black font-20">purchasing the right used car can be challenging, time consuming and sometimes quite a headache. And still there is no guarantee that you haven't picked up someone's headache</p>
-                                              <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/submit/') }}" role="button">TRY IT NOW FOR FREE</a>
+                                              <a class="btn btn-success btn-lg float-right" href="{{ url('submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                               <br>
                                             </p>  
                                     </div>
@@ -55,7 +55,7 @@
                                             <p class="lead">
                                               <p class="text-right slider-p-black txtbolder font-30 font-sm-view">A new best way to check used car mechanically from deep within</p>
                                               <h3 class="text-right" style="color:red;font-weight: bold; font-size: 50px"><span  >NO HIDDEN CHARGES</span></h3>
-                                              <a class="btn btn-success btn-lg float-right" href="{{ url('Sample_1/submit/') }}" role="button">TRY IT NOW FOR FREE</a>
+                                              <a class="btn btn-success btn-lg float-right" href="{{ url('submit/') }}" role="button">TRY IT NOW FOR FREE</a>
                                               <br>
                                             </p>  
                                     </div>
@@ -104,7 +104,7 @@
                         </ul>
 
                         
-                        <a href="#" class="btn"><img src="{{ asset('images/sample_1/trial.png') }}" alt="" height="50" width="300"></a>
+                        <a href="{{ url('submit/') }}" class="btn"><img src="{{ asset('images/sample_1/trial.png') }}" alt="" height="50" width="300"></a>
                     </div>
                 </div>
             </div>
@@ -306,10 +306,10 @@
                                 <h3 class="card-title">INVALUABLE HELP, SAVED A LOT</h3>
                                 <p class="card-text">Julia has helped me buy good dependable cars, as I was travelling the world. I saved probably over $3000 in two occasions.Thanks so much. </p>
                                  <div class="row">
-                                            <div class="col-md-4"><img src="{{ asset('images/sample_1/testimonies/1.jpg') }}" class="" alt="..." height="100" width="100" style="border-radius: 50%;"></div>
+                                            <div class="col-md-4"><img src="{{ asset('images/sample_1/testimonies/1.jpg') }}" class="" alt="..." height="100" width="100" style="border-radius: 50%; max-height: 75px;max-width: 75px;"></div>
                                             <div class="col-md-8">
-                                                <span><strong>Jacico Albano</strong></span><br>
-                                                <i>Senior Web Developer</i><br>
+                                                <span><strong>Ali H.</strong></span><br>
+                                                <i>Civil Engineer</i><br>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
@@ -324,12 +324,11 @@
                             <div class="card mb-2">
                               <div class="card-body" style="min-height:320px">
                                 <h3 class="card-title">DONE IN 3 HOURS</h3>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                  card's content.</p>
-                                 <div class="row">
+                                <p class="card-text">It is very convinient service , had my car evaluated by Julia and get report in less than 3 hours saved me time and money.</p>
+                                 <div class="row" style="margin-top:75px;">
                                             <div class="col-md-4"><img src="{{ asset('images/sample_1/testimonies/2.jpg') }}" class="" alt="..." height="100" width="100" style="border-radius: 50%;"></div>
                                             <div class="col-md-8">
-                                                <span><strong>Rita Avila</strong></span><br>
+                                                <span><strong>Rita Ho</strong></span><br>
                                                 <i>Car Dealer Specialist</i><br>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
@@ -345,20 +344,19 @@
                             <div class="card mb-2">
                               <div class="card-body" style="min-height:320px">
                                  <h3 class="card-title">FIND IT PROFESSIONAL</h3>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                  card's content.</p>
-                                 <div class="row">
+                                <p class="card-text">I bought my first car with Julia's help, she's so professional in her service.</p>
+                                 <div class="row" style="margin-top:100px;">
                                             <div class="col-md-4"><img src="{{ asset('images/sample_1/testimonies/3.jpg') }}" class="" alt="..." height="100" width="100" style="border-radius: 50%;"></div>
                                             <div class="col-md-8">
-                                                <span><strong>Linda Kuratsa</strong></span><br>
-                                                <i>Palamon Sa Bahay</i><br>
+                                                <span><strong>Lyn Losello</strong></span><br>
+                                                <i>Freelancer</i><br>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                             </div>
-                                        </div>
+                                  </div>
                               </div>
                             </div>
                         </div>
@@ -367,7 +365,7 @@
             </div>
 
     <!--/.Second slide-->
-    <div class="carousel-item">
+<!--     <div class="carousel-item">
                 <div class="container">
                      <div class="row">
                         <div class="col-md-4">
@@ -435,7 +433,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
            
           </div>
 
@@ -452,17 +450,14 @@
 
     </section>
 
-    <section class="section pb-30 pt-50" >
-            <!-- <div class="box"> -->
+    <!-- <section class="section pb-30 pt-50" > -->
+<!-- 
             <div class="container">
                 <div class="row">
                      
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mybox">
                        
                             <div class="box-part text-center">
-                                
-                                <!-- <i class="fas fa-instagram fa-3x" aria-hidden="true"></i> -->
-                                <!-- <i class="fab fa-facebook-f fa-3x"></i> -->
                                 <img src="{{ asset('images/sample_1/socmed/insta.png') }}" width="100" height="100">
                                 <div class="title">
                                     <h4 style="font-size:30px ">Instagram</h4>
@@ -480,8 +475,7 @@
                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 shadowbox ">
                        
                             <div class="box-part text-center">
-                                
-                                <!-- <i class="fas fa-twitter fa-3x" aria-hidden="true"></i> -->
+
                                  <img src="{{ asset('images/sample_1/socmed/twiter.png') }}" width="100" height="100">
                                 <div class="title">
                                     <h4 style="font-size:30px ">Twitter</h4>
@@ -500,7 +494,6 @@
                        
                             <div class="box-part text-center">
                                 
-                               <!-- <i class="fab fa-facebook-f fa-3x"></i> -->
                                <img src="{{ asset('images/sample_1/socmed/facebook.png') }}" width="100" height="100">
                                 
                                 <div class="title">
@@ -516,9 +509,9 @@
                              </div>
                         </div>   
                 </div>      
-    </div>
-<!-- </div> -->
-    </section>
+    </div> -->
+
+    <!-- </section> -->
     <!-- Contact
     ================================================== -->
     <section class="section bg-light" id="contact">
@@ -541,16 +534,26 @@
 
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <form action="mail.php" method="post" id="main_contact_form" class="contact__form">
+                    <form id="main_contact_form" class="contact__form">
+                        {!! csrf_field() !!}
                         <!-- form message -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                        Your message was sent successfully.
-                                    </div>
+                        <input type="hidden" name="type" value="feedback">
+                        <div class="row">
+                            <div class="col-12">
+                                {{-- <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                    Your message was sent successfully.
+                                </div> --}}
+                                <div class="alert alert-success" id="success-msg-div" style="display: none">
+                                    <button type="button" class="close" data-dismiss="alert">×</button> 
+                                    <span id="success-msg"></span>
+                                </div>
+                                <div class="alert alert-danger" id="error-msg-div" style="display: none">
+                                    <button type="button" class="close" data-dismiss="alert">×</button> 
+                                    <span id="error-msg"></span>
                                 </div>
                             </div>
-                            <!-- end message -->
+                        </div>
+                        <!-- end message -->
                             
                         <div class="row">
                             <div class="col-lg-6">
@@ -572,13 +575,13 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <textarea name="message" id="message" cols="30" rows="6" class="form-control" placeholder="Enter your Message" required="required" ></textarea>
+                                    <textarea name="message" id="message" cols="30" rows="6" class="form-control" placeholder="Enter your Message *" required="required" ></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-12">
                                 <div class="submit text-center">
-                                    <input name="submit" type="submit" class="btn btn-success btn-lg" value="Send Now">
+                                    <button id="submit_feedback" type="button" class="btn btn-success btn-lg">Send Now</button>
                                     <p class="pt-3">* We respect your privacy. We will not share your information with anybody and we will not spam your inbox.</p>
                                 </div>
                             </div>
@@ -590,3 +593,39 @@
     </section>
 
 @include('landing_page.footer')
+
+<script>
+    $('#submit_feedback').on('click', function(e) {
+        e.preventDefault();
+        var formData = $('#main_contact_form').serialize();
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('sendemail/') }}", 
+            data: formData,
+            success: function (response) {
+                var message = response.split('|');
+                if (message[0] == 0) {
+                    $('#success-msg-div').hide();
+                    $('#error-msg-div').show(); 
+                    $('#error-msg').html(message[1]); 
+                } else {
+                    $('#name').val('');
+                    $('#email').val('');
+                    $('#subject').val('');
+                    $('#message').val('');
+
+                    $('#error-msg-div').hide(); 
+                    $('#success-msg-div').show();
+                    $('#success-msg').html(message[1]);
+                }
+                
+            },
+            error: function (err) {
+                $('#success-msg-div').hide();
+                $('#error-msg-div').show(); 
+                $('#error-msg').html(err); 
+                // $('#msg').html('There is something wrong, Please email admin@teamdriveway.com'); // display error response from the PHP script
+            }
+        });
+    })
+</script>

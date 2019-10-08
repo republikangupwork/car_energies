@@ -12,7 +12,7 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="{{ asset('admin/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sample_1/all.css') }}">
 
     <!-- CSS Files -->
@@ -23,7 +23,8 @@
 
 <body class="">
     <div class="wrapper ">
-        <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ asset('admin/assets/img/sidebar-1.jpg') }}">
+        {{-- <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ asset('admin/assets/img/sidebar-1.jpg') }}"> --}}
+        <div class="sidebar" data-color="purple">
         <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
         Tip 2: you can also add an image using data-image tag
@@ -47,10 +48,10 @@
                             <p>User Profile</p>
                         </a>
                     </li>
-                    <li class="nav-item {{ Request::is('admin-page/inbox') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin-page/inbox') }}">
+                    <li class="nav-item {{ Request::is('admin-page/mailbox') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('admin-page/mailbox') }}">
                             <i class="material-icons">mail</i>
-                            <p>Inbox</p>
+                            <p>Mailbox</p>
                         </a>
                     </li>
                 </ul>
@@ -68,8 +69,8 @@
                             @if(Request::is('admin-page/profile'))
                                 Profile
                             @endif
-                            @if(Request::is('admin-page/inbox'))
-                                Inbox
+                            @if(Request::is('admin-page/mailbox/*'))
+                                Mailbox
                             @endif
                         </a>
                     </div>

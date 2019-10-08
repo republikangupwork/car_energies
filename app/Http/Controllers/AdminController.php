@@ -53,8 +53,8 @@ class AdminController extends Controller
     	return view('admin.profile');
     }
 
-    public function inbox()
+    public function mailbox()
     {
-        return view('admin.inbox');
+        return view('admin.mailbox');
     }
 }
