@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="Carenergies - Free Car Evaluation">
     <meta name="author" content="Freddie">
+    <meta name="google-site-verification" content="q4x89ieg5o9beGhMC68MjDVKEQ-uAGHIRV47uXYXLO0" />
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/sample_1/logo/logo.png') }}">
 
     <!-- Fontawseom Icon CSS -->
