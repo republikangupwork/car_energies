@@ -33,11 +33,11 @@
 </style>
 
 
-<section class="section" id="submit_div_form">
+<div class="mt-5" id="submit_div_form">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 text-center mb-3">
-                <h2 data-aos="fade-right" class="lg-title mb-2 section-title">
+            <div class="col-md-12 text-center">
+                <h2 data-aos="fade-right" class="lg-title section-title">
                     <span style="font-weight: bold;"  class="color-green">Submit</span> 
                     <span class="color-white bg-green px-3">Now!</span>
                 </h2>
@@ -45,9 +45,9 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<section class="section" id="submit_section">
+<section class="py-5" id="submit_section">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -64,33 +64,33 @@
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label class="float-left">Name: (<b class="required_fields">*</b>)</label>
+                                    <label class="float-left color-black txtbolder">Name: (<b class="required_fields">*</b>)</label>
                                     <input type="text" name="name" id="name" class="form-control" placeholder="ex: Julia B.">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="float-left">Email: (<b class="required_fields">*</b>)</label>
-                                    <input type="text" name="email" id="email" class="form-control" placeholder="ex: car_energies@gmail.com">
+                                    <label class="float-left color-black txtbolder">Email: (<b class="required_fields">*</b>)</label>
+                                    <input type="text" name="email" id="email" class="form-control" placeholder="ex: car_energies@gmail.com" required="required">
                                 </div>
                             </div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="float-left">Country: (<b class="required_fields">*</b>)</label>
+                                    <label class="float-left color-black txtbolder">Country: (<b class="required_fields">*</b>)</label>
                                     <input type="text" name="country" id="country" class="form-control" placeholder="ex: Philipines">
                                 </div>
                             </div>
                              <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="float-left">State:</label>
+                                    <label class="float-left color-black txtbolder">State:</label>
                                     <input type="text" name="state" id="state" class="form-control" placeholder="ex: Manila">
                                 </div>
                             </div>
                               <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="float-left">City: (<b class="required_fields">*</b>)</label>
+                                    <label class="float-left color-black txtbolder">City: (<b class="required_fields">*</b>)</label>
                                     <input type="text" name="city" id="city" class="form-control" placeholder="ex: Quezon City">
                                 </div>
                             </div>
@@ -98,19 +98,19 @@
                         <div class="row justify-content-center">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="float-left">Maker: (<b class="required_fields">*</b>)</label>
+                                    <label class="float-left color-black txtbolder">Maker: (<b class="required_fields">*</b>)</label>
                                     <input type="text" name="maker" id="maker" class="form-control" placeholder="ex: Toyota">
                                 </div>
                             </div>
                              <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="float-left">Model: (<b class="required_fields">*</b>)</label>
+                                    <label class="float-left color-black txtbolder">Model: (<b class="required_fields">*</b>)</label>
                                     <input type="text" name="model" id="model" class="form-control" placeholder="ex: Vios">
                                 </div>
                             </div>
                               <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="float-left">Year: (<b class="required_fields">*</b>)</label>
+                                    <label class="float-left color-black txtbolder">Year: (<b class="required_fields">*</b>)</label>
                                     <input type="text" name="year" id="year" class="form-control" placeholder="ex: 2019">
                                 </div>
                             </div>

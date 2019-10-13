@@ -28,7 +28,10 @@
   background-color: #fefde5 !important;
 }
 .__PrivateStripeElement{
-  width: 800px !important;
+  width: 100% !important;
+}
+#card-element{
+  height:50px;
 }
 </style>
     <div class="container">
@@ -82,7 +85,7 @@
         </div>
 
         <div class="col-md-8 order-md-1">
-          <form action="{{ url('/checkout') }}" method="post" id="payment-form">
+          <form class="needs-validation" novalidate action="{{ url('/checkout') }}" method="post" id="payment-form">
             {{ csrf_field() }}
 
         
@@ -116,7 +119,7 @@
                   </div>
                 </div>            
             <div class="row">
-              <div class="col-md-6 mb-3">
+              <div class="col-md-5 mb-3">
                 <label for="cc-name">Name on card</label>
                 <input type="text" class="form-control" id="cc-name" name="cc_name" placeholder="" required>
                 <small class="text-muted">Full name as displayed on card</small>
@@ -124,20 +127,27 @@
                   Name on card is required
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
+              <div class="col-md-7">
+                    <label for="card-element">
+                      Credit or debit card
+                    </label>
+                     <div id="card-element" class="form-control"></div>
+                <div id="card-errors" role="alert"></div>
+              </div>
+             <!--  <div class="col-md-6 mb-3">
                 <label for="cc-number">Credit card number</label>
                 <input type="text" class="form-control" id="cc-number" name="cc-number" placeholder="" required>
                 <div class="invalid-feedback">
                   Credit card number is required
                 </div>
-              </div>
+              </div> -->
             </div>
-            <div class="row">
+         <!--    <div class="row">
+              <div class="col-md-8">
    
-
-
-             
-              <div class="col-md-3 mb-3">
+   
+              </div> -->
+            <!--   <div class="col-md-3 mb-3">
                 <label for="cc-expiration">Expiration Date</label>
                 <select class="custom-select d-block w-100" id="year" name="year" required style="height: 50px;">
                   <option value="">Year</option>
@@ -151,7 +161,7 @@
                 <label for="cc-expiration"></label>
                 <select class="custom-select d-block w-100" id="month" name="month" required style="height: 50px;margin-top: 8px">
                   <option value="">Month</option>
-                  <option>12</option>
+                  <option>01</option>
                 </select>
                 <div class="invalid-feedback">
                   Expiration date required
@@ -163,80 +173,95 @@
                 <div class="invalid-feedback">
                   Security code required
                 </div>
-              </div>
-               </div>
-               <hr class="mb-4">
+              </div> -->
+            <!-- </div> -->
+            <hr class="mb-4">
             <button class="btn btn-success btn-lg btn-block" type="submit">Continue to checkout</button>
-            </div>
-            
           </form>
         </div>
       </div>
     </div>
-
-   
 
 </section>
 
 @include('landing_page.footer')
       <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
-//         var stripe = Stripe('pk_test_wrvJOlwyyqQew5S1wlk8n3c90083TVuaIs');
-//         var elements = stripe.elements();
+        var stripe = Stripe('pk_test_wrvJOlwyyqQew5S1wlk8n3c90083TVuaIs');
+        var elements = stripe.elements();
 
-//         // Custom styling can be passed to options when creating an Element.
-// var style = {
-//   base: {
-//     // Add your base input styles here. For example:
-//     fontSize: '16px',
-//     color: "#32325d",
-//   }
-// };
+        // Custom styling can be passed to options when creating an Element.
+var style = {
+  base: {
+    // Add your base input styles here. For example:
+    fontSize: '16px',
+    color: "#32325d",
+  }
+};
 
-// // Create an instance of the card Element.
-// var card = elements.create('card', {style: style});
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
 
-// // Add an instance of the card Element into the `card-element` <div>.
-// card.mount('#card-element');
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
 
-// card.addEventListener('change', function(event) {
-//   var displayError = document.getElementById('card-errors');
-//   if (event.error) {
-//     displayError.textContent = event.error.message;
-//   } else {
-//     displayError.textContent = '';
-//   }
-// });
+card.addEventListener('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
 
-// var form = document.getElementById('payment-form');
-// form.addEventListener('submit', function(event) {
-//   event.preventDefault();
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
 
-//   stripe.createToken(card).then(function(result) {
-//     if (result.error) {
-//       // Inform the customer that there was an error.
-//       var errorElement = document.getElementById('card-errors');
-//       errorElement.textContent = result.error.message;
-//     } else {
-//       // Send the token to your server.
-//       stripeTokenHandler(result.token);
-//     }
-//   });
-// });
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the customer that there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
+  });
+});
 
-// function stripeTokenHandler(token) {
-//   console.log(token);
-//   // Insert the token ID into the form so it gets submitted to the server
-//   var form = document.getElementById('payment-form');
-//   var hiddenInput = document.createElement('input');
-//   hiddenInput.setAttribute('type', 'hidden');
-//   hiddenInput.setAttribute('name', 'stripeToken');
-//   hiddenInput.setAttribute('value', token.id);
-//   form.appendChild(hiddenInput);
+function stripeTokenHandler(token) {
+  // Insert the token ID into the form so it gets submitted to the server
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
 
-//   // Submit the form
-//   form.submit();
-// }
+  // Submit the form
+  form.submit();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       (function() {
