@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use DB;
+use Validator;
 
 class SendMailController extends Controller
 {
@@ -50,6 +51,22 @@ class SendMailController extends Controller
 
 		} else {
 
+		 	$validator = Validator::make($request->all(), [ 
+	            'images.*' 	=> 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+				'images' 	=> 'required',
+				'year' 		=> 'required',
+				'model' 	=> 'required',
+				'maker' 	=> 'required',
+				'city' 		=> 'required',
+				'country' 	=> 'required',
+				'email' 	=> 'required|regex:/^.+@.+$/i',
+				'name' 		=> 'required'
+	        ]);
+
+        	if ($validator->fails()) {
+				return response()->json(['errors' => $validator->errors()->all()]);
+			}
+
 			$param = array();
 			$param['name']   			= $r['name'];
 		 	$param['email']  			= $r['email'];
@@ -62,50 +79,6 @@ class SendMailController extends Controller
 		 	$param['type']   			= $r['type'];
 		 	$param['transaction_id'] 	= mt_rand(1000000000, 9999999999);
 
-		 	if ($param['name'] == '') {
-		 		return '0|Please Fill-up the Name Field';
-		 	}
-			if ($param['email'] != '') {
-		 		if (!filter_var($param['email'], FILTER_VALIDATE_EMAIL)) {
-		 			return '0|Invalid Email Address.';
-		 		}
-		 	} else {
-		 		return '0|Please Fill-up your Email';
-		 	}
-		 	if ($param['country'] == '') {
-		 		return '0|Please Fill-up the Country Field';
-		 	}
-		 	if ($param['city'] == '') {
-		 		return '0|Please Fill-up the City Field';
-		 	}
-		 	if ($param['maker'] == '') {
-		 		return '0|Please Fill-up the Maker Field';
-		 	}
-		 	if ($param['model'] == '') {
-		 		return '0|Please Fill-up the Model Field';
-		 	}
-		 	if ($param['year'] == '') {
-		 		return '0|Please Fill-up the Year Field';
-		 	}
-		 	if ($_FILES['front_of_car_with_hood_up']['name'] == '') {
-		 		return '0|Please upload a Image for Front of car with Hood up';
-		 	}
-		 	if ($_FILES['rear_with_open_compartment']['name'] == '') {
-		 		return '0|Please upload a Image for Rear with open compartment';
-		 	}
-		 	if ($_FILES['left_side_open_doors']['name'] == '') {
-		 		return '0|Please upload a Image for Left side open doors';
-		 	}
-		 	if ($_FILES['left_side_view']['name'] == '') {
-		 		return '0|Please upload a Image for Left Side View';
-		 	}
-		 	if ($_FILES['right_side_view']['name'] == '') {
-		 		return '0|Please upload a Image for Right Side View';
-		 	}
-		 	if ($_FILES['front_view']['name'] == '') {
-		 		return '0|Please upload a Image for Front View';
-		 	}
-
 		 	try {
 
 		 		$check_if_free = $this->check_customer($param['email']);
@@ -115,18 +88,29 @@ class SendMailController extends Controller
 			 			return 'not free';
 			 		} else {
 			 			$new_tries = $check_if_free[0]->tries + 1;
-		 			 	$update_customer = DB::update('UPDATE customers SET tries = ? WHERE email = ?', [$new_tries, $param['email']]);
+		 			 	// $update_customer = DB::update('UPDATE customers SET tries = ? WHERE email = ?', [$new_tries, $param['email']]);
 			 		}
 		 		} else {
-		 			$add_customer = DB::table('customers')->insert([
-					    ['name' => $param['name'], 'email' => $param['email'], 'country' => $param['country'], 'state' => $param['state'], 'city' => $param['city'], 'tries' => 1],
-					]);
+		 			// $add_customer = DB::table('customers')->insert([
+					//     ['name' => $param['name'], 'email' => $param['email'], 'country' => $param['country'], 'state' => $param['state'], 'city' => $param['city'], 'tries' => 1],
+					// ]);
 		 		}
 
 		 		$customer_detail = $this->check_customer($param['email']);
-		 		$add_form_submit = DB::insert('INSERT INTO form_submit (customer_id,transaction_id,maker,model,year) VALUES(?,?,?,?,?)', [$customer_detail[0]->id,$param['transaction_id'],$param['maker'],$param['model'],$param['year']]);
+		 		// $add_form_submit = DB::insert('INSERT INTO form_submit (customer_id,transaction_id,maker,model,year) VALUES(?,?,?,?,?)', [$customer_detail[0]->id,$param['transaction_id'],$param['maker'],$param['model'],$param['year']]);
 
-				$send_mail = $this->generate_form_submit_mail($param,$_FILES);
+		 		
+		 		
+	 		 	if ($request->hasfile('images')) {
+		            foreach ($request->file('images') as $image) {
+		                $name = explode('.', $image->getClientOriginalName());
+		                $image->move(public_path().'/uploads/customers_submit/'.$param['email'], $name[0].'_'.$param['transaction_id'].'.'.$name[1]);  
+		                $data[] = $name;  
+		            }
+		        }
+		 		print_r($data); die();
+
+				$send_mail = $this->generate_form_submit_mail($param);
 				
 				if ($send_mail == 'Message has been sent successfully') {
 					return '1|Form successfully sent!';

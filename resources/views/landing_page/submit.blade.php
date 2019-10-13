@@ -71,7 +71,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="float-left">Email: (<b class="required_fields">*</b>)</label>
-                                    <input type="text" name="email" id="email" class="form-control" placeholder="ex: car_energies@gmail.com" required="required">
+                                    <input type="text" name="email" id="email" class="form-control" placeholder="ex: car_energies@gmail.com">
                                 </div>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="fronthoodup" type="file" name="front_of_car_with_hood_up" class="custom-file-input" onchange="readURL(this,imgid1,labelimg1);">
+                                            <input id="fronthoodup" type="file" name="images[]" class="custom-file-input" onchange="readURL(this,imgid1,labelimg1);">
                                             <label for="customFile" id="labelimg1" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -150,7 +150,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="backhoodup" type="file" name="rear_with_open_compartment" class="custom-file-input" onchange="readURL(this,imgid2,labelimg2);">
+                                            <input id="backhoodup" type="file" name="images[]" class="custom-file-input" onchange="readURL(this,imgid2,labelimg2);">
                                             <label for="customFile" id="labelimg2" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -168,7 +168,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="driverseat" type="file" name="left_side_open_doors" class="custom-file-input" onchange="readURL(this,imgid3,labelimg3);">
+                                            <input id="driverseat" type="file" name="images[]" class="custom-file-input" onchange="readURL(this,imgid3,labelimg3);">
                                             <label for="customFile" id="labelimg3" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -188,7 +188,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="left" type="file" name="left_side_view" class="custom-file-input" onchange="readURL(this,imgid4,labelimg4);">
+                                            <input id="left" type="file" name="images[]" class="custom-file-input" onchange="readURL(this,imgid4,labelimg4);">
                                             <label for="customFile" id="labelimg4" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -206,7 +206,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="right" type="file" name="right_side_view" class="custom-file-input" onchange="readURL(this,imgid5,labelimg5);">
+                                            <input id="right" type="file" name="images[]" class="custom-file-input" onchange="readURL(this,imgid5,labelimg5);">
                                             <label for="customFile" id="labelimg5" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -224,7 +224,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="custom-file overflow-hidden">
-                                            <input id="front" type="file" name="front_view" class="custom-file-input" onchange="readURL(this,imgid6,labelimg6);">
+                                            <input id="front" type="file" name="images[]" class="custom-file-input" onchange="readURL(this,imgid6,labelimg6);">
                                             <label for="customFile" id="labelimg6" class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -456,7 +456,6 @@
                     $('#submit_payment_form_modal').modal('show');
                 } else {
                     var message = response.split('|');
-                    console.log(message)
                     if (message[0] == 0) {
                         $('#error-msg-div').show(); 
                         $('#error-msg').html(message[1]); 
@@ -467,22 +466,50 @@
                         $('#error-msg-div').hide(); 
                         $('#submit_form_modal').modal('show');
                         setTimeout(function() {
-                            $('#name').val('');
-                            $('#email').val('');
-                            $('#country').val('');
-                            $('#state').val('');
-                            $('#city').val('');
-                            $('#maker').val('');
-                            $('#model').val('');
-                            $('#year').val('');
+                            // $('#name').val('');
+                            // $('#email').val('');
+                            // $('#country').val('');
+                            // $('#state').val('');
+                            // $('#city').val('');
+                            // $('#maker').val('');
+                            // $('#model').val('');
+                            // $('#year').val('');
                             $('#submit_form_modal').modal('hide');
                         }, 4000);
                     }
                 }
             },
-            error: function (err) {
-                $('#error-msg-div').show(); 
-                $('#error-msg').html(err);
+            error: function (data) {
+                if ( data.status === 422 ) {
+                    var errors = $.parseJSON(data.responseText);
+                    $.each(errors, function (key, value) {
+                        // console.log(key+ " " +value);
+                        // $('#response').addClass("alert alert-danger");
+
+                        if ($.isPlainObject(value)) {
+                            $.each(value, function (key, value) {                       
+                                console.log(key+ " " +value);
+                                $('#error-msg-div').show(); 
+                                $('#error-msg').html(value+"<br/>");
+                                // $('#response').show().append(value+"<br/>");
+                            });
+                        } else {
+                            $('#error-msg-div').show(); 
+                            $('#error-msg').html(value+"<br/>");
+                            // $('#response').show().append(value+"<br/>"); //this is my div with messages
+                        }
+                    });
+                    $('html, body').animate({
+                        scrollTop: $("#submit_div_form").offset().top
+                    }, 1000);
+                } else {
+                    $('#error-msg-div').show(); 
+                    $('#error-msg').html(data);
+                    $('html, body').animate({
+                        scrollTop: $("#submit_div_form").offset().top
+                    }, 1000);
+                }
+
             }
         });
     })
