@@ -34,7 +34,10 @@ Route::group(['prefix' => 'admin-page', 'middleware' => 'admin'], function() {
 		Route::get('/', function() {
 			return redirect('admin-page/mailbox/inbox');
 		});
-		Route::get('/inbox', ['as'=>'admin.inbox', 'uses'=>'AdminController@mailbox']);
+		Route::get('/inbox', ['as'=>'admin.mailbox.inbox', 'uses'=>'AdminController@inbox']);
+		Route::get('/sent', ['as'=>'admin.mailbox.sent', 'uses'=>'AdminController@sent']);
+		Route::get('/trash', ['as'=>'admin.mailbox.trash', 'uses'=>'AdminController@trash']);
+		Route::post('/move_to_trash', ['as'=>'admin.mailbox.move_to_trash', 'uses'=>'AdminController@moveToTrash']);
 	});
 });
 

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 use Session;
-
+use App\FormSubmit;
+use App\Feedback;
 
 class AdminController extends Controller
 {
@@ -53,8 +54,90 @@ class AdminController extends Controller
     	return view('admin.profile');
     }
 
-    public function mailbox()
+    public function inbox()
+    {   
+        $formsubmits = FormSubmit::with('customer')->where('archived','0')->get();
+        $feedbacks = Feedback::where('archived','0')->get();
+
+        $fs_new_data = array();
+        foreach ($formsubmits as $key => $formsubmit) {
+            $fs_new_data[] = array(
+                'id'        => $formsubmit->id,
+                'name'      => $formsubmit->customer->name,
+                'email'     => $formsubmit->customer->email,
+                'maker'     => $formsubmit->maker,
+                'model'     => $formsubmit->model,
+                'year'      => $formsubmit->year,
+                'read'      => $formsubmit->read,
+                'images'    => json_decode($formsubmit->images),
+                'created'   => $formsubmit->created_at
+            );
+        }
+
+        $fb_new_data = array();
+        foreach ($feedbacks as $key => $feedback) {
+            $fb_new_data[] = array(
+                'id'        => $feedback->id,
+                'name'      => $feedback->name,
+                'email'     => $feedback->email,
+                'subject'   => $feedback->subject,
+                'message'   => $feedback->message,
+                'read'      => $feedback->read,
+                'created'   => $feedback->created_at
+            );
+        }
+        $data =  array_merge($fs_new_data,$fb_new_data);
+        sort($data);
+
+        return view('admin.mailbox.inbox', compact('data'));
+    }
+
+    public function sent()
+    {   
+        $data = array();
+        return view('admin.mailbox.sent', compact('data'));
+    }
+
+    public function trash()
+    {   
+        $formsubmits = FormSubmit::with('customer')->where('archived',1)->get();
+        $feedbacks = Feedback::where('archived',1)->get();
+
+        $fs_new_data = array();
+        foreach ($formsubmits as $key => $formsubmit) {
+            $fs_new_data[] = array(
+                'id'        => $formsubmit->id,
+                'name'      => $formsubmit->customer->name,
+                'email'     => $formsubmit->customer->email,
+                'maker'     => $formsubmit->maker,
+                'model'     => $formsubmit->model,
+                'year'      => $formsubmit->year,
+                'images'    => json_decode($formsubmit->images),
+                'read'      => $formsubmit->read,
+                'created'   => $formsubmit->created_at
+            );
+        }
+
+        $fb_new_data = array();
+        foreach ($feedbacks as $key => $feedback) {
+            $fb_new_data[] = array(
+                'id'        => $feedback->id,
+                'name'      => $feedback->name,
+                'email'     => $feedback->email,
+                'subject'   => $feedback->subject,
+                'message'   => $feedback->message,
+                'read'      => $feedback->read,
+                'created'   => $feedback->created_at
+            );
+        }
+        $data =  array_merge($fs_new_data,$fb_new_data);
+        sort($data);
+
+        return view('admin.mailbox.archived', compact('data'));
+    }
+
+    public function moveToTrash(Request $request)
     {
-        return view('admin.mailbox');
+        return $request;
     }
 }

@@ -8,6 +8,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use DB;
 use Validator;
+use App\FormSubmit;
 
 class SendMailController extends Controller
 {
@@ -42,7 +43,7 @@ class SendMailController extends Controller
 		 	}
 
 		 	try {
-		 		$insert_feedback = DB::insert('INSERT INTO feedback (name,email,subject,message) VALUES(?,?,?,?)', [$param['name'],$param['email'],$param['subject'],$param['message']]);
+		 		$insert_feedback = DB::insert('INSERT INTO feedback (name,email,subject,message,`read`,archived) VALUES(?,?,?,?,?,?)', [$param['name'],$param['email'],$param['subject'],$param['message'],0,0]);
 				$this->generate_feedback_mail($r);
 				return '1|Message successfully sent!';
 		 	} catch (Exeption $e) {
@@ -53,18 +54,18 @@ class SendMailController extends Controller
 
 		 	$validator = Validator::make($request->all(), [ 
 	            'images.*' 	=> 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-				'images' 	=> 'required',
-				'year' 		=> 'required',
-				'model' 	=> 'required',
-				'maker' 	=> 'required',
+				'images.*' 	=> 'required',
+				'name' 		=> 'required',
+				'email' 	=> 'required|regex:/^.+@.+$/i',
 				'city' 		=> 'required',
 				'country' 	=> 'required',
-				'email' 	=> 'required|regex:/^.+@.+$/i',
-				'name' 		=> 'required'
-	        ]);
+				'maker' 	=> 'required',
+				'model' 	=> 'required',
+				'year' 		=> 'required',
+			]);
 
         	if ($validator->fails()) {
-				return response()->json(['errors' => $validator->errors()->all()]);
+				return response()->json($validator->messages(),422);
 			}
 
 			$param = array();
@@ -88,36 +89,33 @@ class SendMailController extends Controller
 			 			return 'not free';
 			 		} else {
 			 			$new_tries = $check_if_free[0]->tries + 1;
-		 			 	// $update_customer = DB::update('UPDATE customers SET tries = ? WHERE email = ?', [$new_tries, $param['email']]);
+		 			 	$update_customer = DB::update('UPDATE customers SET tries = ? WHERE email = ?', [$new_tries, $param['email']]);
 			 		}
 		 		} else {
-		 			// $add_customer = DB::table('customers')->insert([
-					//     ['name' => $param['name'], 'email' => $param['email'], 'country' => $param['country'], 'state' => $param['state'], 'city' => $param['city'], 'tries' => 1],
-					// ]);
+		 			$add_customer = DB::table('customers')->insert([
+					    ['name' => $param['name'], 'email' => $param['email'], 'country' => $param['country'], 'state' => $param['state'], 'city' => $param['city'], 'tries' => 1],
+					]);
 		 		}
 
 		 		$customer_detail = $this->check_customer($param['email']);
-		 		// $add_form_submit = DB::insert('INSERT INTO form_submit (customer_id,transaction_id,maker,model,year) VALUES(?,?,?,?,?)', [$customer_detail[0]->id,$param['transaction_id'],$param['maker'],$param['model'],$param['year']]);
-
-		 		
-		 		
+		 		$data = array();
 	 		 	if ($request->hasfile('images')) {
 		            foreach ($request->file('images') as $image) {
 		                $name = explode('.', $image->getClientOriginalName());
 		                $image->move(public_path().'/uploads/customers_submit/'.$param['email'], $name[0].'_'.$param['transaction_id'].'.'.$name[1]);  
-		                $data[] = $name;  
+		                $data[] = $name[0].'_'.$param['transaction_id'].'.'.$name[1];  
 		            }
 		        }
-		 		print_r($data); die();
+		 		$add_form_submit = DB::insert('INSERT INTO form_submit (customer_id,transaction_id,maker,model,year,images,`read`,archived) VALUES(?,?,?,?,?,?,?,?)', [$customer_detail[0]->id,$param['transaction_id'],$param['maker'],$param['model'],$param['year'],json_encode($data),0,0]);
 
+		 		
 				$send_mail = $this->generate_form_submit_mail($param);
-				
+
 				if ($send_mail == 'Message has been sent successfully') {
 					return '1|Form successfully sent!';
 				} else {
 					return '0|Smtp Error! Please contact admin for this issue.';
 				}
-				
 
 		 	} catch (Exeption $e) {
 		 		return '0|'.$e;
@@ -296,7 +294,7 @@ class SendMailController extends Controller
 			$mail->setFrom('carenergies@gmail.com', 'CAR ENERGIES');
 			$mail->AddReplyTo($email, $name);
 			$mail->addAddress("carenergies@gmail.com");
-			$mail->addAddress("iamjulius2607@gmail.com");
+			$mail->addAddress("republikangupwork@gmail.com");
 
 			$mail->isHTML(true);
 
@@ -314,7 +312,7 @@ class SendMailController extends Controller
  
 	}
 
-	public function generate_form_submit_mail($r,$files)
+	public function generate_form_submit_mail($r)
 	{
 	    $name   	= $r['name'];
 	 	$email  	= $r['email'];
@@ -328,38 +326,14 @@ class SendMailController extends Controller
 	 	$type 		= $r['type'];
 	 	$date 		= date('Y/m/d');
 
-
-		// $id = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
-	 //    $filestosend =  array();
-	 //    $allowed_ext = array('jpg','jpeg','png');
-	 //    $destination = '/uploads/customers_submit/';
-
-		// foreach ($files as $key => $value) {
-		// 	if(isset($files[$key])){
-
-		// 		$filename = $key.'_name';
-		// 		// $tmp_filename = $key.'_tmp_name';
-
-		// 		$filename = $files[$key]['name'];
-		// 		$file_ext = explode(".", $filename);
-		// 		$tmp_filename = $files[$key]['tmp_name'];
-				
-		// 		if (isset($filename)) {
-		// 			if (!empty($filename)) {
-		// 				if (in_array($file_ext[1], $allowed_ext)) {
-		// 					$filestosend[] = $destination.$id.$filename;
-
-		// 					if (move_uploaded_file($tmp_filename, $destination.$id.$filename)) {
-					
-		// 					}
-		// 				} else {
-		// 					echo 'File Extension Invalid';
-		// 				}
-						
-		// 			}
-		// 		}
-		// 	}
-		// }
+	 	$data = $this->get_image_upload($trans_id);
+	 	$img_arr = array();
+	 	foreach ($data as $value) {
+	 		foreach (json_decode($value->images) as $key => $img) {
+	 			$img_arr[] = $img;
+	 		}
+	 	}
+	 	$possible_problems_list = DB::table('possible_problems')->get();
 
 		$body = '
 		<style>
@@ -444,7 +418,7 @@ class SendMailController extends Controller
 			<!--content 1 -->
 			<tr><td align="center" bgcolor="#fbfcfd">
 			    <font face="Arial, Helvetica, sans-serif" size="4" color="#57697e" style="font-size: 15px;">
-			    <form action="http://127.0.0.1:8000/api/submit/reply/'.base64_encode($trans_id).'" method="">
+			    <form action="https://www.carenergies.com/api/submit/reply/'.base64_encode($trans_id).'" method="">
 			    	<input type="hidden" name="type" value="'.$type.'">
 				    <input type="hidden" name="country" value="'.$country.'">
 				    <input type="hidden" name="state" value="'.$state.'">
@@ -469,14 +443,12 @@ class SendMailController extends Controller
 								<tr>
 									<td colspan="2">
 										<p>
-											Hi <strong>'.$name.',</strong>
+											Hi <strong>Car Energies,</strong>
 											<input type="hidden" name="name" value="'.$name.'">
 											<input type="hidden" name="email" value="'.$email.'">
 										</p>
 										<p style="text-indent:30px;">
-											Attached is the evaluation report for the vehicle you submitted recently.
-											Please note that after your third free report, you will be charged $4.99 for each extra vehicle evaluation.
-											<br/><br/>We accept Paypal, Mc, and visa for your convenience.
+											Please evaluate Mr/Ms. <strong>'.$name.'</strong> submitted form. Also see attached images below. Thank you. 
 										<p/>
 									</td>
 								</tr>
@@ -484,13 +456,13 @@ class SendMailController extends Controller
 							<hr>
 						    <table width="100%">
 						    	<tr>
-						    		<td>
+						    		<td align="left">
 						    			<p>
 						    				Maker: <strong>'.$maker.'</strong>
 						    				<input type="hidden" name="maker" value="'.$maker.'">
 						    			</p>
 						    		</td>
-						    		<td>
+						    		<td align="center">
 						    			<p>
 						    				Model: <strong>'.$model.'</strong>
 						    				<input type="hidden" name="model" value="'.$model.'">
@@ -539,7 +511,7 @@ class SendMailController extends Controller
 							    </tr>
 							    <tr>
 							    	<td colspan="2"></td>
-							    	<td><button type="submit" style="font-size: 16px; background-color: #28a745; padding:10px 25px; color: #fff; border-radius: 5px; border: transparent;">Reply</button></td>
+							    	<td align="right"><button type="submit" style="font-size: 16px; background-color: #28a745; padding:10px 25px; color: #fff; border-radius: 5px; border: transparent;">Reply</button><br></td>
 							    </tr>
 							</table>
 						</td></tr>
@@ -548,8 +520,7 @@ class SendMailController extends Controller
 				</font>
 			</td></tr>
 			<!--content 1 END-->
-
-
+			
 			<!--footer -->
 			<tr><td class="iage_footer" align="center" bgcolor="#ffffff">
 
@@ -603,37 +574,20 @@ class SendMailController extends Controller
 			$mail->setFrom('carenergies@gmail.com', 'CAR ENERGIES');
 			$mail->AddReplyTo($email, $name);
 			$mail->addAddress("carenergies@gmail.com");
-			$mail->addAddress("iamjulius2607@gmail.com");
+			$mail->addAddress("republikangupwork@gmail.com");
 
-			// foreach ($filestosend as $key => $value) {
-			// 	$mail->addAttachment($value);
-			// }
-
-			// $mail->addAttachment('uploads/'); 
-			// $mail->addAttachment('/var/tmp/file.tar.gz');        // Add attachments
-		 	// $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); 
+			foreach ($img_arr as $img) {
+				$mail->addAttachment('uploads/customers_submit/'.$email.'/'.$img);
+			}
 
 			$mail->isHTML(true);
-
 			$mail->Subject = "FORM SUBMIT";
 			$mail->Body = "<i>Mail body in HTML</i>";
 			$mail->Body = $body;
 			$mail->send();
 			$mail->ClearAllRecipients();
 
-			//The name of the folder.
-			// $folder = 'uploads';
-			//Get a list of all of the file names in the folder.
-			// $files = glob($folder . '/*');
-		 
-			//Loop through the file list.
-			// foreach($files as $file){
-			//     //Make sure that this is a file and not a directory.
-			//     if(is_file($file)){
-			//         //Use the unlink function to delete the file.
-			//         unlink($file);
-			//     }
-			// }
+
 		 	return "Message has been sent successfully";
 
 		} catch (Exception $e) {
@@ -657,44 +611,14 @@ class SendMailController extends Controller
 	 	$date 			= $r['date'];
 	 	$pos_problems 	= $r['possible_problems'];
 
+	 	$data = $this->get_image_upload($trans_id);
+	 	$img_arr = array();
+	 	foreach ($data as $value) {
+	 		foreach (json_decode($value->images) as $key => $img) {
+	 			$img_arr[] = $img;
+	 		}
+	 	}
 	 	$possible_problems_list = DB::table('possible_problems')->get();
-	 	
-		// $id = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
-	    // $filestosend =  array();
-
-	    // $allowed_ext = array('jpg','jpeg','docx','pdf');
-	    // $destination = 'uploads/';
-		// foreach ($_FILES as $key => $value) {
-
-		// 		if(isset($_FILES[$key])){
-		// 			$filename = $key.'_name';
-		// 			$tmp_filename =$key.'_tmp_name';
-
-		// 			$filename = $_FILES[$key]['name'];
-		// 			$file_ext = end(explode(".", $filename));
-		// 			$tmp_filename = $_FILES[$key]['tmp_name'];
-
-		// 			if(isset($filename)){
-		// 				if(!empty($filename)){
-
-
-		// 					if(in_array($file_ext, $allowed_ext)){
-								
-		// 						$filestosend[] = $destination.$id.$filename;
-		// 						if(move_uploaded_file($tmp_filename, $destination.$id.$filename)){
-									
-		// 						}
-		// 					}else{
-		// 						echo 'File Extension Invalid';
-		// 					}
-							
-		// 				}
-		// 			}
-		// 	}
-			
-		// }
-
-
 
 		$body = '
 		<style>
@@ -779,7 +703,7 @@ class SendMailController extends Controller
 			<!--content 1 -->
 			<tr><td align="center" bgcolor="#fbfcfd">
 			    <font face="Arial, Helvetica, sans-serif" size="4" color="#57697e" style="font-size: 15px;">
-			    <form action="http://127.0.0.1:8000/api/submit/reply/'.base64_encode($trans_id).'" method="">
+			    <form action="https://www.carenergies.com/api/submit/reply/'.base64_encode($trans_id).'" method="">
 			    	<input type="hidden" name="type" value="'.$type.'">
 				    <input type="hidden" name="country" value="'.$country.'">
 				    <input type="hidden" name="state" value="'.$state.'">
@@ -819,13 +743,13 @@ class SendMailController extends Controller
 							<hr>
 						    <table width="100%">
 						    	<tr>
-						    		<td>
+						    		<td align="left">
 						    			<p>
 						    				Maker: <strong>'.$maker.'</strong>
 						    				<input type="hidden" name="maker" value="'.$maker.'">
 						    			</p>
 						    		</td>
-						    		<td>
+						    		<td align="center">
 						    			<p>
 						    				Model: <strong>'.$model.'</strong>
 						    				<input type="hidden" name="model" value="'.$model.'">
@@ -849,7 +773,8 @@ class SendMailController extends Controller
 						    	</tr>
 							    <tr>
 							    	<td colspan="3">
-							    		<table width="100%" id="possible_problems">';							    			$count = 0;
+							    		<table width="100%" id="possible_problems">';							    			
+							    			$count = 0;
 											$total_id = count($possible_problems_list)-1;
 											foreach ($possible_problems_list as $id => $val) {
 												if (isset($r['prob_list'][$val->problem])) {
@@ -937,38 +862,20 @@ class SendMailController extends Controller
 			$mail->Port = 587; 
 			$mail->setFrom('carenergies@gmail.com', 'CAR ENERGIES');
 			$mail->AddReplyTo('carenergies@gmail.com', 'CAR ENERGIES');
+			$mail->AddCC('republikangupwork@gmail.com');
 			$mail->addAddress($email);
 
-			// foreach ($filestosend as $key => $value) {
-			// 	$mail->addAttachment($value);
-			// }
-
-			// $mail->addAttachment('uploads/'); 
-			// $mail->addAttachment('/var/tmp/file.tar.gz');        // Add attachments
-		 	// $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); 
+			foreach ($img_arr as $img) {
+				$mail->addAttachment('uploads/customers_submit/'.$email.'/'.$img);
+			}
 
 			$mail->isHTML(true);
-
-
 			$mail->Subject = "FORM SUBMIT";
 			$mail->Body = "<i>Mail body in HTML</i>";
 			$mail->Body = $body;
 			$mail->send();
 			$mail->ClearAllRecipients();
 
-			//The name of the folder.
-			// $folder = 'uploads';
-			//Get a list of all of the file names in the folder.
-			// $files = glob($folder . '/*');
-		 
-			//Loop through the file list.
-			// foreach($files as $file){
-			//     //Make sure that this is a file and not a directory.
-			//     if(is_file($file)){
-			//         //Use the unlink function to delete the file.
-			//         unlink($file);
-			//     }
-			// }
 		 	return "Message has been sent successfully";
 
 		} catch (Exception $e) {
@@ -976,4 +883,9 @@ class SendMailController extends Controller
 		}
 	}
 
+	public function get_image_upload($transaction_id)
+	{
+		$form_submit = FormSubmit::where('transaction_id',$transaction_id)->get();
+		return $form_submit;
+	}
 }

@@ -57,7 +57,7 @@
                         <input type="hidden" name="type" value="form submit">
                         <div class="row justify-content-center">
                             <div class="col-md-9 col-md-offset-2">
-                                <div class="alert alert-danger" id="error-msg-div" style="display: none">
+                                <div class="alert alert-danger text-left" id="error-msg-div" style="display: none">
                                     <button type="button" class="close" data-dismiss="alert">×</button> 
                                     <span id="error-msg"></span>
                                 </div>
@@ -71,7 +71,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="float-left color-black txtbolder">Email: (<b class="required_fields">*</b>)</label>
-                                    <input type="text" name="email" id="email" class="form-control" placeholder="ex: car_energies@gmail.com" required="required">
+                                    <input type="text" name="email" id="email" class="form-control" placeholder="ex: car_energies@gmail.com">
                                 </div>
                             </div>
                         </div>
@@ -452,63 +452,73 @@
             processData: false,
             success: function (response) {
                 console.log(response)
-                if (response == 'not free') {
-                    $('#submit_payment_form_modal').modal('show');
-                } else {
-                    var message = response.split('|');
-                    if (message[0] == 0) {
-                        $('#error-msg-div').show(); 
-                        $('#error-msg').html(message[1]); 
-                        $('html, body').animate({
-                            scrollTop: $("#submit_div_form").offset().top
-                        }, 1000);
-                    } else {
-                        $('#error-msg-div').hide(); 
-                        $('#submit_form_modal').modal('show');
-                        setTimeout(function() {
-                            // $('#name').val('');
-                            // $('#email').val('');
-                            // $('#country').val('');
-                            // $('#state').val('');
-                            // $('#city').val('');
-                            // $('#maker').val('');
-                            // $('#model').val('');
-                            // $('#year').val('');
-                            $('#submit_form_modal').modal('hide');
-                        }, 4000);
-                    }
-                }
+                // if (response == 'not free') {
+                //     $('#submit_payment_form_modal').modal('show');
+                // } else {
+                //     var message = response.split('|');
+                //     if (message[0] == 0) {
+                //         $('#error-msg-div').show(); 
+                //         $('#error-msg').html(message[1]); 
+                //         $('html, body').animate({
+                //             scrollTop: $("#submit_div_form").offset().top
+                //         }, 1000);
+                //     } else {
+                //         $('#error-msg-div').hide(); 
+                //         $('#submit_form_modal').modal('show');
+                //         setTimeout(function() {
+                //             // $('#name').val('');
+                //             // $('#email').val('');
+                //             // $('#country').val('');
+                //             // $('#state').val('');
+                //             // $('#city').val('');
+                //             // $('#maker').val('');
+                //             // $('#model').val('');
+                //             // $('#year').val('');
+                //             $('#submit_form_modal').modal('hide');
+                //         }, 4000);
+                //     }
+                // }
             },
-            error: function (data) {
-                if ( data.status === 422 ) {
-                    var errors = $.parseJSON(data.responseText);
-                    $.each(errors, function (key, value) {
-                        // console.log(key+ " " +value);
-                        // $('#response').addClass("alert alert-danger");
+            error: function (error) {
+                var error_message = '<ul>';
+                $.each(error.responseJSON, function(field,messages) {
+                    $.each(messages, function(i, message) {
+                        error_message += '<li>'+message+'</li>';
+                    })
+                })
+                error_message += '</ul>';
+                $('#error-msg-div').show(); 
+                $('#error-msg').html(error_message);
 
-                        if ($.isPlainObject(value)) {
-                            $.each(value, function (key, value) {                       
-                                console.log(key+ " " +value);
-                                $('#error-msg-div').show(); 
-                                $('#error-msg').html(value+"<br/>");
-                                // $('#response').show().append(value+"<br/>");
-                            });
-                        } else {
-                            $('#error-msg-div').show(); 
-                            $('#error-msg').html(value+"<br/>");
-                            // $('#response').show().append(value+"<br/>"); //this is my div with messages
-                        }
-                    });
-                    $('html, body').animate({
-                        scrollTop: $("#submit_div_form").offset().top
-                    }, 1000);
-                } else {
-                    $('#error-msg-div').show(); 
-                    $('#error-msg').html(data);
-                    $('html, body').animate({
-                        scrollTop: $("#submit_div_form").offset().top
-                    }, 1000);
-                }
+                // if ( data.status === 422 ) {
+                //     var errors = $.parseJSON(data.responseText);
+                //     $.each(errors, function (key, value) {
+                //         // console.log(key+ " " +value);
+                //         // $('#response').addClass("alert alert-danger");
+
+                //         if ($.isPlainObject(value)) {
+                //             $.each(value, function (key, value) {                       
+                //                 console.log(key+ " " +value);
+                //                 $('#error-msg-div').show(); 
+                //                 $('#error-msg').html(value+"<br/>");
+                //                 // $('#response').show().append(value+"<br/>");
+                //             });
+                //         } else {
+                //             $('#error-msg-div').show(); 
+                //             $('#error-msg').html(value+"<br/>");
+                //             // $('#response').show().append(value+"<br/>"); //this is my div with messages
+                //         }
+                //     });
+                //     $('html, body').animate({
+                //         scrollTop: $("#submit_div_form").offset().top
+                //     }, 1000);
+                // } else {
+                //     $('#error-msg-div').show(); 
+                //     $('#error-msg').html(data);
+                //     $('html, body').animate({
+                //         scrollTop: $("#submit_div_form").offset().top
+                //     }, 1000);
+                // }
 
             }
         });

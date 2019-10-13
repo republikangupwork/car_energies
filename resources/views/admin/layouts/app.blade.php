@@ -42,12 +42,12 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item {{ Request::is('admin-page/profile') ? 'active' : '' }}">
+                 {{--    <li class="nav-item {{ Request::is('admin-page/profile') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin-page/profile') }}">
                             <i class="material-icons">person</i>
                             <p>User Profile</p>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item {{ Request::is('admin-page/mailbox') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin-page/mailbox') }}">
                             <i class="material-icons">mail</i>
@@ -123,9 +123,9 @@
                                     </p>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a class="dropdown-item" href="#">Profile</a>
+                                    {{-- <a class="dropdown-item" href="#">Profile</a>
                                     <a class="dropdown-item" href="#">Settings</a>
-                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider"></div> --}}
                                     <a class="dropdown-item" href="{{ url('/admin-page/logout') }}">Log out</a>
                                 </div>
                             </li>
