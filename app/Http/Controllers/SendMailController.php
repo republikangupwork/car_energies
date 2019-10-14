@@ -112,7 +112,7 @@ class SendMailController extends Controller
 				$send_mail = $this->generate_form_submit_mail($param);
 
 				if ($send_mail == 'Message has been sent successfully') {
-					return '1|Form successfully sent!';
+					return '1|Form successfully sent!|'.$param['transaction_id'].'|'.$param['name'];
 				} else {
 					return '0|Smtp Error! Please contact admin for this issue.';
 				}
@@ -293,8 +293,8 @@ class SendMailController extends Controller
 			$mail->Port = 587; 
 			$mail->setFrom('carenergies@gmail.com', 'CAR ENERGIES');
 			$mail->AddReplyTo($email, $name);
-			$mail->addAddress("carenergies@gmail.com");
-			$mail->addAddress("republikangupwork@gmail.com");
+			$mail->AddCC('carenergies@gmail.com');
+			$mail->addAddress("julia@carenergies.com");
 
 			$mail->isHTML(true);
 
@@ -573,8 +573,8 @@ class SendMailController extends Controller
 			$mail->Port = 587; 
 			$mail->setFrom('carenergies@gmail.com', 'CAR ENERGIES');
 			$mail->AddReplyTo($email, $name);
-			$mail->addAddress("carenergies@gmail.com");
-			$mail->addAddress("republikangupwork@gmail.com");
+			$mail->AddCC('carenergies@gmail.com');
+			$mail->addAddress("julia@carenergies.com");
 
 			foreach ($img_arr as $img) {
 				$mail->addAttachment('uploads/customers_submit/'.$email.'/'.$img);
@@ -862,7 +862,7 @@ class SendMailController extends Controller
 			$mail->Port = 587; 
 			$mail->setFrom('carenergies@gmail.com', 'CAR ENERGIES');
 			$mail->AddReplyTo('carenergies@gmail.com', 'CAR ENERGIES');
-			$mail->AddCC('republikangupwork@gmail.com');
+			$mail->AddCC('julia@carenergies.com');
 			$mail->addAddress($email);
 
 			foreach ($img_arr as $img) {

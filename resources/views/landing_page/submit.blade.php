@@ -396,9 +396,15 @@
                 </div>
                 <div class="modal-body" style="padding: 0 15px;">
                     <div class="row no-gutter">
-                        <div class="col-md-12 text-center">
-                            <p class="modal-title" style="font-size: 18px; padding: 10px;">Thank you for trying our service! Your form has been sent successfully.</p>
-                            <img src="{{ asset('images/sample_1/email_sent.gif') }}" style="width: 100%; height: 350px;">
+                        <div class="col-md-12">
+                            <p class="modal-title text-left" style="font-size: 18px; padding: 10px;">
+                                THANK YOU <b id="client_name"></b><br>
+                                Your request is sent. Julia will evaluate your car energies and will send you a report shortly.<br>
+                                <b>Your request number is <span id="transaction_id"></span></b>
+                            </p>
+                            <p class="text-center">
+                                <img src="{{ asset('images/sample_1/email_sent.gif') }}" style="width: 100%; height: 350px;">
+                            </p>
                         </div>                    
                     </div>
                 </div>
@@ -437,12 +443,9 @@
 
 
 <script>
-
     $('#submit_form').submit(function(e){
         e.preventDefault();
-
         var formData = new FormData(this);
-
         $.ajax({
             type: 'POST',
             url: "{{ url('sendemail/') }}", 
@@ -451,33 +454,34 @@
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(response)
-                // if (response == 'not free') {
-                //     $('#submit_payment_form_modal').modal('show');
-                // } else {
-                //     var message = response.split('|');
-                //     if (message[0] == 0) {
-                //         $('#error-msg-div').show(); 
-                //         $('#error-msg').html(message[1]); 
-                //         $('html, body').animate({
-                //             scrollTop: $("#submit_div_form").offset().top
-                //         }, 1000);
-                //     } else {
-                //         $('#error-msg-div').hide(); 
-                //         $('#submit_form_modal').modal('show');
-                //         setTimeout(function() {
-                //             // $('#name').val('');
-                //             // $('#email').val('');
-                //             // $('#country').val('');
-                //             // $('#state').val('');
-                //             // $('#city').val('');
-                //             // $('#maker').val('');
-                //             // $('#model').val('');
-                //             // $('#year').val('');
-                //             $('#submit_form_modal').modal('hide');
-                //         }, 4000);
-                //     }
-                // }
+                if (response == 'not free') {
+                    $('#submit_payment_form_modal').modal('show');
+                } else {
+                    var message = response.split('|');
+                    if (message[0] == 0) {
+                        $('#error-msg-div').show(); 
+                        $('#error-msg').html(message[1]); 
+                        $('html, body').animate({
+                            scrollTop: $("#submit_div_form").offset().top
+                        }, 1000);
+                    } else {
+                        $('#error-msg-div').hide(); 
+                        $('#submit_form_modal').modal('show');
+                        $('#client_name').text(message[3]);
+                        $('#transaction_id').text(message[2]);
+                        setTimeout(function() {
+                            $('#name').val('');
+                            $('#email').val('');
+                            $('#country').val('');
+                            $('#state').val('');
+                            $('#city').val('');
+                            $('#maker').val('');
+                            $('#model').val('');
+                            $('#year').val('');
+                            $('#submit_form_modal').modal('hide');
+                        }, 6000);
+                    }
+                }
             },
             error: function (error) {
                 var error_message = '<ul>';
@@ -489,37 +493,6 @@
                 error_message += '</ul>';
                 $('#error-msg-div').show(); 
                 $('#error-msg').html(error_message);
-
-                // if ( data.status === 422 ) {
-                //     var errors = $.parseJSON(data.responseText);
-                //     $.each(errors, function (key, value) {
-                //         // console.log(key+ " " +value);
-                //         // $('#response').addClass("alert alert-danger");
-
-                //         if ($.isPlainObject(value)) {
-                //             $.each(value, function (key, value) {                       
-                //                 console.log(key+ " " +value);
-                //                 $('#error-msg-div').show(); 
-                //                 $('#error-msg').html(value+"<br/>");
-                //                 // $('#response').show().append(value+"<br/>");
-                //             });
-                //         } else {
-                //             $('#error-msg-div').show(); 
-                //             $('#error-msg').html(value+"<br/>");
-                //             // $('#response').show().append(value+"<br/>"); //this is my div with messages
-                //         }
-                //     });
-                //     $('html, body').animate({
-                //         scrollTop: $("#submit_div_form").offset().top
-                //     }, 1000);
-                // } else {
-                //     $('#error-msg-div').show(); 
-                //     $('#error-msg').html(data);
-                //     $('html, body').animate({
-                //         scrollTop: $("#submit_div_form").offset().top
-                //     }, 1000);
-                // }
-
             }
         });
     })
@@ -533,6 +506,7 @@
             }
         });
     });
+
     function readURL(input,imgid,lblid) {
         var name = input.files[0].name;
         if (input.files && input.files[0]) {
